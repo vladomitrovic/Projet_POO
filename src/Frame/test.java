@@ -8,5 +8,13 @@ public class test {
 		System.out.println("salut");
 		return 4;
 		
-	}
+	}	
+		
+		
+		public int test(){
+			return 0;
+			
+		}
+		
+	
 }
