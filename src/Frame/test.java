@@ -5,7 +5,7 @@ public class test {
 	private int salut ;
 	
 	public int bonjour(){
-		return salut;
+		return 4;
 		
 	}
 }
