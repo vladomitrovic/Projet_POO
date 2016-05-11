@@ -1,20 +1,16 @@
 package Frame;
 
 public class test {
-//afdgagfgt
-	private String salut ;
-	
-	public test(String salut){
-		this.salut = salut ;
-	}
-	
-	public int bonjour(){
-		System.out.println("salut");
-		return 4;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Launcher lun=new Launcher();
+		
+		lun.setVisible(true);
+		
+		
 		
 	}
-	
-	
-	
-	}
-	
+
+}
