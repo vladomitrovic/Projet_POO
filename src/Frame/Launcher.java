@@ -3,58 +3,41 @@ package Frame;
 import java.awt.*;
 import javax.swing.*;
 
-public class Launcher extends JFrame{
+public class Launcher extends JFrame {
 
-	private JButton contact=new JButton("Contacts");
-	private JButton galerie=new JButton("Galerie");
-	private JButton inconnu=new JButton("inconnu");
-	private JPanel panel=new JPanel();
-	
-	private ImageIcon wallPaper=new ImageIcon("C:/Users/Vlado/Desktop/wallpaper.JPEG");
-	
-	
-	
-	public Launcher(){
+	private JButton btnContacts = new JButton("Contacts");
+	private JButton btnGalerie = new JButton("Galerie");
+	private JButton btnAutres = new JButton("Autres...");
+	private JPanel panel = new JPanel();
+	private JLabel lblNewLabel = new JLabel();
+	private ImageIcon wallpaper = new ImageIcon("C:/Users/Aleksandar/Desktop/desktop.jpg");
 
-		//Affichage de la frame
+	public Launcher() {
 		
+		//Préferences de la frame principale
 		setPreferredSize(new Dimension(480, 800));
 		setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		pack();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
-		
-		
-		contact.setAlignmentX(Component.CENTER_ALIGNMENT);
-		galerie.setAlignmentX(Component.CENTER_ALIGNMENT);
-		inconnu.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.add(contact);
-		panel.add(galerie);
-		panel.add(inconnu);
-		add(panel);
-		
-		
-		
-		
-//		//Ajout des bouttons
-//		add(contact, BorderLayout.NORTH);
-//		add(galerie, BorderLayout.CENTER);
-//		add(inconnu, BorderLayout.SOUTH);
-//		
-//		
-//		contact.setPreferredSize(new Dimension(100, 50));
-//		galerie.setPreferredSize(new Dimension(100, 50));
-//		inconnu.setPreferredSize(new Dimension(100, 50));		
-		
-		
+		getContentPane().setLayout(null);
+
+		//Ajout label et wallpaper
+		lblNewLabel.setIcon(wallpaper);
+		lblNewLabel.setBounds(0, 0, 474, 765);
+		getContentPane().add(lblNewLabel);
+
+		//ajout des boutons à la frame
+		btnContacts.setBounds(138, 182, 179, 54);
+		getContentPane().add(btnContacts);
+		btnGalerie.setBounds(138, 326, 179, 54);
+		getContentPane().add(btnGalerie);
+		btnAutres.setBounds(141, 459, 176, 55);
+		getContentPane().add(btnAutres);
+
+		pack();
+
+
+
 	}
-	
-	
-	
-	
-	
+
 }
