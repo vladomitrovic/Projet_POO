@@ -1,6 +1,7 @@
 package Contact;
 import Galerie.Photo;
 
+
 public class Contact {
 
 	private String nom, prenom, tel;
