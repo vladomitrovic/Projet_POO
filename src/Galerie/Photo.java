@@ -19,4 +19,8 @@ public class Photo extends ImageIcon {
 		super(scaledInstance);
 	}
 
+	public String getPath() {
+		return path;
+	}
+
 }
