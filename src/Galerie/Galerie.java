@@ -1,6 +1,6 @@
 package Galerie;
 
-public abstract class Galerie {
+public class Galerie {
 	
 	private Photo[] photos = new Photo[50] ;
 	private int cpt ;

@@ -11,9 +11,8 @@ public class Launcher extends BasiqueFrame {
 	private JButton btnContacts = new JButton("Contacts");
 	private JButton btnGalerie = new JButton("Galerie");
 	private JButton btnAutres = new JButton("Autres...");
-	private JPanel panel = new JPanel();
 	private JLabel lblNewLabel = new JLabel();
-	private ImageIcon wallpaper = new ImageIcon("C:/Users/Aleksandar/Desktop/desktop.jpg");
+	private ImageIcon wallpaper = new ImageIcon("Pictures/desktop.jpg");
 
 	public Launcher() {
 
@@ -21,10 +20,9 @@ public class Launcher extends BasiqueFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		// Ajout label et wallpaper
+		// Modification du label et ajout du wallpaper
 		lblNewLabel.setIcon(wallpaper);
 		lblNewLabel.setBounds(0, 0, 474, 765);
-		getContentPane().add(lblNewLabel);
 
 		// ajout des actionlistener sur les boutons
 		btnGalerie.addActionListener(new Galerie_Click());
@@ -36,6 +34,9 @@ public class Launcher extends BasiqueFrame {
 		getContentPane().add(btnGalerie);
 		btnAutres.setBounds(141, 459, 176, 55);
 		getContentPane().add(btnAutres);
+		
+		//ajout du label à la frame
+		getContentPane().add(lblNewLabel);
 
 		pack();
 
