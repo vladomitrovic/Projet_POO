@@ -46,7 +46,7 @@ public class Launcher extends BasiqueFrame {
 		panelContainer.add(panelLauncher, "panelLauncher");
 		cardLayout.show(panelContainer, "panelLauncher");
 		
-		// ajout du panelContainer à la frame
+		//
 		add(panelContainer);
 
 		pack();
