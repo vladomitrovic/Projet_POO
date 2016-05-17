@@ -15,11 +15,6 @@ public class Contact {
 
 	
 	
-	
-	
-	
-	
-	
 	public String getNom() {
 		return nom;
 	}
