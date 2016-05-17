@@ -27,7 +27,7 @@ import Galerie.Galerie;
 import Galerie.Photo;
 
 public class MainFrmGalerie extends BasiqueFrame {
-
+	private JPanel principalPanel = new JPanel() ;
 	private JPanel containerPhotos = new JPanel();
 	private JPanel upPanel = new JPanel();
 	private Galerie galerie = new Galerie();
@@ -94,11 +94,20 @@ public class MainFrmGalerie extends BasiqueFrame {
 		upPanel.add(addButton);
 
 		// add panels to frame
-		add(upPanel, BorderLayout.NORTH);
-		add(containerPhotos);
+
+		
+		// add panels to principal Panel
+		principalPanel.setLayout(new BorderLayout());
+		principalPanel.add(upPanel, BorderLayout.NORTH) ;
+		principalPanel.add(containerPhotos);
+		add(principalPanel) ;
 
 		pack();
 
+	}
+	
+	public JPanel getPrincipalPanel(){
+		return principalPanel ;
 	}
 
 	class Back_Click implements ActionListener {

@@ -8,9 +8,10 @@ public class BasiqueFrame extends JFrame {
 
 	public BasiqueFrame() {
 		setPreferredSize(new Dimension(480, 800));
-		setResizable(false);
+		setSize(480,800);
 		setLocationRelativeTo(null);
-		pack();
+		setResizable(false);
+		setAlwaysOnTop(true);
 	}
 
 }
