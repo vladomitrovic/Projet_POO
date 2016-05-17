@@ -6,21 +6,28 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Launcher extends BasiqueFrame {
+public class Launcher extends JFrame {
 
 	private JButton btnContacts = new JButton("Contacts");
 	private JButton btnGalerie = new JButton("Galerie");
 	private JButton btnAutres = new JButton("Autres...");
 	private JLabel lblNewLabel = new JLabel();
 	private ImageIcon wallpaper = new ImageIcon("Pictures/desktop.jpg");
-	private CardLayout cardLayout = new CardLayout();
+	public CardLayout cardLayout = new CardLayout();
 	private JPanel panelContainer = new JPanel();
 	private JPanel panelLauncher = new JPanel();
 
 	public Launcher() {
 
 		// Préferences de la frame principale
+		setPreferredSize(new Dimension(480, 800));
+		setSize(480, 800);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		// Préference du Panel
 		panelLauncher.setLayout(null);
 		panelContainer.setLayout(cardLayout);
 
@@ -45,12 +52,24 @@ public class Launcher extends BasiqueFrame {
 		// ajout des panel au panelContainer puis show avec cardLayout
 		panelContainer.add(panelLauncher, "panelLauncher");
 		cardLayout.show(panelContainer, "panelLauncher");
-		
-		//
+
+		// add panelContainer to JFrame
 		add(panelContainer);
 
 		pack();
 
+	}
+
+	public JPanel getPanelContainer() {
+		return panelContainer;
+	}
+
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+
+	public void setCardLayout(Object show, String name) {
+		cardLayout.show((Container) show, name);
 	}
 
 	class Galerie_Click implements ActionListener {
@@ -58,8 +77,8 @@ public class Launcher extends BasiqueFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			MainFrmGalerie frmGalerie = new MainFrmGalerie();
-			panelContainer.add(frmGalerie.getPrincipalPanel(),"principalPanel") ;
+			MainPanelGalerie frmGalerie = new MainPanelGalerie();
+			panelContainer.add(frmGalerie.getPrincipalPanel(), "principalPanel");
 			cardLayout.show(panelContainer, "principalPanel");
 		}
 
