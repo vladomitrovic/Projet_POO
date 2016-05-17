@@ -26,13 +26,12 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import Galerie.Galerie;
 import Galerie.Photo;
 
-public class MainFrmGalerie extends BasiqueFrame {
+public class MainPanelGalerie extends JFrame {
 	private JPanel principalPanel = new JPanel() ;
 	private JPanel containerPhotos = new JPanel();
 	private JPanel upPanel = new JPanel();
 	private Galerie galerie = new Galerie();
 	private JButton[] buttons = new JButton[50];
-
 	
 	private Photo photo1 = new Photo("Pictures/animal1.jpeg");
 	private Photo photo2 = new Photo("Pictures/paysage1.jpeg");
@@ -45,7 +44,7 @@ public class MainFrmGalerie extends BasiqueFrame {
 	private BasicArrowButton backButton = new BasicArrowButton(BasicArrowButton.WEST);
 	private JButton addButton = new JButton("+");
 
-	public MainFrmGalerie() {
+	public MainPanelGalerie() {
 
 		// set Frame display
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -116,22 +115,20 @@ public class MainFrmGalerie extends BasiqueFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			Launcher launcher = new Launcher();
-			launcher.getPanelContainer().add(principalPanel, "principalPanel") ; ////// ici il faudra CORRIGER SA !!!LIGNE INUTILE JE CROIS !!!!!
 			launcher.cardLayout.show(launcher.getPanelContainer(), "panelLauncher");
+			launcher.add(launcher.getPanelContainer());
 		}
 
 	}
 
-	class PhotoFrame extends BasiqueFrame {
+	class PhotoPanel extends JPanel {
 
 		private JLabel label;
+		private JPanel photoPanel = new JPanel() ;
 
-		public PhotoFrame(Photo photo) {
-			// photo = new Photo(photo.getPath(),new Image())
-			System.out.println(photo.getPath());
-			label = new JLabel();
-			label.setIcon(photo);
-			add(label);
+		public PhotoPanel() {
+			photoPanel.setBackground(Color.BLACK);
+			add(photoPanel) ;
 		}
 	}
 
@@ -140,11 +137,7 @@ public class MainFrmGalerie extends BasiqueFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			JButton button = (JButton) e.getSource();
-			setVisible(false);
-			PhotoFrame photoFrame = new PhotoFrame((Photo) button.getIcon());
-			photoFrame.setVisible(true);
-
+			
 		}
 
 	}

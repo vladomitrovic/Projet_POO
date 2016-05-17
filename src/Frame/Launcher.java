@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Launcher extends BasiqueFrame {
+public class Launcher extends JFrame {
 
 	private JButton btnContacts = new JButton("Contacts");
 	private JButton btnGalerie = new JButton("Galerie");
@@ -20,7 +20,14 @@ public class Launcher extends BasiqueFrame {
 	public Launcher() {
 
 		// Préferences de la frame principale
+		setPreferredSize(new Dimension(480, 800));
+		setSize(480, 800);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		// Préference du Panel
 		panelLauncher.setLayout(null);
 		panelContainer.setLayout(cardLayout);
 
@@ -46,7 +53,7 @@ public class Launcher extends BasiqueFrame {
 		panelContainer.add(panelLauncher, "panelLauncher");
 		cardLayout.show(panelContainer, "panelLauncher");
 
-		//add panelContainer to JFrame
+		// add panelContainer to JFrame
 		add(panelContainer);
 
 		pack();
@@ -70,7 +77,7 @@ public class Launcher extends BasiqueFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			MainFrmGalerie frmGalerie = new MainFrmGalerie();
+			MainPanelGalerie frmGalerie = new MainPanelGalerie();
 			panelContainer.add(frmGalerie.getPrincipalPanel(), "principalPanel");
 			cardLayout.show(panelContainer, "principalPanel");
 		}
