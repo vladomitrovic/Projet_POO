@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class CarnetContact {
 	
 	private String name;
-	private ArrayList<Contact> carnet = new ArrayList<Contact>();
+	ArrayList<Contact> carnet = new ArrayList<Contact>();
 	
 	
 	public CarnetContact(){
