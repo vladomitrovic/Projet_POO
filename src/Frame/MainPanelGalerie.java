@@ -2,8 +2,10 @@ package Frame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Label;
@@ -26,13 +28,12 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import Galerie.Galerie;
 import Galerie.Photo;
 
-public class MainPanelGalerie extends JFrame {
-	private JPanel principalPanel = new JPanel() ;
+public class MainPanelGalerie extends JPanel {
+
 	private JPanel containerPhotos = new JPanel();
-	private JPanel upPanel = new JPanel();
 	private Galerie galerie = new Galerie();
-	private JButton[] buttons = new JButton[50];
-	
+	private JButton[] photoButtons = new JButton[50];
+
 	private Photo photo1 = new Photo("Pictures/animal1.jpeg");
 	private Photo photo2 = new Photo("Pictures/paysage1.jpeg");
 	private Photo photo3 = new Photo("Pictures/paysage3.jpeg");
@@ -41,72 +42,81 @@ public class MainPanelGalerie extends JFrame {
 	private Photo photo6 = new Photo("Pictures/paysage2.jpeg");
 	private Photo photo7 = new Photo("Pictures/ville1.jpeg");
 
-	private BasicArrowButton backButton = new BasicArrowButton(BasicArrowButton.WEST);
-	private JButton addButton = new JButton("+");
-
 	public MainPanelGalerie() {
 
-		// set Frame display
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		// setMainPanel
+		setPreferredSize(new Dimension(480, 800));
+		setLayout(new BorderLayout());
 
 		// set containerPhotos
 		FlowLayout flowLayout = new FlowLayout();
-		flowLayout.setHgap(0);
-		flowLayout.setVgap(0);
+		flowLayout.setHgap(10);
+		flowLayout.setVgap(10);
 		containerPhotos.setLayout(flowLayout);
 
+		// add images to gallery and to buttons
+		galerie.addPhoto((Photo) photo1, photoButtons);
+		galerie.addPhoto((Photo) photo2, photoButtons);
+		galerie.addPhoto((Photo) photo3, photoButtons);
+		galerie.addPhoto((Photo) photo4, photoButtons);
+		galerie.addPhoto((Photo) photo5, photoButtons);
+		galerie.addPhoto((Photo) photo6, photoButtons);
+		galerie.addPhoto((Photo) photo7, photoButtons);
+
 		// modify size of buttons
-		for (int i = 0; i < buttons.length; i++) {
-			if (buttons[i] != null)
-				buttons[i].setPreferredSize(new Dimension(130, 100));
+		for (int i = 0; i < photoButtons.length; i++) {
+			if (photoButtons[i] != null)
+				photoButtons[i].setPreferredSize(new Dimension(130, 100));
 		}
 
-		// add images to gallery and to buttons
-		galerie.addPhoto((Photo) photo1, buttons);
-		galerie.addPhoto((Photo) photo2, buttons);
-		galerie.addPhoto((Photo) photo3, buttons);
-		galerie.addPhoto((Photo) photo4, buttons);
-		galerie.addPhoto((Photo) photo5, buttons);
-		galerie.addPhoto((Photo) photo6, buttons);
-		galerie.addPhoto((Photo) photo7, buttons);
-		
-
 		// add listener to Jbuttons
-		for (int i = 0; i < buttons.length; i++) {
-			if (buttons[i] != null)
-				buttons[i].addActionListener(new Photo_Click());
+		for (int i = 0; i < photoButtons.length; i++) {
+			if (photoButtons[i] != null)
+				photoButtons[i].addActionListener(new Photo_Click());
 		}
 
 		// add buttons to photo's panel
-		for (int i = 0; i < buttons.length; i++) {
-			if (buttons[i] != null)
-				containerPhotos.add(buttons[i]);
+		for (int i = 0; i < photoButtons.length; i++) {
+			if (photoButtons[i] != null)
+				containerPhotos.add(photoButtons[i]);
 		}
 
 		// modify buttons for upPanel
-		backButton.setAlignmentY(LEFT_ALIGNMENT);
-		backButton.setAlignmentY(RIGHT_ALIGNMENT);
-		backButton.addActionListener(new Back_Click());
 
 		// modify the upPanel
-		upPanel.add(backButton);
-		upPanel.add(addButton);
 
-		// add panels to frame
-
-		
 		// add panels to principal Panel
-		principalPanel.setLayout(new BorderLayout());
-		principalPanel.add(upPanel, BorderLayout.NORTH) ;
-		principalPanel.add(containerPhotos);
-		add(principalPanel) ;
-
-		pack();
+		add(new TopBarPanel(), BorderLayout.NORTH);
+		add(containerPhotos);
 
 	}
-	
-	public JPanel getPrincipalPanel(){
-		return principalPanel ;
+
+	class TopBarPanel extends JPanel {
+		private JPanel leftPanel = new JPanel();
+		private JPanel rightPanel = new JPanel();
+		private Photo backPhoto = new Photo("Pictures/backArrow.png");
+		private JButton backButton = new JButton(backPhoto);
+		private Photo addPhoto = new Photo("Pictures/addPhoto.jpg");
+		private JButton addButton = new JButton(addPhoto);
+
+		public TopBarPanel() {
+			setLayout(new GridLayout(1, 2));
+
+			// set backButton
+			backButton.setBorderPainted(false);
+			backButton.setContentAreaFilled(false);
+			backButton.setFocusPainted(false);
+			backButton.setOpaque(false);
+			backButton.addActionListener(new Back_Click());
+
+			// set addButton
+			addButton.setBorderPainted(false);
+			addButton.setContentAreaFilled(false);
+			addButton.setFocusPainted(false);
+			addButton.setOpaque(false);
+			addButton.addActionListener(new Back_Click());
+
+		}
 	}
 
 	class Back_Click implements ActionListener {
@@ -114,21 +124,27 @@ public class MainPanelGalerie extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			Launcher launcher = new Launcher();
-			launcher.cardLayout.show(launcher.getPanelContainer(), "panelLauncher");
-			launcher.add(launcher.getPanelContainer());
+			setVisible(false);
+
 		}
 
 	}
 
 	class PhotoPanel extends JPanel {
 
-		private JLabel label;
-		private JPanel photoPanel = new JPanel() ;
+		private Image photo;
+		private BasicArrowButton back = new BasicArrowButton(BasicArrowButton.WEST);
 
-		public PhotoPanel() {
-			photoPanel.setBackground(Color.BLACK);
-			add(photoPanel) ;
+		public PhotoPanel(Photo photo) {
+			this.photo = photo.getImage();
+
+		}
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			// TODO Auto-generated method stub
+			super.paintComponent(g);
+			g.drawImage(photo, 0, 0, getWidth(), getHeight(), this);
 		}
 	}
 
@@ -137,7 +153,10 @@ public class MainPanelGalerie extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			containerPhotos.setVisible(false);
+			JButton button = (JButton) e.getSource();
+			Photo photo = (Photo) button.getIcon();
+			add(new PhotoPanel(photo));
 		}
 
 	}
