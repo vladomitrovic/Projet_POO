@@ -115,9 +115,9 @@ public class MainFrmGalerie extends BasiqueFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			setVisible(false);
 			Launcher launcher = new Launcher();
-			launcher.setVisible(true);
+			launcher.getPanelContainer().add(principalPanel, "principalPanel") ; ////// ici il faudra CORRIGER SA !!!LIGNE INUTILE JE CROIS !!!!!
+			launcher.cardLayout.show(launcher.getPanelContainer(), "panelLauncher");
 		}
 
 	}

@@ -13,9 +13,10 @@ public class Launcher extends BasiqueFrame {
 	private JButton btnAutres = new JButton("Autres...");
 	private JLabel lblNewLabel = new JLabel();
 	private ImageIcon wallpaper = new ImageIcon("Pictures/desktop.jpg");
-	private CardLayout cardLayout = new CardLayout();
+	public CardLayout cardLayout = new CardLayout();
 	private JPanel panelContainer = new JPanel();
 	private JPanel panelLauncher = new JPanel();
+	private JPanel panelVide = new JPanel();
 
 	public Launcher() {
 
@@ -44,13 +45,27 @@ public class Launcher extends BasiqueFrame {
 
 		// ajout des panel au panelContainer puis show avec cardLayout
 		panelContainer.add(panelLauncher, "panelLauncher");
+		panelContainer.add(panelVide, "panelVide");
 		cardLayout.show(panelContainer, "panelLauncher");
-		
+//		cardLayout.show(panelContainer, "panelVide");
+
 		//
 		add(panelContainer);
 
 		pack();
 
+	}
+
+	public JPanel getPanelContainer() {
+		return panelContainer;
+	}
+
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+
+	public void setCardLayout(Object show, String name) {
+		cardLayout.show((Container) show, name);
 	}
 
 	class Galerie_Click implements ActionListener {
@@ -59,7 +74,7 @@ public class Launcher extends BasiqueFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			MainFrmGalerie frmGalerie = new MainFrmGalerie();
-			panelContainer.add(frmGalerie.getPrincipalPanel(),"principalPanel") ;
+			panelContainer.add(frmGalerie.getPrincipalPanel(), "principalPanel");
 			cardLayout.show(panelContainer, "principalPanel");
 		}
 
