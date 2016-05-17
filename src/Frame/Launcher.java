@@ -16,7 +16,6 @@ public class Launcher extends BasiqueFrame {
 	public CardLayout cardLayout = new CardLayout();
 	private JPanel panelContainer = new JPanel();
 	private JPanel panelLauncher = new JPanel();
-	private JPanel panelVide = new JPanel();
 
 	public Launcher() {
 
@@ -45,11 +44,9 @@ public class Launcher extends BasiqueFrame {
 
 		// ajout des panel au panelContainer puis show avec cardLayout
 		panelContainer.add(panelLauncher, "panelLauncher");
-		panelContainer.add(panelVide, "panelVide");
 		cardLayout.show(panelContainer, "panelLauncher");
-//		cardLayout.show(panelContainer, "panelVide");
 
-		//
+		//add panelContainer to JFrame
 		add(panelContainer);
 
 		pack();
