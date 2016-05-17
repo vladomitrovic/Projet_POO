@@ -14,28 +14,30 @@ import Contact.CarnetContact;
 import Contact.Contact;
 
 
-public class MainCarnetContacts extends JPanel{
+public class MainPanelCarnet extends JPanel{
 	
 	JPanel liste =new JPanel();
-	private ArrayList<JButton> buttons= new ArrayList<JButton>();
 
-	CarnetContact carnet=new  CarnetContact();
+
+	ArrayList<Contact> carnet = new ArrayList<Contact>();
 	
 	Contact vlado=new Contact ("Mitrovic", "Vlado", "079 439 22 26");
 	Contact john=new Contact ("Doe", "John", "079 123 45 67");
+	Contact adam=new Contact ("Adam", "Smith", "078 765 41 23");
 	
 	
-	public MainCarnetContacts(){
+	public MainPanelCarnet(){
 		setPreferredSize(new Dimension(480, 800));
-		setLayout(new BorderLayout());
-		GridLayout grid=new GridLayout(1,10);
-		
-		liste.setLayout(grid);
-		
-		carnet.newContact(vlado);
-		carnet.newContact(vlado);
+
+		liste.setLayout(new GridLayout(carnet.size(),1));
+		add(liste, BorderLayout.CENTER);
 		
 		
+		
+//		afficher contact
+		for(Contact c :carnet){
+			liste.add(new JButton(c.getNom()+" "+c.getPrenom()));
+		}
 		
 		
 		

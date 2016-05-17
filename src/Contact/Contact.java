@@ -1,8 +1,10 @@
 package Contact;
+import java.io.Serializable;
+
 import Galerie.Photo;
 
 
-public class Contact {
+public class Contact implements Serializable{
 
 	private String nom, prenom, tel;
 	private Photo photo;

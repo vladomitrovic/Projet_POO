@@ -8,8 +8,7 @@ public class Test {
 		Launcher lun = new Launcher();
 		lun.setVisible(true);
 
-		// MainPanelContact frm=new MainPanelContact();
-		// frm.setVisible(true);
+
 
 	}
 
