@@ -3,13 +3,14 @@ package Frame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import Galerie.Photo;
 
 public class Launcher extends JFrame {
-
+//	private ArrayList<JPanel>slider = new ArrayList<JPanel>();
 	private JButton btnContacts = new JButton("Contacts");
 	private JButton btnGalerie = new JButton("Galerie");
 	private JButton btnAutres = new JButton("Autres...");
@@ -53,6 +54,9 @@ public class Launcher extends JFrame {
 		panelLauncher.add(btnGalerie);
 		btnAutres.setBounds(141, 459, 176, 55);
 		panelLauncher.add(btnAutres);
+		
+		//ajout des panels dans mon arraylist
+
 
 		// ajout du label à la frame
 		panelLauncher.add(lblNewLabel);
@@ -69,6 +73,7 @@ public class Launcher extends JFrame {
 		homeButton.setContentAreaFilled(false);
 		homeButton.setFocusPainted(false);
 		homeButton.setOpaque(false);
+		homeButton.addActionListener(new Home_Click());
 		south.add(homeButton);
 		add(topBar, BorderLayout.NORTH);
 		add(est, BorderLayout.EAST);
@@ -82,6 +87,17 @@ public class Launcher extends JFrame {
 
 	public JPanel getPanelLauncher() {
 		return panelLauncher;
+	}
+	
+	class Home_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			panelLauncher.setVisible(true);
+		}
+		
 	}
 
 	class Galerie_Click implements ActionListener {
