@@ -20,8 +20,9 @@ public class Launcher extends JFrame {
 	private JPanel est = new JPanel();
 	private JPanel south = new JPanel();
 	private TopBarPanel2 topBar = new TopBarPanel2();
-	private Photo home = new Photo("Pictures/home.png") ;
-	private JButton homeButton = new JButton(home) ;
+	private Photo home = new Photo("Pictures/home.png");
+	private JButton homeButton = new JButton(home);
+	private FlowLayout flSouth = new FlowLayout();
 
 	public Launcher() {
 
@@ -61,9 +62,14 @@ public class Launcher extends JFrame {
 		west.setBackground(Color.BLACK);
 		est.setBackground(Color.BLACK);
 		south.setBackground(Color.BLACK);
-		south.setLayout(new FlowLayout());
-		homeButton.setPreferredSize(new Dimension(24,24));
-		south.add(homeButton) ;
+		flSouth.setAlignment(flSouth.CENTER);;
+		south.setLayout(flSouth);
+		homeButton.setPreferredSize(new Dimension(24, 24));
+		homeButton.setBorderPainted(false);
+		homeButton.setContentAreaFilled(false);
+		homeButton.setFocusPainted(false);
+		homeButton.setOpaque(false);
+		south.add(homeButton);
 		add(topBar, BorderLayout.NORTH);
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
