@@ -16,6 +16,7 @@ import Galerie.Photo;
 public class MainPanelCarnet extends JPanel {
 
 	JPanel mainCarnet = new JPanel();
+	
 
 	
 	CarnetContact carnet=new CarnetContact();
@@ -54,7 +55,7 @@ public class MainPanelCarnet extends JPanel {
 			JButton temp=new JButton(c.getNom() + " " + c.getPrenom());
 			
 			temp.setName("C"+i);
-			
+			temp.setContentAreaFilled(false);
 			temp.addActionListener(new Details_Click());
 			mainCarnet.add(temp);
 		}
@@ -85,19 +86,18 @@ public class MainPanelCarnet extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			mainCarnet.setVisible(false);
 			topBar.setVisible(false);
-			
+			int index = 0;
 			for(int i=0;i<carnet.getCarnet().size();i++){
-				if(((JButton)e.getSource()).getName()=="C"+i){
-					int index = i;
-					return;
+				if(((JButton)e.getSource()).getName().equals(("C"+i))){
+					index = i;
 				}
 			}
 			
-			Contact c=carnet.getCarnet().get(0);
+			Contact c=carnet.getCarnet().get(index);
 			MainPanelCarnet.this.add(new MainPanelContact(c, mainCarnet));
 	
 		
-					
+				
 			
 			
 

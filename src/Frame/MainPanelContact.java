@@ -12,6 +12,7 @@ import Contact.Contact;
 public class MainPanelContact extends JPanel{
 	
 	private JPanel contentPane =new JPanel();
+	
 	private JLabel lblNom = new JLabel("Nom");
 	private JLabel lblPrenom = new JLabel("Prénom");
 	private JLabel lblNumero = new JLabel("Numéro");
@@ -32,15 +33,14 @@ public class MainPanelContact extends JPanel{
 		this.top=top;
 		topBar = new TopBarPanel(MainPanelContact.this,top);
 		add(topBar, BorderLayout.NORTH);
-
-		setSize(480, 800);
+		
+		
 		add(contentPane);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout());
 
 		
+		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -57,16 +57,16 @@ public class MainPanelContact extends JPanel{
 		panel.add(lblNom);
 		
 
-		lblCPname.setBounds(211, 247, 105, 63);
-		panel.add(lblCPname);
-		lblCPname.setText(c.getNom());
+		lblCName.setBounds(211, 247, 105, 63);
+		panel.add(lblCName);
+		lblCName.setText(c.getNom());
 		
 
 		lblNumero.setBounds(106, 309, 71, 63);
 		panel.add(lblNumero);
 		
 
-		lblCTel.setBounds(208, 309, 95, 63);
+		lblCTel.setBounds(211, 309, 95, 63);
 		panel.add(lblCTel);
 		lblCTel.setText(c.getTel());
 		
