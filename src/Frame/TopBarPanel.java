@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Galerie.Photo;
 
@@ -21,7 +23,8 @@ public class TopBarPanel extends JPanel {
 	private Photo addPhoto = new Photo("Pictures/plus-button.png");
 	private JButton addButton = new JButton(addPhoto);
 	private JPanel centerPanel;
-	private JPanel panelLauncher ;
+	private JPanel panelLauncher;
+
 	public TopBarPanel(JPanel centerPanel, JPanel panelLauncher) {
 		this.centerPanel = centerPanel;
 		this.panelLauncher = panelLauncher;
@@ -43,7 +46,12 @@ public class TopBarPanel extends JPanel {
 		addButton.setFocusPainted(false);
 		addButton.setOpaque(false);
 		addButton.setPreferredSize(new Dimension(24, 24));
-		// addButton.addActionListener(new Back_Click());
+
+		if (centerPanel instanceof MainPanelGalerie) {
+//			addButton.addActionListener(new Add_PhotoClick());
+		} else if (centerPanel instanceof MainPanelCarnet) {
+			// addButton.addActionListener();
+		}
 
 		// addButons to leftPanel
 
@@ -66,4 +74,5 @@ public class TopBarPanel extends JPanel {
 		}
 
 	}
+
 }

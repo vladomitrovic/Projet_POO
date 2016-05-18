@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Galerie.Photo;
+
 public class Launcher extends JFrame {
 
 	private JButton btnContacts = new JButton("Contacts");
@@ -14,10 +16,17 @@ public class Launcher extends JFrame {
 	private JLabel lblNewLabel = new JLabel();
 	private ImageIcon wallpaper = new ImageIcon("Pictures/desktop.jpg");
 	private JPanel panelLauncher = new JPanel();
+	private JPanel west = new JPanel();
+	private JPanel est = new JPanel();
+	private JPanel south = new JPanel();
+	private TopBarPanel2 topBar = new TopBarPanel2();
+	private Photo home = new Photo("Pictures/home.png") ;
+	private JButton homeButton = new JButton(home) ;
 
 	public Launcher() {
 
 		// Préferences de la frame principale
+		setUndecorated(false);
 		setPreferredSize(new Dimension(480, 800));
 		setSize(480, 800);
 		setLocationRelativeTo(null);
@@ -46,7 +55,20 @@ public class Launcher extends JFrame {
 
 		// ajout du label à la frame
 		panelLauncher.add(lblNewLabel);
-		add(panelLauncher);
+		west.setPreferredSize(new Dimension(25, 100));
+		est.setPreferredSize(new Dimension(25, 100));
+		south.setPreferredSize(new Dimension(25, 25));
+		west.setBackground(Color.BLACK);
+		est.setBackground(Color.BLACK);
+		south.setBackground(Color.BLACK);
+		south.setLayout(new FlowLayout());
+		homeButton.setPreferredSize(new Dimension(24,24));
+		south.add(homeButton) ;
+		add(topBar, BorderLayout.NORTH);
+		add(est, BorderLayout.EAST);
+		add(west, BorderLayout.WEST);
+		add(south, BorderLayout.SOUTH);
+		add(panelLauncher, BorderLayout.CENTER);
 
 		pack();
 
@@ -55,7 +77,6 @@ public class Launcher extends JFrame {
 	public JPanel getPanelLauncher() {
 		return panelLauncher;
 	}
-
 
 	class Galerie_Click implements ActionListener {
 
@@ -68,7 +89,7 @@ public class Launcher extends JFrame {
 		}
 
 	}
-	
+
 	class Contact_Click implements ActionListener {
 
 		@Override
@@ -81,7 +102,3 @@ public class Launcher extends JFrame {
 
 	}
 }
-
-
-
-

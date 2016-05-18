@@ -40,21 +40,28 @@ public class MainPanelGalerie extends JPanel {
 	private Photo photo5 = new Photo("Pictures/animal2.jpg");
 	private Photo photo6 = new Photo("Pictures/paysage2.jpeg");
 	private Photo photo7 = new Photo("Pictures/ville1.jpeg");
+
+	private Photo addPhoto = new Photo("Pictures/plus-button.png");
+	private JButton addButton = new JButton(addPhoto);
+	private Photo backPhoto = new Photo("Pictures/back.png");
+	private JButton backButton = new JButton(backPhoto);
 	private JPanel top;
 	private JPanel photoPanel;
-	private TopBarPanel topBar ;
+	private JPanel upGaleriePanel = new JPanel();
 
 	public MainPanelGalerie(JPanel top) {
 		this.top = top;
-		topBar = new TopBarPanel(MainPanelGalerie.this,top);
+
 		// setMainPanel
+		addButton.setLayout(new FlowLayout(new FlowLayout().RIGHT));
+		addButton.setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
 
 		// set containerPhotos
 		FlowLayout flowLayout = new FlowLayout();
 		flowLayout.setHgap(10);
-		flowLayout.setVgap(10);
+		flowLayout.setVgap(20);
 		containerPhotos.setLayout(flowLayout);
 
 		// add images to gallery and to buttons
@@ -84,8 +91,22 @@ public class MainPanelGalerie extends JPanel {
 				containerPhotos.add(photoButtons[i]);
 		}
 
+		//set the buttons for upGaleriePanel
+		addButton.setBorderPainted(false);
+		addButton.setContentAreaFilled(false);
+		addButton.setFocusPainted(false);
+		addButton.setOpaque(false);
+		
+		backButton.setBorderPainted(false);
+		backButton.setContentAreaFilled(false);
+		backButton.setFocusPainted(false);
+		backButton.setOpaque(false);
+		
+		// set the upGaleriePanel
+		
+		
 		// add panels to principal Panel
-		add(topBar, BorderLayout.NORTH);
+		add(upGaleriePanel,BorderLayout.NORTH);
 		add(containerPhotos);
 
 	}
@@ -95,7 +116,7 @@ public class MainPanelGalerie extends JPanel {
 		private Image photo;
 		private Photo backPhoto = new Photo("Pictures/back.png");
 		private JButton backButton = new JButton(backPhoto);
-		private JPanel upPanel = new JPanel();
+		private JPanel upPhotoPanel = new JPanel();
 		private JPanel top;
 
 		public PhotoPanel(Photo photo) {
@@ -106,8 +127,8 @@ public class MainPanelGalerie extends JPanel {
 			backButton.setFocusPainted(false);
 			backButton.setOpaque(false);
 			backButton.addActionListener(new Back_PhotoClick());
-			upPanel.add(backButton);
-			add(upPanel, BorderLayout.NORTH);
+			upPhotoPanel.add(backButton);
+			add(upPhotoPanel, BorderLayout.NORTH);
 			this.photo = photo.getImage();
 
 		}
@@ -126,7 +147,6 @@ public class MainPanelGalerie extends JPanel {
 				// TODO Auto-generated method stub
 				MainPanelGalerie.this.remove(photoPanel);
 				containerPhotos.setVisible(true);
-				topBar.setVisible(true);
 			}
 
 		}
@@ -138,7 +158,6 @@ public class MainPanelGalerie extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			containerPhotos.setVisible(false);
-			topBar.setVisible(false);
 			JButton button = (JButton) e.getSource();
 			Photo photo = (Photo) button.getIcon();
 			photoPanel = new PhotoPanel(photo);
