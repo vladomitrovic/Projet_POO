@@ -1,19 +1,24 @@
 package Contact;
+import java.io.Serializable;
+
 import Galerie.Photo;
 
 
-public class Contact {
+public class Contact implements Serializable{
 
 	private String nom, prenom, tel;
 	private Photo photo;
+	
 	
 	public Contact(String nom, String prenom, String tel){
 		this.nom=nom;
 		this.prenom=prenom;
 		this.tel=tel;
 	}
-
 	
+	public String getNomPrenom() {
+		return prenom+" "+nom;
+	}
 	
 	public String getNom() {
 		return nom;
