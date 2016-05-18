@@ -25,6 +25,7 @@ public class Launcher extends JFrame {
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
 	private MainPanelGalerie galerie = new MainPanelGalerie(panelLauncher) ;
+	private MainPanelCarnet carnet = new MainPanelCarnet(panelLauncher) ;
 
 	public Launcher() {
 
@@ -107,7 +108,7 @@ public class Launcher extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-+generated method stub
 			panelLauncher.setVisible(false);
-			Launcher.this.add(new MainPanelGalerie(panelLauncher));
+			Launcher.this.add(galerie);
 		}
 
 	}
@@ -118,7 +119,7 @@ public class Launcher extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			panelLauncher.setVisible(false);
-			Launcher.this.add(galerie);
+			Launcher.this.add(carnet);
 
 		}
 
