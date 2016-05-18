@@ -90,7 +90,7 @@ public class MainPanelCarnet extends JPanel {
 		private JTextField lblCTel = new JTextField("");
 		
 		JButton add = new JButton("Ajouter");
-
+		
 		private TopBarPanel topBar;
 		private JPanel top;
 
