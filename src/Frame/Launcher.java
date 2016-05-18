@@ -51,14 +51,17 @@ public class Launcher extends JFrame {
 
 	}
 
+	public JPanel getPanelLauncher() {
+		return panelLauncher;
+	}
 
 	class Galerie_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			panelLauncher.setVisible(false);		
-			Launcher.this.add(new MainPanelGalerie()) ;
+			panelLauncher.setVisible(false);
+			Launcher.this.add(new MainPanelGalerie(panelLauncher));
 
 		}
 

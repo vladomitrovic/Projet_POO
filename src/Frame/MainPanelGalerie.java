@@ -29,7 +29,6 @@ import Galerie.Galerie;
 import Galerie.Photo;
 
 public class MainPanelGalerie extends JPanel {
-
 	private JPanel containerPhotos = new JPanel();
 	private Galerie galerie = new Galerie();
 	private JButton[] photoButtons = new JButton[50];
@@ -41,9 +40,12 @@ public class MainPanelGalerie extends JPanel {
 	private Photo photo5 = new Photo("Pictures/animal2.jpg");
 	private Photo photo6 = new Photo("Pictures/paysage2.jpeg");
 	private Photo photo7 = new Photo("Pictures/ville1.jpeg");
+	private TopBarPanel topBar = new TopBarPanel();
+	private JPanel top;
+	private JPanel photoPanel;
 
-	public MainPanelGalerie() {
-
+	public MainPanelGalerie(JPanel top) {
+		this.top = top;
 		// setMainPanel
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
@@ -81,50 +83,60 @@ public class MainPanelGalerie extends JPanel {
 				containerPhotos.add(photoButtons[i]);
 		}
 
-		// modify buttons for upPanel
-
-		// modify the upPanel
-
 		// add panels to principal Panel
-		add(new TopBarPanel(), BorderLayout.NORTH);
+		add(topBar, BorderLayout.NORTH);
 		add(containerPhotos);
 
 	}
 
 	class TopBarPanel extends JPanel {
-		private JPanel leftPanel = new JPanel();
-		private JPanel rightPanel = new JPanel();
-		private Photo backPhoto = new Photo("Pictures/backArrow.png");
+		private JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		private JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		private Photo backPhoto = new Photo("Pictures/back.png");
 		private JButton backButton = new JButton(backPhoto);
-		private Photo addPhoto = new Photo("Pictures/addPhoto.jpg");
+		private Photo addPhoto = new Photo("Pictures/plus-button.png");
 		private JButton addButton = new JButton(addPhoto);
 
 		public TopBarPanel() {
 			setLayout(new GridLayout(1, 2));
+			leftPanel.setBackground(Color.DARK_GRAY);
+			rightPanel.setBackground(Color.DARK_GRAY);
 
 			// set backButton
 			backButton.setBorderPainted(false);
 			backButton.setContentAreaFilled(false);
 			backButton.setFocusPainted(false);
 			backButton.setOpaque(false);
-			backButton.addActionListener(new Back_Click());
+			backButton.addActionListener(new BackDesktop_Click());
+			backButton.setPreferredSize(new Dimension(24, 24));
 
 			// set addButton
 			addButton.setBorderPainted(false);
 			addButton.setContentAreaFilled(false);
 			addButton.setFocusPainted(false);
 			addButton.setOpaque(false);
-			addButton.addActionListener(new Back_Click());
+			addButton.setPreferredSize(new Dimension(24, 24));
+			// addButton.addActionListener(new Back_Click());
+
+			// addButons to leftPanel
+
+			leftPanel.add(backButton, FlowLayout.LEFT);
+			rightPanel.add(addButton);
+
+			// add to TopBarPanel
+			add(leftPanel);
+			add(rightPanel);
 
 		}
 	}
 
-	class Back_Click implements ActionListener {
+	class BackDesktop_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			setVisible(false);
+			MainPanelGalerie.this.setVisible(false);
+			top.setVisible(true);
 
 		}
 
@@ -133,9 +145,21 @@ public class MainPanelGalerie extends JPanel {
 	class PhotoPanel extends JPanel {
 
 		private Image photo;
-		private BasicArrowButton back = new BasicArrowButton(BasicArrowButton.WEST);
+		private Photo backPhoto = new Photo("Pictures/back.png");
+		private JButton backButton = new JButton(backPhoto);
+		private JPanel upPanel = new JPanel();
+		private JPanel top;
 
 		public PhotoPanel(Photo photo) {
+			this.top = top;
+			setLayout(new BorderLayout());
+			backButton.setBorderPainted(false);
+			backButton.setContentAreaFilled(false);
+			backButton.setFocusPainted(false);
+			backButton.setOpaque(false);
+			backButton.addActionListener(new Back_PhotoClick());
+			upPanel.add(backButton);
+			add(upPanel, BorderLayout.NORTH);
 			this.photo = photo.getImage();
 
 		}
@@ -146,6 +170,18 @@ public class MainPanelGalerie extends JPanel {
 			super.paintComponent(g);
 			g.drawImage(photo, 0, 0, getWidth(), getHeight(), this);
 		}
+
+		class Back_PhotoClick implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MainPanelGalerie.this.remove(photoPanel);
+				containerPhotos.setVisible(true);
+				topBar.setVisible(true);
+			}
+
+		}
 	}
 
 	class Photo_Click implements ActionListener {
@@ -154,9 +190,11 @@ public class MainPanelGalerie extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			containerPhotos.setVisible(false);
+			topBar.setVisible(false);
 			JButton button = (JButton) e.getSource();
 			Photo photo = (Photo) button.getIcon();
-			add(new PhotoPanel(photo));
+			photoPanel = new PhotoPanel(photo);
+			add(photoPanel);
 		}
 
 	}
