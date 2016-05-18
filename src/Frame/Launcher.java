@@ -35,7 +35,6 @@ public class Launcher extends JFrame {
 		// ajout des actionlistener sur les boutons
 		btnGalerie.addActionListener(new Galerie_Click());
 
-
 		// ajout des boutons à la frame
 		btnContacts.setBounds(138, 182, 179, 54);
 		panelLauncher.add(btnContacts);
@@ -52,18 +51,20 @@ public class Launcher extends JFrame {
 
 	}
 
+	public JPanel getPanelLauncher() {
+		return panelLauncher;
+	}
 
 	class Galerie_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			panelLauncher.setVisible(false);		
-			Launcher.this.add(new MainPanelGalerie()) ;
+			// TODO Auto-generated method stub
+			panelLauncher.setVisible(false);
+			Launcher.this.add(new MainPanelGalerie(panelLauncher));
 
 		}
 
 	}
-	
-
 
 }
