@@ -40,12 +40,13 @@ public class MainPanelGalerie extends JPanel {
 	private Photo photo5 = new Photo("Pictures/animal2.jpg");
 	private Photo photo6 = new Photo("Pictures/paysage2.jpeg");
 	private Photo photo7 = new Photo("Pictures/ville1.jpeg");
-	private TopBarPanel topBar = new TopBarPanel();
 	private JPanel top;
 	private JPanel photoPanel;
+	private TopBarPanel topBar ;
 
 	public MainPanelGalerie(JPanel top) {
 		this.top = top;
+		topBar = new TopBarPanel(MainPanelGalerie.this,top);
 		// setMainPanel
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
@@ -86,59 +87,6 @@ public class MainPanelGalerie extends JPanel {
 		// add panels to principal Panel
 		add(topBar, BorderLayout.NORTH);
 		add(containerPhotos);
-
-	}
-
-	class TopBarPanel extends JPanel {
-		private JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		private JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		private Photo backPhoto = new Photo("Pictures/back.png");
-		private JButton backButton = new JButton(backPhoto);
-		private Photo addPhoto = new Photo("Pictures/plus-button.png");
-		private JButton addButton = new JButton(addPhoto);
-
-		public TopBarPanel() {
-			setLayout(new GridLayout(1, 2));
-			leftPanel.setBackground(Color.DARK_GRAY);
-			rightPanel.setBackground(Color.DARK_GRAY);
-
-			// set backButton
-			backButton.setBorderPainted(false);
-			backButton.setContentAreaFilled(false);
-			backButton.setFocusPainted(false);
-			backButton.setOpaque(false);
-			backButton.addActionListener(new BackDesktop_Click());
-			backButton.setPreferredSize(new Dimension(24, 24));
-
-			// set addButton
-			addButton.setBorderPainted(false);
-			addButton.setContentAreaFilled(false);
-			addButton.setFocusPainted(false);
-			addButton.setOpaque(false);
-			addButton.setPreferredSize(new Dimension(24, 24));
-			// addButton.addActionListener(new Back_Click());
-
-			// addButons to leftPanel
-
-			leftPanel.add(backButton, FlowLayout.LEFT);
-			rightPanel.add(addButton);
-
-			// add to TopBarPanel
-			add(leftPanel);
-			add(rightPanel);
-
-		}
-	}
-
-	class BackDesktop_Click implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			MainPanelGalerie.this.setVisible(false);
-			top.setVisible(true);
-
-		}
 
 	}
 
