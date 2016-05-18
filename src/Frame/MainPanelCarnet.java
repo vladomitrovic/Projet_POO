@@ -1,20 +1,12 @@
 package Frame;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.*;
+
 
 import Contact.CarnetContact;
 import Contact.Contact;
@@ -23,34 +15,46 @@ import Galerie.Photo;
 
 public class MainPanelCarnet extends JPanel {
 
-	JPanel liste = new JPanel();
+	JPanel mainCarnet = new JPanel();
 
-	ArrayList<Contact> carnet = new ArrayList<Contact>();
+	
+	CarnetContact carnet=new CarnetContact();
+	
 
 	Contact vlado = new Contact("Mitrovic", "Vlado", "079 439 22 26");
 	Contact john = new Contact("Doe", "John", "079 123 45 67");
 	Contact adam = new Contact("Adam", "Smith", "078 765 41 23");
 
 	JLabel noContact = new JLabel();
+	
+	private TopBarPanel topBar;
+	private JPanel top;
 
-	public MainPanelCarnet() {
+	public MainPanelCarnet(JPanel top) {
+		this.setLayout(new BorderLayout());
+		this.top=top;
+		topBar = new TopBarPanel(MainPanelCarnet.this,top);
+		add(topBar, BorderLayout.NORTH);
 		setPreferredSize(new Dimension(480, 800));
+		
+		GridLayout grid=new GridLayout(10, 1);
+		grid.setVgap(10);
+		mainCarnet.setLayout(grid);
+		add(mainCarnet);
 
-		liste.setLayout(new GridLayout(10, 1));
-		add(liste);
-
-		// ajout contact dans l'array
-		carnet.add(vlado);
-		carnet.add(john);
-		carnet.add(adam);
+		carnet.getCarnet().add(adam);
+		carnet.getCarnet().add(john);
+		carnet.getCarnet().add(vlado);
+		
+	
 
 		// afficher contact
-		for (Contact c : carnet) {
-			liste.add(new JButton(c.getNom() + " " + c.getPrenom()));
+		for (Contact c : carnet.getCarnet()) {
+			mainCarnet.add(new JButton(c.getNom() + " " + c.getPrenom()));
 		}
 
-		add(noContact, BorderLayout.SOUTH);
-		noContact.setText(carnet.size() + " contacts");
+		
+
 
 	}
 
@@ -73,12 +77,14 @@ public class MainPanelCarnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			liste.setVisible(false);
+			mainCarnet.setVisible(false);
 			JButton button = (JButton) e.getSource();
 			// Contact contact = (Contact) button.;
 			// add(new ContactPanel(contact));
 
 		}
+
+
 
 	}
 

@@ -75,7 +75,7 @@ public class Launcher extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			panelLauncher.setVisible(false);
-			Launcher.this.add(new MainPanelCarnet());
+			Launcher.this.add(new MainPanelCarnet(panelLauncher));
 
 		}
 

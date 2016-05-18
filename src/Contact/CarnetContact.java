@@ -6,7 +6,7 @@ import javax.swing.JButton;
 public class CarnetContact {
 	
 	private String name;
-	ArrayList<Contact> carnet = new ArrayList<Contact>();
+	private ArrayList<Contact> carnet = new ArrayList<Contact>();
 	
 	
 	public CarnetContact(){
@@ -24,6 +24,11 @@ public class CarnetContact {
 	
 	public void delContact(Contact contact){
 		this.carnet.remove(contact);
+	}
+
+
+	public ArrayList<Contact> getCarnet() {
+		return carnet;
 	}
 	
 	
