@@ -58,7 +58,7 @@ public class Launcher extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			panelLauncher.setVisible(false);		
-			Launcher.this.add(new MainPanelGalerie()) ;
+			Launcher.this.add(new MainPanelGalerie(panelLauncher)) ;
 
 		}
 
