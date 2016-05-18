@@ -49,8 +49,14 @@ public class MainPanelCarnet extends JPanel {
 	
 
 		// afficher contact
-		for (Contact c : carnet.getCarnet()) {
-			mainCarnet.add(new JButton(c.getNom() + " " + c.getPrenom()));
+		for (int i=0; i<carnet.getCarnet().size(); i++) {
+			Contact c=carnet.getCarnet().get(i);
+			JButton temp=new JButton(c.getNom() + " " + c.getPrenom());
+			
+			temp.setName("C"+i);
+			
+			temp.addActionListener(new Details_Click());
+			mainCarnet.add(temp);
 		}
 
 		
@@ -78,9 +84,22 @@ public class MainPanelCarnet extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			mainCarnet.setVisible(false);
-			JButton button = (JButton) e.getSource();
-			// Contact contact = (Contact) button.;
-			// add(new ContactPanel(contact));
+			topBar.setVisible(false);
+			
+			for(int i=0;i<carnet.getCarnet().size();i++){
+				if(((JButton)e.getSource()).getName()=="C"+i){
+					int index = i;
+					return;
+				}
+			}
+			
+			Contact c=carnet.getCarnet().get(0);
+			MainPanelCarnet.this.add(new MainPanelContact(c, mainCarnet));
+	
+		
+					
+			
+			
 
 		}
 
