@@ -70,7 +70,7 @@ public class Launcher extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			panelLauncher.setVisible(false);
-			Launcher.this.add(new MainPanelContact());
+			Launcher.this.add(new MainPanelCarnet());
 
 		}
 

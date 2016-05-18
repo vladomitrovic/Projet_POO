@@ -21,84 +21,65 @@ import Contact.Contact;
 import Frame.MainPanelGalerie.PhotoPanel;
 import Galerie.Photo;
 
+public class MainPanelCarnet extends JPanel {
 
-public class MainPanelCarnet extends JPanel{
-	
-	JPanel liste =new JPanel();
-
+	JPanel liste = new JPanel();
 
 	ArrayList<Contact> carnet = new ArrayList<Contact>();
-	ArrayList<JButton>	buttons=new ArrayList<JButton>();
-	
-	Contact vlado=new Contact ("Mitrovic", "Vlado", "079 439 22 26");
-	Contact john=new Contact ("Doe", "John", "079 123 45 67");
-	Contact adam=new Contact ("Adam", "Smith", "078 765 41 23");
-	
-	JLabel noContact=new JLabel();
-	JButton test=new JButton();
-	
-	public MainPanelCarnet(){
+
+	Contact vlado = new Contact("Mitrovic", "Vlado", "079 439 22 26");
+	Contact john = new Contact("Doe", "John", "079 123 45 67");
+	Contact adam = new Contact("Adam", "Smith", "078 765 41 23");
+
+	JLabel noContact = new JLabel();
+
+	public MainPanelCarnet() {
 		setPreferredSize(new Dimension(480, 800));
 
-		liste.setLayout(new GridLayout(carnet.size(),1));
-		add(liste, BorderLayout.CENTER);
-		
-//		ajout contact dans l'array
+		liste.setLayout(new GridLayout(10, 1));
+		add(liste);
+
+		// ajout contact dans l'array
 		carnet.add(vlado);
 		carnet.add(john);
 		carnet.add(adam);
-		
-////		afficher contact
-//		for(Contact c :carnet){
-//			liste.add(new JButton(c.getNom()+" "+c.getPrenom()));
-//			
-//		}
-		test.setText(vlado.getNom()+" "+vlado.getPrenom());
-		test.addActionListener(new Details_Click());
-		liste.add(test);
-		
-		
-		
-		
-		add(noContact, BorderLayout.SOUTH);
-		noContact.setText(carnet.size()+" contacts");
-		
 
-	
-		
+		// afficher contact
+		for (Contact c : carnet) {
+			liste.add(new JButton(c.getNom() + " " + c.getPrenom()));
+		}
+
+		add(noContact, BorderLayout.SOUTH);
+		noContact.setText(carnet.size() + " contacts");
+
 	}
-	
-	
+
 	class ContactPanel extends JPanel {
 
 		private Contact contact;
-		private JPanel details= new JPanel(new GridLayout(10,1));
-		
+		private JPanel details = new JPanel(new GridLayout(10, 1));
+
 		public ContactPanel(Contact contact) {
-			this.contact=contact;
+			this.contact = contact;
 			details.add(new JLabel(contact.getNom()));
 			details.add(new JLabel(contact.getPrenom()));
 			details.add(new JLabel(contact.getTel()));
-			
 
 		}
 
-
 	}
-	
-	class Details_Click implements ActionListener{
+
+	class Details_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			liste.setVisible(false);
 			JButton button = (JButton) e.getSource();
-//			Contact contact = (Contact) button.;
-//			add(new ContactPanel(contact));
-			
+			// Contact contact = (Contact) button.;
+			// add(new ContactPanel(contact));
+
 		}
-		
+
 	}
-	
-	
 
 }
