@@ -117,7 +117,6 @@ public class MainPanelGalerie extends JPanel {
 			addButton.setOpaque(false);
 			addButton.setPreferredSize(new Dimension(24, 24));
 			// addButton.addActionListener(new Back_Click());
-			//salut test
 
 			// addButons to leftPanel
 
