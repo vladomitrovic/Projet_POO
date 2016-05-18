@@ -9,7 +9,6 @@ import javax.swing.*;
 
 import Contact.CarnetContact;
 import Contact.Contact;
-import Frame.MainPanelGalerie.PhotoPanel;
 import Galerie.Photo;
 
 public class MainPanelCarnet extends JPanel {

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -30,6 +31,10 @@ import Galerie.Photo;
 
 public class MainPanelGalerie extends JPanel {
 	private JPanel containerPhotos = new JPanel();
+	private JPanel titlePanel = new JPanel();
+	private FlowLayout flTitle = new FlowLayout();
+	private JLabel title = new JLabel("Galerie");
+
 	private Galerie galerie = new Galerie();
 	private JButton[] photoButtons = new JButton[50];
 
@@ -46,8 +51,7 @@ public class MainPanelGalerie extends JPanel {
 	private Photo backPhoto = new Photo("Pictures/back.png");
 	private JButton backButton = new JButton(backPhoto);
 	private JPanel top;
-	private JPanel photoPanel;
-	private JPanel upGaleriePanel = new JPanel();
+	private OnePhotoPanel onePhotoPanel;
 
 	public MainPanelGalerie(JPanel top) {
 		this.top = top;
@@ -58,10 +62,21 @@ public class MainPanelGalerie extends JPanel {
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
 
+		// set label title panel
+		title.setForeground(Color.WHITE);
+		title.setFont(new Font("Serif", Font.PLAIN,30));
+//		title.setPreferredSize(new Dimension(20,35));
+
+		// set titlePanel
+		flTitle.setAlignment(FlowLayout.CENTER);
+		titlePanel.setLayout(flTitle);
+		titlePanel.setBackground(Color.RED);
+		titlePanel.add(title);
+
 		// set containerPhotos
 		FlowLayout flowLayout = new FlowLayout();
 		flowLayout.setHgap(10);
-		flowLayout.setVgap(20);
+		flowLayout.setVgap(10);
 		containerPhotos.setLayout(flowLayout);
 
 		// add images to gallery and to buttons
@@ -91,65 +106,37 @@ public class MainPanelGalerie extends JPanel {
 				containerPhotos.add(photoButtons[i]);
 		}
 
-		//set the buttons for upGaleriePanel
+		// set the buttons for upGaleriePanel
 		addButton.setBorderPainted(false);
 		addButton.setContentAreaFilled(false);
 		addButton.setFocusPainted(false);
 		addButton.setOpaque(false);
-		
+
 		backButton.setBorderPainted(false);
 		backButton.setContentAreaFilled(false);
 		backButton.setFocusPainted(false);
 		backButton.setOpaque(false);
-		
+
 		// set the upGaleriePanel
-		
-		
+
 		// add panels to principal Panel
-		add(upGaleriePanel,BorderLayout.NORTH);
+		add(titlePanel, BorderLayout.NORTH);
 		add(containerPhotos);
 
 	}
 
-	class PhotoPanel extends JPanel {
+	public void removePanel(JPanel panelRemove) {
+		MainPanelGalerie.this.remove(panelRemove);
+		MainPanelGalerie.this.revalidate();
+		MainPanelGalerie.this.repaint();
+	}
 
-		private Image photo;
-		private Photo backPhoto = new Photo("Pictures/back.png");
-		private JButton backButton = new JButton(backPhoto);
-		private JPanel upPhotoPanel = new JPanel();
-		private JPanel top;
+	public JPanel getContainerPhotos() {
+		return containerPhotos;
+	}
 
-		public PhotoPanel(Photo photo) {
-			this.top = top;
-			setLayout(new BorderLayout());
-			backButton.setBorderPainted(false);
-			backButton.setContentAreaFilled(false);
-			backButton.setFocusPainted(false);
-			backButton.setOpaque(false);
-			backButton.addActionListener(new Back_PhotoClick());
-			upPhotoPanel.add(backButton);
-			add(upPhotoPanel, BorderLayout.NORTH);
-			this.photo = photo.getImage();
-
-		}
-
-		@Override
-		protected void paintComponent(Graphics g) {
-			// TODO Auto-generated method stub
-			super.paintComponent(g);
-			g.drawImage(photo, 0, 0, getWidth(), getHeight(), this);
-		}
-
-		class Back_PhotoClick implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				MainPanelGalerie.this.remove(photoPanel);
-				containerPhotos.setVisible(true);
-			}
-
-		}
+	public JPanel getTitlePanel() {
+		return titlePanel;
 	}
 
 	class Photo_Click implements ActionListener {
@@ -160,8 +147,8 @@ public class MainPanelGalerie extends JPanel {
 			containerPhotos.setVisible(false);
 			JButton button = (JButton) e.getSource();
 			Photo photo = (Photo) button.getIcon();
-			photoPanel = new PhotoPanel(photo);
-			add(photoPanel);
+			onePhotoPanel = new OnePhotoPanel(photo, MainPanelGalerie.this);
+			MainPanelGalerie.this.add(onePhotoPanel);
 		}
 
 	}

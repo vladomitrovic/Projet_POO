@@ -24,6 +24,7 @@ public class Launcher extends JFrame {
 	private Photo home = new Photo("Pictures/home.png");
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
+	private MainPanelGalerie galerie = new MainPanelGalerie(panelLauncher) ;
 
 	public Launcher() {
 
@@ -62,11 +63,11 @@ public class Launcher extends JFrame {
 		panelLauncher.add(lblNewLabel);
 		west.setPreferredSize(new Dimension(25, 100));
 		est.setPreferredSize(new Dimension(25, 100));
-		south.setPreferredSize(new Dimension(25, 25));
 		west.setBackground(Color.BLACK);
 		est.setBackground(Color.BLACK);
 		south.setBackground(Color.BLACK);
-		flSouth.setAlignment(flSouth.CENTER);;
+		flSouth.setAlignment(flSouth.CENTER);
+		flSouth.setVgap(10);
 		south.setLayout(flSouth);
 		homeButton.setPreferredSize(new Dimension(24, 24));
 		homeButton.setBorderPainted(false);
@@ -107,7 +108,6 @@ public class Launcher extends JFrame {
 			// TODO Auto-+generated method stub
 			panelLauncher.setVisible(false);
 			Launcher.this.add(new MainPanelGalerie(panelLauncher));
-
 		}
 
 	}
@@ -118,7 +118,7 @@ public class Launcher extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			panelLauncher.setVisible(false);
-			Launcher.this.add(new MainPanelCarnet(panelLauncher));
+			Launcher.this.add(galerie);
 
 		}
 
