@@ -150,14 +150,13 @@ public class MainPanelCarnet extends JPanel {
 			topBar.setVisible(false);
 
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
-				if (((JButton) e.getSource()).getName() == "C" + i) {
-					int index = i;
+				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
+					Contact c = carnet.getCarnet().get(i);
+					MainPanelCarnet.this.add(new MainPanelContact(c, mainCarnet));
 					return;
 				}
 			}
 
-			Contact c = carnet.getCarnet().get(0);
-			MainPanelCarnet.this.add(new MainPanelContact(c, mainCarnet));
 
 		}
 
