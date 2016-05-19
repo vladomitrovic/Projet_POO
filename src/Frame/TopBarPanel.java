@@ -49,7 +49,7 @@ public class TopBarPanel extends JPanel {
 
 		if (centerPanel instanceof MainPanelGalerie) {
 //			addButton.addActionListener(new Add_PhotoClick());
-		} else if (centerPanel instanceof Contact_Main) {
+		} else if (centerPanel instanceof Contact_Carnet) {
 			// addButton.addActionListener();
 		}
 

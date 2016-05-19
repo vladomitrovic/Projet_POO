@@ -24,7 +24,7 @@ public class Launcher extends JFrame {
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
 	private MainPanelGalerie galerie = new MainPanelGalerie();
-	private Contact_Main carnet = new Contact_Main(panelLauncher);
+	private Contact_Carnet carnet = new Contact_Carnet(panelLauncher);
 	public CardLayout c1 = new CardLayout();
 	public JPanel mainContainer = new JPanel();
 

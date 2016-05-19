@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import Contact.Contact;
 
-public class Contact_Details extends JPanel{
+ public class Contact_Details extends JPanel{
 	
 	private JPanel contentPane =new JPanel();
 	

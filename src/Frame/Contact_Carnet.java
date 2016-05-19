@@ -11,7 +11,7 @@ import Contact.CarnetContact;
 import Contact.Contact;
 import Galerie.Photo;
 
-public class Contact_Main extends JPanel {
+public class Contact_Carnet extends JPanel {
 
 	JPanel mainCarnet = new JPanel();
 
@@ -28,10 +28,10 @@ public class Contact_Main extends JPanel {
 	private TopBarPanel topBar;
 	private JPanel top;
 
-	public Contact_Main(JPanel top) {
+	public Contact_Carnet(JPanel top) {
 		this.setLayout(new BorderLayout());
 		this.top = top;
-		topBar = new TopBarPanel(Contact_Main.this, top);
+		topBar = new TopBarPanel(Contact_Carnet.this, top);
 		add(topBar, BorderLayout.NORTH);
 		setPreferredSize(new Dimension(480, 800));
 
@@ -76,59 +76,7 @@ public class Contact_Main extends JPanel {
 
 	}
 
-	class AddContact extends JPanel {
-
-		private JPanel contentPane = new JPanel();
-
-		private JLabel lblNom = new JLabel("Nom");
-		private JLabel lblPrenom = new JLabel("Prénom");
-		private JLabel lblNumero = new JLabel("Numéro");
-
-		private JTextField lblCName = new JTextField("");
-		private JTextField lblCPname = new JTextField("");
-		private JTextField lblCTel = new JTextField("");
-		
-		JButton add = new JButton("Ajouter");
-		
-		private TopBarPanel topBar;
-		private JPanel top;
-
-		public AddContact(JPanel top) {
-			this.setLayout(new BorderLayout());
-			this.top = top;
-			topBar = new TopBarPanel(Contact_Main.this, top);
-			add(topBar, BorderLayout.NORTH);
-
-			add(contentPane);
-			contentPane.setLayout(new BorderLayout());
-
-			contentPane.add(add);
-			
-			JPanel panel = new JPanel();
-			contentPane.add(panel, BorderLayout.CENTER);
-			panel.setLayout(null);
-
-			lblPrenom.setBounds(106, 171, 71, 63);
-			panel.add(lblPrenom);
-
-			lblCPname.setBounds(211, 171, 121, 63);
-			panel.add(lblCPname);
-
-			lblNom.setBounds(106, 247, 87, 63);
-			panel.add(lblNom);
-
-			lblCName.setBounds(211, 247, 105, 63);
-			panel.add(lblCName);
-
-			lblNumero.setBounds(106, 309, 71, 63);
-			panel.add(lblNumero);
-
-			lblCTel.setBounds(211, 309, 95, 63);
-			panel.add(lblCTel);
-
-		}
-
-	}
+	
 
 	class Add_Click implements ActionListener {
 
@@ -136,7 +84,7 @@ public class Contact_Main extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			mainCarnet.setVisible(false);
 			topBar.setVisible(false);
-			Contact_Main.this.add(new AddContact(mainCarnet));
+			Contact_Carnet.this.add(new Contact_Add(mainCarnet));
 
 		}
 
@@ -152,7 +100,7 @@ public class Contact_Main extends JPanel {
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					Contact c = carnet.getCarnet().get(i);
-					Contact_Main.this.add(new Contact_Details(c, mainCarnet));
+					Contact_Carnet.this.add(new Contact_Details(c, mainCarnet));
 					return;
 				}
 			}
