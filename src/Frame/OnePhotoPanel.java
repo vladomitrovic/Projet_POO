@@ -1,6 +1,7 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ public class OnePhotoPanel extends JPanel {
 	private Image photo;
 	private Photo backPhoto = new Photo("Pictures/back.png");
 	private JButton backButton = new JButton(backPhoto);
-	private JPanel upPhotoPanel = new JPanel();
+	private JPanel upPhotoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	private MainPanelGalerie top;
 
 	public OnePhotoPanel(Photo photo, MainPanelGalerie top) {
@@ -28,6 +29,7 @@ public class OnePhotoPanel extends JPanel {
 		backButton.setOpaque(false);
 		backButton.addActionListener(new Back_PhotoClick());
 		upPhotoPanel.add(backButton);
+		upPhotoPanel.setOpaque(false);
 		add(upPhotoPanel, BorderLayout.NORTH);
 		this.photo = photo.getImage();
 
@@ -46,8 +48,6 @@ public class OnePhotoPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			top.removePanel(OnePhotoPanel.this);
-			top.getContainerPhotos().setVisible(true);
-			top.getTitlePanel().setVisible(true);
 		}
 
 	}

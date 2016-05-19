@@ -1,6 +1,7 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -30,6 +31,8 @@ import Galerie.Galerie;
 import Galerie.Photo;
 
 public class MainPanelGalerie extends JPanel {
+	public CardLayout c2 = new CardLayout();
+	private JPanel galeriePanel = new JPanel(new BorderLayout());
 	private JPanel containerPhotos = new JPanel();
 	private JPanel titlePanel = new JPanel();
 	private FlowLayout flTitle = new FlowLayout();
@@ -50,12 +53,10 @@ public class MainPanelGalerie extends JPanel {
 	private JButton addButton = new JButton(addPhoto);
 	private Photo backPhoto = new Photo("Pictures/back.png");
 	private JButton backButton = new JButton(backPhoto);
-	private JPanel top;
 	private OnePhotoPanel onePhotoPanel;
 
-	public MainPanelGalerie(JPanel top) {
-		this.top = top;
-
+	public MainPanelGalerie() {
+		
 		// setMainPanel
 		addButton.setLayout(new FlowLayout(new FlowLayout().RIGHT));
 		addButton.setBackground(Color.BLACK);
@@ -64,8 +65,8 @@ public class MainPanelGalerie extends JPanel {
 
 		// set label title panel
 		title.setForeground(Color.WHITE);
-		title.setFont(new Font("Serif", Font.PLAIN,30));
-//		title.setPreferredSize(new Dimension(20,35));
+		title.setFont(new Font("Serif", Font.PLAIN, 30));
+		// title.setPreferredSize(new Dimension(20,35));
 
 		// set titlePanel
 		flTitle.setAlignment(FlowLayout.CENTER);
@@ -75,6 +76,7 @@ public class MainPanelGalerie extends JPanel {
 
 		// set containerPhotos
 		FlowLayout flowLayout = new FlowLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
 		flowLayout.setHgap(10);
 		flowLayout.setVgap(10);
 		containerPhotos.setLayout(flowLayout);
@@ -119,9 +121,14 @@ public class MainPanelGalerie extends JPanel {
 
 		// set the upGaleriePanel
 
+		// add containerPhoto and upPanel to galeriePanel
+		galeriePanel.add(titlePanel, BorderLayout.NORTH);
+		galeriePanel.add(containerPhotos);
+
 		// add panels to principal Panel
-		add(titlePanel, BorderLayout.NORTH);
-		add(containerPhotos);
+		setLayout(c2);
+		add(galeriePanel, "galeriePanel");
+		c2.show(MainPanelGalerie.this, "galeriePanel");
 
 	}
 
@@ -144,11 +151,11 @@ public class MainPanelGalerie extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			containerPhotos.setVisible(false);
 			JButton button = (JButton) e.getSource();
 			Photo photo = (Photo) button.getIcon();
 			onePhotoPanel = new OnePhotoPanel(photo, MainPanelGalerie.this);
-			MainPanelGalerie.this.add(onePhotoPanel);
+			add(onePhotoPanel, "onePhotoPanel");
+			c2.show(MainPanelGalerie.this, "onePhotoPanel");
 		}
 
 	}

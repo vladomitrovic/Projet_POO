@@ -10,7 +10,6 @@ import javax.swing.*;
 import Galerie.Photo;
 
 public class Launcher extends JFrame {
-//	private ArrayList<JPanel>slider = new ArrayList<JPanel>();
 	private JButton btnContacts = new JButton("Contacts");
 	private JButton btnGalerie = new JButton("Galerie");
 	private JButton btnAutres = new JButton("Autres...");
@@ -24,8 +23,10 @@ public class Launcher extends JFrame {
 	private Photo home = new Photo("Pictures/home.png");
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
-	private MainPanelGalerie galerie = new MainPanelGalerie(panelLauncher) ;
-	private MainPanelCarnet carnet = new MainPanelCarnet(panelLauncher) ;
+	private MainPanelGalerie galerie = new MainPanelGalerie();
+	private MainPanelCarnet carnet = new MainPanelCarnet(panelLauncher);
+	public CardLayout c1 = new CardLayout();
+	public JPanel mainContainer = new JPanel();
 
 	public Launcher() {
 
@@ -56,20 +57,20 @@ public class Launcher extends JFrame {
 		panelLauncher.add(btnGalerie);
 		btnAutres.setBounds(141, 459, 176, 55);
 		panelLauncher.add(btnAutres);
-		
-		//ajout des panels dans mon arraylist
 
-
-		// ajout du label à la frame
-		panelLauncher.add(lblNewLabel);
+		// modifications des panels EST et WEST
 		west.setPreferredSize(new Dimension(25, 100));
 		est.setPreferredSize(new Dimension(25, 100));
 		west.setBackground(Color.BLACK);
 		est.setBackground(Color.BLACK);
+
+		// modification du panel south
 		south.setBackground(Color.BLACK);
 		flSouth.setAlignment(flSouth.CENTER);
 		flSouth.setVgap(10);
 		south.setLayout(flSouth);
+
+		// modification du bouton home et ajout au southLayout
 		homeButton.setPreferredSize(new Dimension(24, 24));
 		homeButton.setBorderPainted(false);
 		homeButton.setContentAreaFilled(false);
@@ -77,29 +78,42 @@ public class Launcher extends JFrame {
 		homeButton.setOpaque(false);
 		homeButton.addActionListener(new Home_Click());
 		south.add(homeButton);
+
+		// ajout du label à la frame
+		panelLauncher.add(lblNewLabel);
+
+		// ajout de mes panels pour cardLayout
+		mainContainer.setLayout(c1);
+		mainContainer.add(panelLauncher, "panelLauncher");
+		c1.show(mainContainer, "panelLauncher");
+
+		// ajout de tout mes panels à la frame
 		add(topBar, BorderLayout.NORTH);
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
 		add(south, BorderLayout.SOUTH);
-		add(panelLauncher, BorderLayout.CENTER);
+		add(mainContainer, BorderLayout.CENTER);
 
 		pack();
 
 	}
 
-	public JPanel getPanelLauncher() {
-		return panelLauncher;
+	public JPanel getMainContainer() {
+		return mainContainer;
 	}
-	
+
+	public CardLayout getCardLayout() {
+		return c1;
+	}
+
 	class Home_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
-			panelLauncher.setVisible(true);
+			c1.show(mainContainer, "panelLauncher");
 		}
-		
+
 	}
 
 	class Galerie_Click implements ActionListener {
@@ -107,8 +121,8 @@ public class Launcher extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-+generated method stub
-			panelLauncher.setVisible(false);
-			Launcher.this.add(galerie);
+			mainContainer.add(galerie, "galerie");
+			c1.show(mainContainer, "galerie");
 		}
 
 	}
@@ -118,8 +132,8 @@ public class Launcher extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			panelLauncher.setVisible(false);
-			Launcher.this.add(carnet);
+			mainContainer.add(carnet, "carnet");
+			c1.show(mainContainer, "carnet");
 
 		}
 
