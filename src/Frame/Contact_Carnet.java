@@ -24,12 +24,9 @@ public class Contact_Carnet extends JPanel {
 	
 	private JPanel listePanel = new JPanel();
 	private JScrollPane listeScroll =new JScrollPane(listePanel);
-	
-	private JPanel addPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-	private JPanel favPanel= new JPanel(new FlowLayout(FlowLayout.LEFT));
 
 	private Contact_Details contactDetails;
+	private Contact_Add contactAdd;
 	
 //	----------------------------------------------------------------------
 	CarnetContact carnet = new CarnetContact();
@@ -54,6 +51,7 @@ public class Contact_Carnet extends JPanel {
 	
 	
 	AddButton addButton=new AddButton();
+	
 	FavorisButton favButton=new FavorisButton();
 
 //	JLabel nbContact = new JLabel();
@@ -78,6 +76,7 @@ public class Contact_Carnet extends JPanel {
 		topPanel.add(favButton);
 		topPanel.add(titleLbl);
 		topPanel.add(addButton);
+		addButton.addActionListener(new Add_Click());
 		
 //		Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
@@ -160,9 +159,9 @@ public class Contact_Carnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			listePanel.setVisible(false);
-//			Contact_Carnet.this.add(new Contact_Add(mainCarnet));
-
+			contactAdd=new Contact_Add(carnetPanel);
+			add(contactAdd, "contactAdd");
+			carnetCard.show(Contact_Carnet.this, "contactAdd");
 		}
 
 	}
@@ -192,4 +191,5 @@ public class Contact_Carnet extends JPanel {
 
 	}
 
+	
 }

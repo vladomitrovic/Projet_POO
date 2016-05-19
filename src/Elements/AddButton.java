@@ -17,6 +17,7 @@ public class AddButton extends JButton {
 		setContentAreaFilled(false);
 		setFocusPainted(false);
 		setOpaque(false);
+	
 	}
 
 }
