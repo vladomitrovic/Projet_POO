@@ -11,7 +11,7 @@ import Contact.CarnetContact;
 import Contact.Contact;
 import Galerie.Photo;
 
-public class MainPanelCarnet extends JPanel {
+public class Contact_Main extends JPanel {
 
 	JPanel mainCarnet = new JPanel();
 
@@ -28,10 +28,10 @@ public class MainPanelCarnet extends JPanel {
 	private TopBarPanel topBar;
 	private JPanel top;
 
-	public MainPanelCarnet(JPanel top) {
+	public Contact_Main(JPanel top) {
 		this.setLayout(new BorderLayout());
 		this.top = top;
-		topBar = new TopBarPanel(MainPanelCarnet.this, top);
+		topBar = new TopBarPanel(Contact_Main.this, top);
 		add(topBar, BorderLayout.NORTH);
 		setPreferredSize(new Dimension(480, 800));
 
@@ -96,7 +96,7 @@ public class MainPanelCarnet extends JPanel {
 		public AddContact(JPanel top) {
 			this.setLayout(new BorderLayout());
 			this.top = top;
-			topBar = new TopBarPanel(MainPanelCarnet.this, top);
+			topBar = new TopBarPanel(Contact_Main.this, top);
 			add(topBar, BorderLayout.NORTH);
 
 			add(contentPane);
@@ -136,7 +136,7 @@ public class MainPanelCarnet extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			mainCarnet.setVisible(false);
 			topBar.setVisible(false);
-			MainPanelCarnet.this.add(new AddContact(mainCarnet));
+			Contact_Main.this.add(new AddContact(mainCarnet));
 
 		}
 
@@ -152,7 +152,7 @@ public class MainPanelCarnet extends JPanel {
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					Contact c = carnet.getCarnet().get(i);
-					MainPanelCarnet.this.add(new MainPanelContact(c, mainCarnet));
+					Contact_Main.this.add(new Contact_Details(c, mainCarnet));
 					return;
 				}
 			}

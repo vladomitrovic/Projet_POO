@@ -24,7 +24,7 @@ public class Launcher extends JFrame {
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
 	private MainPanelGalerie galerie = new MainPanelGalerie();
-	private MainPanelCarnet carnet = new MainPanelCarnet(panelLauncher);
+	private Contact_Main carnet = new Contact_Main(panelLauncher);
 	public CardLayout c1 = new CardLayout();
 	public JPanel mainContainer = new JPanel();
 
@@ -51,11 +51,11 @@ public class Launcher extends JFrame {
 		btnContacts.addActionListener(new Contact_Click());
 
 		// ajout des boutons à la frame
-		btnContacts.setBounds(138, 182, 179, 54);
+		btnContacts.setBounds(128, 182, 179, 54);
 		panelLauncher.add(btnContacts);
-		btnGalerie.setBounds(138, 326, 179, 54);
+		btnGalerie.setBounds(128, 326, 179, 54);
 		panelLauncher.add(btnGalerie);
-		btnAutres.setBounds(141, 459, 176, 55);
+		btnAutres.setBounds(128, 459, 176, 55);
 		panelLauncher.add(btnAutres);
 
 		// modifications des panels EST et WEST
