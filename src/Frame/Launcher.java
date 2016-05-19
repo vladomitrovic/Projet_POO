@@ -24,7 +24,7 @@ public class Launcher extends JFrame {
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
 	private MainPanelGalerie galerie = new MainPanelGalerie();
-	private Contact_Carnet carnet = new Contact_Carnet(panelLauncher);
+	private Contact_Carnet carnet = new Contact_Carnet();
 	public CardLayout c1 = new CardLayout();
 	public JPanel mainContainer = new JPanel();
 
@@ -138,4 +138,6 @@ public class Launcher extends JFrame {
 		}
 
 	}
+	
 }
+
