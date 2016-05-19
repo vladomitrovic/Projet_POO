@@ -10,23 +10,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Elements.BackButton;
 import Galerie.Photo;
 
 public class OnePhotoPanel extends JPanel {
 
 	private Image photo;
 	private Photo backPhoto = new Photo("Pictures/back.png");
-	private JButton backButton = new JButton(backPhoto);
+	private BackButton backButton = new BackButton();
 	private JPanel upPhotoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	private MainPanelGalerie top;
 
 	public OnePhotoPanel(Photo photo, MainPanelGalerie top) {
 		this.top = top;
 		setLayout(new BorderLayout());
-		backButton.setBorderPainted(false);
-		backButton.setContentAreaFilled(false);
-		backButton.setFocusPainted(false);
-		backButton.setOpaque(false);
 		backButton.addActionListener(new Back_PhotoClick());
 		upPhotoPanel.add(backButton);
 		upPhotoPanel.setOpaque(false);

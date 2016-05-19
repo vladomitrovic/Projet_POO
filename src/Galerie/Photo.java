@@ -13,13 +13,16 @@ public class Photo extends ImageIcon {
 		this.path = path;
 	}
 
-	public Photo(String string, Image scaledInstance) {
-		super(scaledInstance);
-		this.path = string;
+	public Photo(Image newimg) {
+		super(newimg);
 	}
 
 	public String getPath() {
 		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }
