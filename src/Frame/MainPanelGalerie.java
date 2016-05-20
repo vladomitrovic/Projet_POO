@@ -58,8 +58,6 @@ public class MainPanelGalerie extends JPanel {
 	private Photo photo3;
 	private Photo photo4;
 
-	private Photo addPhoto = new Photo("Pictures/plus-button.png");
-	private JButton addButton = new JButton(addPhoto);
 	private OnePhotoPanel onePhotoPanel;
 
 	private Image img;
@@ -67,8 +65,6 @@ public class MainPanelGalerie extends JPanel {
 	public MainPanelGalerie() {
 
 		// setMainPanel
-		addButton.setLayout(new FlowLayout(new FlowLayout().RIGHT));
-		addButton.setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
 
@@ -129,11 +125,6 @@ public class MainPanelGalerie extends JPanel {
 				containerPhotos.add(photoButtons[i]);
 		}
 
-		// set the buttons for upGaleriePanel
-		addButton.setBorderPainted(false);
-		addButton.setContentAreaFilled(false);
-		addButton.setFocusPainted(false);
-		addButton.setOpaque(false);
 
 		// add containerPhoto and upPanel to galeriePanel
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
