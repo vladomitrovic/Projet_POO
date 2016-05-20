@@ -1,11 +1,14 @@
 package Contact;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 
 public class CarnetContact {
 	
-	private String name;
+
 	private ArrayList<Contact> carnet = new ArrayList<Contact>();
 	
 	
@@ -29,6 +32,26 @@ public class CarnetContact {
 
 	public ArrayList<Contact> getCarnet() {
 		return carnet;
+	}
+	
+	public void serialize(){
+		
+		try {
+
+		FileOutputStream fos = new FileOutputStream("C:/Users/Vlado/Desktop/personne.serial");
+
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		
+//		oos.writeObject(p1);
+		
+		oos.flush();
+		
+		oos.close();
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
