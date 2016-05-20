@@ -60,7 +60,6 @@ public class Contact_Carnet extends JPanel {
 	
 	
 	public Contact_Carnet() {
-		this.setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
 		
@@ -71,6 +70,7 @@ public class Contact_Carnet extends JPanel {
 		
 //		Ajout des composant du topPanel
 		topLayout.setHgap(67);
+		topLayout.setVgap(10);
 		topPanel.setBackground(Color.BLUE);
 		topPanel.setLayout(topLayout);
 		topPanel.add(favButton);
@@ -79,6 +79,7 @@ public class Contact_Carnet extends JPanel {
 		addButton.addActionListener(new Add_Click());
 		
 //		Ajout du topPanel et de la liste des contacts au panel contact
+		carnetPanel.setLayout(new BorderLayout());
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(listeScroll);
 
