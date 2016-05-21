@@ -60,6 +60,7 @@ public class Contact_Carnet extends JPanel {
 		
 //		Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
+//		add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(listeScroll);
 
@@ -92,8 +93,8 @@ public class Contact_Carnet extends JPanel {
 
 			temp.setName("C" + i);
 			temp.setContentAreaFilled(false);
-			temp.setBorderPainted(false);
-//			temp.setBorder(arg0);
+//			temp.setBorderPainted(false);
+			temp.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 			temp.addActionListener(new Details_Click());
 			temp.setHorizontalAlignment(SwingConstants.LEFT);
 			
@@ -128,9 +129,8 @@ public class Contact_Carnet extends JPanel {
 				
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					Contact c = carnet.getCarnet().get(i);
-					contactDetails =new Contact_Details(c);
+					contactDetails =new Contact_Details(c, Contact_Carnet.this);
 					add(contactDetails,"contactDetails");
-					
 					carnetCard.show(Contact_Carnet.this, "contactDetails");
 				
 				}
