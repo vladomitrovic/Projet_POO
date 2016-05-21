@@ -23,6 +23,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,6 +31,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicArrowButton;
 
 import Elements.AddButton;
@@ -45,11 +47,11 @@ public class MainPanelGalerie extends JPanel {
 	private JPanel titlePanel = new JPanel();
 	private FlowLayout flTitle = new FlowLayout();
 	private JPanel layoutGaleriePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	private JPopupMenu menu = new JPopupMenu();
 	private LayoutGalerieButton buttonLayout = new LayoutGalerieButton();
 	private JPanel addPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	private JPanel titleGaleriePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	private JLabel title = new JLabel("Galerie");
+	private AddButton addButton = new AddButton();
 
 	private Galerie galerie = new Galerie();
 	private JButton[] photoButtons = new JButton[50];
@@ -58,8 +60,6 @@ public class MainPanelGalerie extends JPanel {
 	private Photo photo3;
 	private Photo photo4;
 
-	private Photo addPhoto = new Photo("Pictures/plus-button.png");
-	private JButton addButton = new JButton(addPhoto);
 	private OnePhotoPanel onePhotoPanel;
 
 	private Image img;
@@ -67,36 +67,8 @@ public class MainPanelGalerie extends JPanel {
 	public MainPanelGalerie() {
 
 		// setMainPanel
-		addButton.setLayout(new FlowLayout(new FlowLayout().RIGHT));
-		addButton.setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(480, 800));
-		setLayout(new BorderLayout());
-
-		// set label title panel
-		title.setForeground(Color.WHITE);
-		title.setFont(new Font("Arial", Font.PLAIN, 30));
-		// title.setPreferredSize(new Dimension(20,35));
-
-		// set the popup for the layoutGalerie
-		menu.add("2 : 3");
-		menu.add("4 : 3");
-
-		// add actionlistener for layoutButton
-		buttonLayout.addMouseListener(new Galerie_Layout());
-
-		// set titlePanel
-		layoutGaleriePanel.add(buttonLayout);
-		layoutGaleriePanel.setBackground(Color.RED);
-		addPanel.add(new AddButton());
-		addPanel.setBackground(Color.RED);
-		titleGaleriePanel.add(title);
-		titleGaleriePanel.setBackground(Color.RED);
-		flTitle.setHgap(67);
-		titlePanel.setBackground(Color.RED);
-		titlePanel.setLayout(flTitle);
-		titlePanel.add(new LayoutGalerieButton());
-		titlePanel.add(title);
-		titlePanel.add(addPanel);
+		setLayout(new BorderLayout());	
 
 		// set containerPhotos
 		FlowLayout flowLayout = new FlowLayout();
@@ -106,38 +78,41 @@ public class MainPanelGalerie extends JPanel {
 		containerPhotos.setLayout(flowLayout);
 
 		// add images to gallery and to buttons
-		galerie.addPhoto(createPhotoFit(img, photo1, "Pictures/animal1.jpeg"), photoButtons);
-		galerie.addPhoto(createPhotoFit(img, photo2, "Pictures/animal2.jpg"), photoButtons);
-		galerie.addPhoto(createPhotoFit(img, photo3, "Pictures/ville1.jpeg"), photoButtons);
-		galerie.addPhoto(createPhotoFit(img, photo4, "Pictures/paysage3.jpeg"), photoButtons);
+		galerie.addPhoto(MainPanelGalerie.this, createPhotoFit(img, photo1, "Pictures/animal1.jpeg"), photoButtons);
+		galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo2, "Pictures/animal2.jpg"), photoButtons);
+		galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo3, "Pictures/ville1.jpeg"), photoButtons);
+		galerie.addPhoto(MainPanelGalerie.this, createPhotoFit(img, photo4, "Pictures/paysage3.jpeg"), photoButtons);
+		
 
-		// modify size of buttons
-		for (int i = 0; i < photoButtons.length; i++) {
-			if (photoButtons[i] != null)
-				photoButtons[i].setPreferredSize(new Dimension(130, 100));
-		}
-
-		// add listener to Jbuttons
-		for (int i = 0; i < photoButtons.length; i++) {
-			if (photoButtons[i] != null)
-				photoButtons[i].addActionListener(new Photo_Click());
-		}
-
-		// add buttons to photo's panel
-		for (int i = 0; i < photoButtons.length; i++) {
-			if (photoButtons[i] != null)
-				containerPhotos.add(photoButtons[i]);
-		}
-
-		// set the buttons for upGaleriePanel
-		addButton.setBorderPainted(false);
-		addButton.setContentAreaFilled(false);
-		addButton.setFocusPainted(false);
-		addButton.setOpaque(false);
 
 		// add containerPhoto and upPanel to galeriePanel
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
 		galeriePanel.add(containerPhotos);
+		
+		
+
+		// set label title panel
+		title.setForeground(Color.WHITE);
+		title.setFont(new Font("Arial", Font.PLAIN, 30));
+
+		// add actionlistener for layoutButton
+		buttonLayout.addActionListener(new Layout_Galerie());
+
+		// set titlePanel
+		layoutGaleriePanel.add(buttonLayout);
+		layoutGaleriePanel.setBackground(Color.RED);
+		addButton.addActionListener(new Add_Click());
+		addPanel.add(addButton);
+		addPanel.setBackground(Color.RED);
+		titleGaleriePanel.add(title);
+		titleGaleriePanel.setBackground(Color.RED);
+		flTitle.setHgap(67);
+		titlePanel.setBackground(Color.RED);
+		titlePanel.setLayout(flTitle);
+		titlePanel.add(buttonLayout);
+		titlePanel.add(title);
+		titlePanel.add(addPanel);
+
 
 		// add panels to principal Panel
 		setLayout(c2);
@@ -152,16 +127,19 @@ public class MainPanelGalerie extends JPanel {
 		MainPanelGalerie.this.repaint();
 	}
 
-	public void createPhotos() {
-
-	}
-
 	public JPanel getContainerPhotos() {
 		return containerPhotos;
 	}
 
 	public JPanel getTitlePanel() {
 		return titlePanel;
+	}
+	
+	public void addActionListenerAndToPanel(JButton[] photoButtons, int index){
+		photoButtons[index].addActionListener(new Photo_Click());
+		containerPhotos.add(photoButtons[index]);
+		containerPhotos.revalidate();
+		containerPhotos.repaint();
 	}
 
 	public Photo createPhotoFit(Image img, Photo photo, String path) {
@@ -179,46 +157,45 @@ public class MainPanelGalerie extends JPanel {
 
 	}
 
-	class Galerie_Layout extends MouseAdapter {
-		public void mousePressed(MouseEvent e) {
-			menu.show(e.getComponent(), e.getX(), e.getY());
-		}
-	}
-
 	class Layout_Galerie implements ActionListener {
 		boolean flag = true;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			flag = !flag;
-			if (flag == true) {
+			flag = !flag ;
+			if(flag == false){
+				// modify size of buttons
+				for (int i = 0; i < photoButtons.length; i++) {
+					if (photoButtons[i] != null)
+						photoButtons[i].setPreferredSize(new Dimension(95, 100));
+				}
+				
+				// add buttons to photo's panel
+				for (int i = 0; i < photoButtons.length; i++) {
+					if (photoButtons[i] != null)
+						containerPhotos.add(photoButtons[i]);
+				}
+				
+				galeriePanel.add(containerPhotos);
+				add(galeriePanel, "galeriePanel");
+				c2.show(MainPanelGalerie.this, "galeriePanel");
+			} else {
+				// modify size of buttons
 				for (int i = 0; i < photoButtons.length; i++) {
 					if (photoButtons[i] != null)
 						photoButtons[i].setPreferredSize(new Dimension(130, 100));
 				}
-
-				for (int i = 0; i < photoButtons.length; i++) {
-					if (photoButtons[i] != null)
-						containerPhotos.add(photoButtons[i]);
-				}
-				galeriePanel.add(containerPhotos);
-
-			} else {
-				for (int i = 0; i < photoButtons.length; i++) {
-					if (photoButtons[i] != null)
-						photoButtons[i].setPreferredSize(new Dimension(80, 80));
-
-				}
-
-				for (int i = 0; i < photoButtons.length; i++) {
-					if (photoButtons[i] != null)
-						containerPhotos.add(photoButtons[i]);
-				}
-				galeriePanel.add(containerPhotos);
-
 				
-
+				// add buttons to photo's panel
+				for (int i = 0; i < photoButtons.length; i++) {
+					if (photoButtons[i] != null)
+						containerPhotos.add(photoButtons[i]);
+				}
+				
+				galeriePanel.add(containerPhotos);
+				add(galeriePanel, "galeriePanel");
+				c2.show(MainPanelGalerie.this, "galeriePanel");
 			}
 		}
 	}
@@ -235,5 +212,25 @@ public class MainPanelGalerie extends JPanel {
 			c2.show(MainPanelGalerie.this, "onePhotoPanel");
 		}
 
+	}
+
+	class Add_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+		    JFileChooser chooser = new JFileChooser();
+		    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		        "JPG, GIF, PNG, JPEG Images", "jpg", "gif", "png", "jpeg");
+		    chooser.setFileFilter(filter);
+		    int returnVal = chooser.showOpenDialog(getParent());
+		    if(returnVal == JFileChooser.APPROVE_OPTION) {
+		    	galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo1, chooser.getSelectedFile().getAbsolutePath()), photoButtons);
+		    	galeriePanel.add(containerPhotos);
+				c2.show(MainPanelGalerie.this, "galeriePanel");
+		    	
+		    }
+		}
+		
 	}
 }
