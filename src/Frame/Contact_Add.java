@@ -37,22 +37,22 @@ public class Contact_Add extends JPanel {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		lblPrenom.setBounds(106, 171, 71, 63);
+		lblPrenom.setBounds(106, 171, 71, 35);
 		panel.add(lblPrenom);
 
-		lblCPname.setBounds(211, 171, 121, 63);
+		lblCPname.setBounds(211, 171, 121, 35);
 		panel.add(lblCPname);
 
-		lblNom.setBounds(106, 247, 87, 63);
+		lblNom.setBounds(106, 247, 87, 35);
 		panel.add(lblNom);
 
-		lblCName.setBounds(211, 247, 105, 63);
+		lblCName.setBounds(211, 247, 105, 35);
 		panel.add(lblCName);
 
-		lblNumero.setBounds(106, 309, 71, 63);
+		lblNumero.setBounds(106, 309, 71, 35);
 		panel.add(lblNumero);
 
-		lblCTel.setBounds(211, 309, 95, 63);
+		lblCTel.setBounds(211, 309, 95, 35);
 		panel.add(lblCTel);
 
 	}

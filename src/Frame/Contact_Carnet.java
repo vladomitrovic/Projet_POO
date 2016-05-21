@@ -27,29 +27,9 @@ public class Contact_Carnet extends JPanel {
 
 	private Contact_Details contactDetails;
 	private Contact_Add contactAdd;
-	
-//	----------------------------------------------------------------------
-	CarnetContact carnet = new CarnetContact();
-	Contact vlado = new Contact("Mitrovic", "Vlado", "079 439 22 26");
-	Contact john = new Contact("Doe", "John", "079 123 45 67");
-	Contact adam = new Contact("Adam", "Smith", "078 765 41 23");
-	
-	Contact vlado1 = new Contact("Mitrovic", "Vlado", "079 439 22 26");
-	Contact john1 = new Contact("Doe", "John", "079 123 45 67");
-	Contact adam1 = new Contact("Adam", "Smith", "078 765 41 23");
-	Contact vlado2 = new Contact("Mitrovic", "Vlado", "079 439 22 26");
-	Contact john2 = new Contact("Doe", "John", "079 123 45 67");
-	Contact adam2 = new Contact("Adam", "Smith", "078 765 41 23");
-	Contact vlado3 = new Contact("Mitrovic", "Vlado", "079 439 22 26");
-	Contact john3 = new Contact("Doe", "John", "079 123 45 67");
-	Contact adam3 = new Contact("Adam", "Smith", "078 765 41 23");
-	Contact vlado4 = new Contact("Mitrovic", "Vlado", "079 439 22 26");
-	Contact john4 = new Contact("Doe", "John", "079 123 45 67");
-	Contact adam4 = new Contact("Adam", "Smith", "078 765 41 23");
-//	----------------------------------------------------------------------
 
-	
-	
+	CarnetContact carnet = new CarnetContact();
+
 	AddButton addButton=new AddButton();
 	
 	FavorisButton favButton=new FavorisButton();
@@ -97,30 +77,13 @@ public class Contact_Carnet extends JPanel {
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
 		
-		listePanel.setOpaque(false);
-		listeScroll.setOpaque(false);
+//		listePanel.setOpaque(false);
+//		listeScroll.setOpaque(false);
 		listeScroll.setPreferredSize(new Dimension(425, 642));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-//		----------------------------------------------------------------------
-		carnet.getCarnet().add(adam);
-		carnet.getCarnet().add(john);
-		carnet.getCarnet().add(vlado);
-		
-//		carnet.getCarnet().add(adam1);
-//		carnet.getCarnet().add(john1);
-//		carnet.getCarnet().add(vlado1);
-//		carnet.getCarnet().add(adam2);
-//		carnet.getCarnet().add(john2);
-//		carnet.getCarnet().add(vlado2);
-//		carnet.getCarnet().add(adam3);
-//		carnet.getCarnet().add(john3);
-//		carnet.getCarnet().add(vlado3);
-//		carnet.getCarnet().add(adam4);
-//		carnet.getCarnet().add(john4);
-//		carnet.getCarnet().add(vlado4);
-//		----------------------------------------------------------------------
 
+		carnet.deseralize();
 
 		// Création buttons contacts
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
@@ -130,6 +93,7 @@ public class Contact_Carnet extends JPanel {
 			temp.setName("C" + i);
 			temp.setContentAreaFilled(false);
 			temp.setBorderPainted(false);
+//			temp.setBorder(arg0);
 			temp.addActionListener(new Details_Click());
 			temp.setHorizontalAlignment(SwingConstants.LEFT);
 			
@@ -139,20 +103,6 @@ public class Contact_Carnet extends JPanel {
 	}
 
 	
-	class ContactPanel extends JPanel {
-
-		private Contact contact;
-		private JPanel details = new JPanel(new GridLayout(10, 1));
-
-		public ContactPanel(Contact contact) {
-			this.contact = contact;
-			details.add(new JLabel(contact.getNom()));
-			details.add(new JLabel(contact.getPrenom()));
-			details.add(new JLabel(contact.getTel()));
-
-		}
-
-	}
 
 	
 
@@ -178,8 +128,9 @@ public class Contact_Carnet extends JPanel {
 				
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					Contact c = carnet.getCarnet().get(i);
-					contactDetails =new Contact_Details(c, carnetPanel);
+					contactDetails =new Contact_Details(c);
 					add(contactDetails,"contactDetails");
+					
 					carnetCard.show(Contact_Carnet.this, "contactDetails");
 				
 				}

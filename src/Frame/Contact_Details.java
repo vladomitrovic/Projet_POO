@@ -24,15 +24,12 @@ import Contact.Contact;
 	private JButton modif=new JButton("Modifier");
 
 	
-	private TopBarPanel topBar;
-	private JPanel top;
 
 
-	public Contact_Details(Contact c, JPanel top) {
+
+	public Contact_Details(Contact c) {
 		this.setLayout(new BorderLayout());
-		this.top=top;
-		topBar = new TopBarPanel(Contact_Details.this,top);
-		add(topBar, BorderLayout.NORTH);
+
 		
 		
 		add(contentPane);
