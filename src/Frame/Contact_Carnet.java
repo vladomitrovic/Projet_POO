@@ -74,7 +74,7 @@ public class Contact_Carnet extends JPanel {
 		
 
 
-		GridLayout grid = new GridLayout(10, 1);
+		GridLayout grid = new GridLayout(12, 1);
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
 		
@@ -97,6 +97,7 @@ public class Contact_Carnet extends JPanel {
 			temp.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 			temp.addActionListener(new Details_Click());
 			temp.setHorizontalAlignment(SwingConstants.LEFT);
+			temp.setFont(new Font("Arial", Font.PLAIN, 20));
 			
 			
 			listePanel.add(temp);
@@ -112,7 +113,7 @@ public class Contact_Carnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			contactAdd=new Contact_Add(carnetPanel);
+			contactAdd=new Contact_Add(Contact_Carnet.this);
 			add(contactAdd, "contactAdd");
 			carnetCard.show(Contact_Carnet.this, "contactAdd");
 		}
@@ -143,6 +144,8 @@ public class Contact_Carnet extends JPanel {
 		}
 
 	}
+	
+
 
 	
 }

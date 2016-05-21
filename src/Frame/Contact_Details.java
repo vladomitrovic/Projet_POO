@@ -80,6 +80,7 @@ public class Contact_Details extends JPanel {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		detailsLayout.setVgap(25);
+		detailsLayout.setHgap(10);
 		panel.setLayout(detailsLayout);
 
 
