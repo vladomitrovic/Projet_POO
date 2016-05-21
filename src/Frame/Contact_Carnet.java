@@ -51,7 +51,7 @@ public class Contact_Carnet extends JPanel {
 //		Ajout des composant du topPanel
 		topLayout.setHgap(67);
 		topLayout.setVgap(10);
-		topPanel.setBackground(Color.BLUE);
+		topPanel.setBackground(Color.GRAY);
 		topPanel.setLayout(topLayout);
 		topPanel.add(favButton);
 		topPanel.add(titleLbl);
@@ -97,6 +97,7 @@ public class Contact_Carnet extends JPanel {
 			temp.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 			temp.addActionListener(new Details_Click());
 			temp.setHorizontalAlignment(SwingConstants.LEFT);
+			
 			
 			listePanel.add(temp);
 		}

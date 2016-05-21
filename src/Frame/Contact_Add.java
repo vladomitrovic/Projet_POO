@@ -1,11 +1,14 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Elements.BackButton;
 
 public class Contact_Add extends JPanel {
 
@@ -21,7 +24,12 @@ public class Contact_Add extends JPanel {
 	
 	JButton add = new JButton("Ajouter");
 	
+	private JPanel topPanel = new JPanel();
+	private FlowLayout topLayout = new FlowLayout();
+	private JLabel titleLbl = new JLabel("Contact");
+	private JButton modifyButton = new JButton("Modifier");
 
+	BackButton backButton = new BackButton();
 
 	public Contact_Add(JPanel top) {
 		this.setLayout(new BorderLayout());
@@ -29,7 +37,7 @@ public class Contact_Add extends JPanel {
 
 
 		add(contentPane);
-		contentPane.setLayout(new BorderLayout());
+		contentPane.setLayout(new FlowLayout());
 
 		contentPane.add(add);
 		

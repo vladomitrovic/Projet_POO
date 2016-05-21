@@ -48,7 +48,7 @@ public class Contact_Details extends JPanel {
 		modifyButton.setBorderPainted(false);
 		topLayout.setHgap(60);
 		topLayout.setVgap(10);
-		topPanel.setBackground(Color.BLUE);
+		topPanel.setBackground(Color.GRAY);
 		topPanel.setLayout(topLayout);
 		topPanel.add(backButton);
 		topPanel.add(titleLbl);
