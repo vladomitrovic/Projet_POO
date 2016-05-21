@@ -82,7 +82,7 @@ public class MainPanelGalerie extends JPanel {
 		galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo2, "Pictures/animal2.jpg"), photoButtons);
 		galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo3, "Pictures/ville1.jpeg"), photoButtons);
 		galerie.addPhoto(MainPanelGalerie.this, createPhotoFit(img, photo4, "Pictures/paysage3.jpeg"), photoButtons);
-
+		
 
 
 		// add containerPhoto and upPanel to galeriePanel
@@ -225,8 +225,7 @@ public class MainPanelGalerie extends JPanel {
 		    chooser.setFileFilter(filter);
 		    int returnVal = chooser.showOpenDialog(getParent());
 		    if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    	Photo choosenPhoto = null ;
-		    	galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, choosenPhoto, chooser.getSelectedFile().getAbsolutePath()), photoButtons);
+		    	galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo1, chooser.getSelectedFile().getAbsolutePath()), photoButtons);
 		    	galeriePanel.add(containerPhotos);
 				c2.show(MainPanelGalerie.this, "galeriePanel");
 		    	

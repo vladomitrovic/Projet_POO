@@ -1,6 +1,11 @@
 package Galerie;
 
 import java.awt.Dimension;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,12 +27,36 @@ public class Galerie {
 		buttons[cpt].setPreferredSize(new Dimension(130, 100));
 		panelGalerie.addActionListenerAndToPanel(buttons, cpt);
 		cpt++;
+		serialize();
+	}
+	
+	public void serialize(){
+		try{
+			FileOutputStream fos = new FileOutputStream("Galerie/Photos.ser") ;
+			ObjectOutputStream oos = new ObjectOutputStream(fos) ;
+			oos.writeObject(photos);
+			oos.flush();
+			oos.close();
+			fos.close();
+		} catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 
-	public int getCpt() {
-		return cpt;
+	public void deserialize(JButton[] buttons){
+		try{
+			FileInputStream in = new FileInputStream("Galerie/Photos.ser") ;
+			ObjectInputStream ois = new ObjectInputStream(in) ;
+			buttons = (JButton[]) ois.readObject() ;
+			ois.close();
+		} catch(IOException e){
+			e.printStackTrace();
+		} catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+	
 	}
-
+	
 	public Photo[] getPhotos() {
 		return photos;
 	}

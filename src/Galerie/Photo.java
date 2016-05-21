@@ -1,10 +1,10 @@
 package Galerie;
 
 import java.awt.Image;
-
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
-public class Photo extends ImageIcon {
+public class Photo extends ImageIcon implements Serializable {
 
 	private String path;
 
