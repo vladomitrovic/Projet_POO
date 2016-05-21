@@ -35,6 +35,12 @@ public class Contact_Details extends JPanel {
 
 	BackButton backButton = new BackButton();
 	
+	private FlowLayout detailsLayout = new FlowLayout();
+	Dimension lblSize=new Dimension(280, 25);
+	Dimension ClblSize=new Dimension(280, 20);
+	Font lblFont=new Font("Arial", Font.BOLD, 22);
+	Font cLblFont=new Font("Arial", Font.PLAIN, 20);
+	
 	Contact_Carnet top;
 
 	public Contact_Details(Contact c, Contact_Carnet top) {
@@ -65,6 +71,7 @@ public class Contact_Details extends JPanel {
 		detailsPanel.add(contentPane);
 		
 		
+		
 		// Ajout du contact panel au panel principal
 		setLayout(carnetCard);
 		add(detailsPanel, "detailsPanel");
@@ -72,26 +79,37 @@ public class Contact_Details extends JPanel {
 
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		detailsLayout.setVgap(25);
+		panel.setLayout(detailsLayout);
 
-		lblPrenom.setBounds(106, 171, 71, 63);
+
+		lblPrenom.setPreferredSize(lblSize);
+		lblPrenom.setFont(lblFont);
+		lblPrenom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		panel.add(lblPrenom);
 
-		lblCPname.setBounds(211, 171, 121, 63);
+		lblCPname.setPreferredSize(ClblSize);
+		lblCPname.setFont(cLblFont);
 		panel.add(lblCPname);
 		lblCPname.setText(c.getPrenom());
 
-		lblNom.setBounds(106, 247, 87, 63);
+		lblNom.setPreferredSize(lblSize);
+		lblNom.setFont(lblFont);
+		lblNom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		panel.add(lblNom);
 
-		lblCName.setBounds(211, 247, 105, 63);
+		lblCName.setPreferredSize(ClblSize);
+		lblCName.setFont(cLblFont);
 		panel.add(lblCName);
 		lblCName.setText(c.getNom());
 
-		lblNumero.setBounds(106, 309, 71, 63);
+		lblNumero.setPreferredSize(lblSize);
+		lblNumero.setFont(lblFont);
+		lblNumero.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		panel.add(lblNumero);
 
-		lblCTel.setBounds(211, 309, 95, 63);
+		lblCTel.setPreferredSize(ClblSize);
+		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
 		lblCTel.setText(c.getTel());
 
