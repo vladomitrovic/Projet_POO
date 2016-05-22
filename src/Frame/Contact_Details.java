@@ -7,93 +7,136 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import Contact.CarnetContact;
 import Contact.Contact;
+import Elements.AddButton;
+import Elements.BackButton;
+import Elements.FavorisButton;
+import Frame.Contact_Carnet.Add_Click;
 
- public class Contact_Details extends JPanel{
-	
-	private JPanel contentPane =new JPanel();
-	
+public class Contact_Details extends JPanel {
+
+	public CardLayout carnetCard = new CardLayout();
+	private JPanel contentPane = new JPanel();
+	private JPanel detailsPanel = new JPanel();
+
 	private JLabel lblNom = new JLabel("Nom");
 	private JLabel lblPrenom = new JLabel("Prénom");
 	private JLabel lblNumero = new JLabel("Numéro");
-	
+
 	private JLabel lblCName = new JLabel("");
 	private JLabel lblCPname = new JLabel("");
 	private JLabel lblCTel = new JLabel("");
+
+	private JPanel topPanel = new JPanel();
+	private FlowLayout topLayout = new FlowLayout();
+	private JLabel titleLbl = new JLabel("Contact");
+	private JButton modifyButton = new JButton("Modifier");
+
+	BackButton backButton = new BackButton();
 	
-	private JButton modif=new JButton("Modifier");
-
+	private FlowLayout detailsLayout = new FlowLayout();
+	Dimension lblSize=new Dimension(280, 25);
+	Dimension ClblSize=new Dimension(280, 20);
+	Font lblFont=new Font("Arial", Font.BOLD, 22);
+	Font cLblFont=new Font("Arial", Font.PLAIN, 20);
 	
+	Contact_Carnet top;
 
-
-
-	public Contact_Details(Contact c) {
+	public Contact_Details(Contact c, Contact_Carnet top) {
+		this.top=top;
 		this.setLayout(new BorderLayout());
 
-		
-		
-		add(contentPane);
 		contentPane.setLayout(new BorderLayout());
 
+		// Ajout des composant du topPanel
+		modifyButton.setContentAreaFilled(false);
+		modifyButton.setBorderPainted(false);
+		topLayout.setHgap(60);
+		topLayout.setVgap(10);
+		topPanel.setBackground(Color.GRAY);
+		topPanel.setLayout(topLayout);
+		topPanel.add(backButton);
+		topPanel.add(titleLbl);
+		topPanel.add(modifyButton);
+		backButton.addActionListener(new Return_Click());
+		modifyButton.addActionListener(new Modif_Click());
+		// Modification du titre
+		titleLbl.setForeground(Color.WHITE);
+		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
+		modifyButton.setForeground(Color.WHITE);
+
+		detailsPanel.setLayout(new BorderLayout());
+		detailsPanel.add(topPanel, BorderLayout.NORTH);
+		detailsPanel.add(contentPane);
 		
 		
+		
+		// Ajout du contact panel au panel principal
+		setLayout(carnetCard);
+		add(detailsPanel, "detailsPanel");
+		carnetCard.show(Contact_Details.this, "detailsPanel");
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
+		detailsLayout.setVgap(25);
+		detailsLayout.setHgap(10);
+		panel.setLayout(detailsLayout);
 
-		lblPrenom.setBounds(106, 171, 71, 63);
+
+		lblPrenom.setPreferredSize(lblSize);
+		lblPrenom.setFont(lblFont);
+		lblPrenom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		panel.add(lblPrenom);
-		
-		lblCPname.setBounds(211, 171, 121, 63);
+
+		lblCPname.setPreferredSize(ClblSize);
+		lblCPname.setFont(cLblFont);
 		panel.add(lblCPname);
 		lblCPname.setText(c.getPrenom());
-		
 
-		lblNom.setBounds(106, 247, 87, 63);
+		lblNom.setPreferredSize(lblSize);
+		lblNom.setFont(lblFont);
+		lblNom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		panel.add(lblNom);
-		
 
-		lblCName.setBounds(211, 247, 105, 63);
+		lblCName.setPreferredSize(ClblSize);
+		lblCName.setFont(cLblFont);
 		panel.add(lblCName);
 		lblCName.setText(c.getNom());
-		
 
-		lblNumero.setBounds(106, 309, 71, 63);
+		lblNumero.setPreferredSize(lblSize);
+		lblNumero.setFont(lblFont);
+		lblNumero.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		panel.add(lblNumero);
-		
 
-		lblCTel.setBounds(211, 309, 95, 63);
+		lblCTel.setPreferredSize(ClblSize);
+		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
 		lblCTel.setText(c.getTel());
-		
-		
-		
-		add(modif, BorderLayout.SOUTH);
-		modif.addActionListener(new Modif_Click());
-		
-	
 
 	}
-	
-	class Modif_Click implements ActionListener{
+
+	class Modif_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			contentPane.setVisible(false);
-			
-//			Contact c=carnet.getCarnet().get(index);
-			
-			
-//			MainPanelContact.this.add(new ModifContact(c));
-			
+
 		}
-		
+
 	}
+
+	class Return_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			top.remove(Contact_Details.this);
 	
-	
-	
-	
+
+		}
+
+	}
 
 }

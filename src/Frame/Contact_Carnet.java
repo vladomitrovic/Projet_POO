@@ -51,7 +51,7 @@ public class Contact_Carnet extends JPanel {
 //		Ajout des composant du topPanel
 		topLayout.setHgap(67);
 		topLayout.setVgap(10);
-		topPanel.setBackground(Color.BLUE);
+		topPanel.setBackground(Color.GRAY);
 		topPanel.setLayout(topLayout);
 		topPanel.add(favButton);
 		topPanel.add(titleLbl);
@@ -60,6 +60,7 @@ public class Contact_Carnet extends JPanel {
 		
 //		Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
+//		add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(listeScroll);
 
@@ -73,7 +74,7 @@ public class Contact_Carnet extends JPanel {
 		
 
 
-		GridLayout grid = new GridLayout(10, 1);
+		GridLayout grid = new GridLayout(12, 1);
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
 		
@@ -92,10 +93,12 @@ public class Contact_Carnet extends JPanel {
 
 			temp.setName("C" + i);
 			temp.setContentAreaFilled(false);
-			temp.setBorderPainted(false);
-//			temp.setBorder(arg0);
+//			temp.setBorderPainted(false);
+			temp.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 			temp.addActionListener(new Details_Click());
 			temp.setHorizontalAlignment(SwingConstants.LEFT);
+			temp.setFont(new Font("Arial", Font.PLAIN, 20));
+			
 			
 			listePanel.add(temp);
 		}
@@ -110,7 +113,7 @@ public class Contact_Carnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			contactAdd=new Contact_Add(carnetPanel);
+			contactAdd=new Contact_Add(Contact_Carnet.this);
 			add(contactAdd, "contactAdd");
 			carnetCard.show(Contact_Carnet.this, "contactAdd");
 		}
@@ -128,9 +131,8 @@ public class Contact_Carnet extends JPanel {
 				
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					Contact c = carnet.getCarnet().get(i);
-					contactDetails =new Contact_Details(c);
+					contactDetails =new Contact_Details(c, Contact_Carnet.this);
 					add(contactDetails,"contactDetails");
-					
 					carnetCard.show(Contact_Carnet.this, "contactDetails");
 				
 				}
@@ -142,6 +144,8 @@ public class Contact_Carnet extends JPanel {
 		}
 
 	}
+	
+
 
 	
 }

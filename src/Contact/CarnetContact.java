@@ -56,6 +56,7 @@ public class CarnetContact {
 
 	}
 
+
 	public void deseralize() {
 		try {
 			FileInputStream fis = new FileInputStream("Contacts/CarnetContact.serial");
