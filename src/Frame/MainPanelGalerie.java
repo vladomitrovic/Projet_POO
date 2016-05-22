@@ -63,7 +63,6 @@ public class MainPanelGalerie extends JPanel {
 	private Image img;
 
 	public MainPanelGalerie() {
-
 		// setMainPanel
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
@@ -75,17 +74,10 @@ public class MainPanelGalerie extends JPanel {
 		flowLayout.setVgap(10);
 		containerPhotos.setLayout(flowLayout);
 
-		// add images to gallery and to buttons
-		// galerie.addPhoto(MainPanelGalerie.this, createPhotoFit(img, photo1,
-		// "Pictures/animal1.jpeg"), photoButtons);
-		// galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo2,
-		// "Pictures/animal2.jpg"), photoButtons);
-		// galerie.addPhoto(MainPanelGalerie.this,createPhotoFit(img, photo3,
-		// "Pictures/ville1.jpeg"), photoButtons);
-		// galerie.addPhoto(MainPanelGalerie.this, createPhotoFit(img, photo4,
-		// "Pictures/paysage3.jpeg"), photoButtons);
 		// add images manually to gallery
-		galerie.addButton(MainPanelGalerie.this, galerie.deserialize(), photoButtons);
+		photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
+
+
 
 		// add containerPhoto and upPanel to galeriePanel
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
@@ -136,9 +128,13 @@ public class MainPanelGalerie extends JPanel {
 
 	public void addActionListenerAndToPanel(ArrayList<JButton> photoButtons, int index) {
 		photoButtons.get(index).addActionListener(new Photo_Click());
-		containerPhotos.add(photoButtons.get(index));
-		containerPhotos.revalidate();
-		containerPhotos.repaint();
+		containerPhotos.removeAll();
+		for(int i = 0 ; i<photoButtons.size() ; i++){
+			containerPhotos.add(photoButtons.get(i));
+			containerPhotos.revalidate();
+			containerPhotos.repaint();
+		}
+
 	}
 
 	public Photo createPhotoFit(Image img, Photo photo, String path) {
@@ -166,12 +162,10 @@ public class MainPanelGalerie extends JPanel {
 			if (flag == false) {
 				// modify size of buttons
 				for (int i = 0; i < photoButtons.size(); i++) {
-					if (photoButtons.get(i) != null) {
 						photoButtons.get(i).setPreferredSize(new Dimension(95, 100));
 						containerPhotos.add(photoButtons.get(i));
 						containerPhotos.revalidate();
 						containerPhotos.repaint();
-					}
 				}
 
 				galeriePanel.add(containerPhotos);
@@ -222,12 +216,16 @@ public class MainPanelGalerie extends JPanel {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				Photo photo1 = null;
 				galerie.addPhoto(createPhotoFit(img, photo1, chooser.getSelectedFile().getAbsolutePath()));
-				galerie.addButton(MainPanelGalerie.this, galerie.deserialize(), photoButtons);
+				photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 				galeriePanel.add(containerPhotos);
 				c2.show(MainPanelGalerie.this, "galeriePanel");
 
 			}
 		}
 
+	}
+
+	public void setContainerPhotos(JPanel panel) {
+		containerPhotos = panel ;
 	}
 }

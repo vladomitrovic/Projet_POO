@@ -24,7 +24,9 @@ public class Galerie {
 		serialize();
 	}
 
-	public void addButton(MainPanelGalerie panelGalerie, ArrayList<Photo> photos, ArrayList<JButton> buttons) {
+	public ArrayList<JButton> addButton(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
+		
+		ArrayList<JButton> buttons = new ArrayList<JButton>();
 		for (int i = 0; i < photos.size(); i++) {
 			buttons.add(new JButton(photos.get(i)));
 			buttons.get(i).setBorderPainted(false);
@@ -34,6 +36,8 @@ public class Galerie {
 			buttons.get(i).setPreferredSize(new Dimension(130, 100));
 			panelGalerie.addActionListenerAndToPanel(buttons, i);
 		}
+		
+		return buttons ; 
 	}
 
 	public void serialize() {
