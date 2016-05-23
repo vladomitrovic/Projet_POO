@@ -16,40 +16,36 @@ import Galerie.Photo;
 
 public class Contact_Carnet extends JPanel {
 
-	public CardLayout carnetCard =new CardLayout();
+	public CardLayout carnetCard = new CardLayout();
 	private JPanel carnetPanel = new JPanel();
 	private JPanel topPanel = new JPanel();
-	private FlowLayout topLayout=new FlowLayout();
-	private JLabel titleLbl=new JLabel("Contact");
-	
+	private FlowLayout topLayout = new FlowLayout();
+	private JLabel titleLbl = new JLabel("Contact");
+
 	private JPanel listePanel = new JPanel();
-	private JScrollPane listeScroll =new JScrollPane(listePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	private JScrollPane listeScroll = new JScrollPane(listePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 	private Contact_Details contactDetails;
 	private Contact_Add contactAdd;
 
 	CarnetContact carnet = new CarnetContact();
 
-	AddButton addButton=new AddButton();
-	
-	FavorisButton favButton=new FavorisButton();
+	AddButton addButton = new AddButton();
 
-//	JLabel nbContact = new JLabel();
+	FavorisButton favButton = new FavorisButton();
 
+	// JLabel nbContact = new JLabel();
 
-	
-	
 	public Contact_Carnet() {
 		setPreferredSize(new Dimension(480, 800));
 		setLayout(new BorderLayout());
-		
-		
-//		Modification du titre
+
+		// Modification du titre
 		titleLbl.setForeground(Color.WHITE);
 		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
-		
-//		Ajout des composant du topPanel
+
+		// Ajout des composant du topPanel
 		topLayout.setHgap(67);
 		topLayout.setVgap(10);
 		topPanel.setBackground(Color.GRAY);
@@ -58,33 +54,28 @@ public class Contact_Carnet extends JPanel {
 		topPanel.add(titleLbl);
 		topPanel.add(addButton);
 		addButton.addActionListener(new Add_Click());
-		
-//		Ajout du topPanel et de la liste des contacts au panel contact
+
+		// Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
-//		add(topPanel, BorderLayout.NORTH);
+		// add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(listeScroll);
 
-//		Ajout du contact panel au panel principal 
+		// Ajout du contact panel au panel principal
 		setLayout(carnetCard);
 		add(carnetPanel, "carnetPanel");
 		carnetCard.show(Contact_Carnet.this, "carnetPanel");
 
-		
-		
-		
-
-
-		GridLayout grid = new GridLayout(carnet.getCarnet().size()	, 1);
+		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
 		grid.setVgap(5);
+//		FlowLayout scrollLayout =new FlowLayout();
+//		scrollLayout.setHgap(10);
 		listePanel.setLayout(grid);
-		
-//		listePanel.setOpaque(false);
-//		listeScroll.setOpaque(false);
+
+		// listePanel.setOpaque(false);
+		// listeScroll.setOpaque(false);
 		listeScroll.setPreferredSize(new Dimension(425, 642));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-
 
 		carnet.deseralize();
 
@@ -95,27 +86,22 @@ public class Contact_Carnet extends JPanel {
 
 			temp.setName("C" + i);
 			temp.setContentAreaFilled(false);
-//			temp.setBorderPainted(false);
+			// temp.setBorderPainted(false);
 			temp.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 			temp.addActionListener(new Details_Click());
 			temp.setHorizontalAlignment(SwingConstants.LEFT);
 			temp.setFont(new Font("Arial", Font.PLAIN, 20));
-			
-			
+
 			listePanel.add(temp);
 		}
 
 	}
 
-	
-
-	
-
 	class Add_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			contactAdd=new Contact_Add(Contact_Carnet.this);
+			contactAdd = new Contact_Add(Contact_Carnet.this);
 			add(contactAdd, "contactAdd");
 			carnetCard.show(Contact_Carnet.this, "contactAdd");
 		}
@@ -126,28 +112,20 @@ public class Contact_Carnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-
 
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
-				
+
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					Contact c = carnet.getCarnet().get(i);
-					contactDetails =new Contact_Details(c, Contact_Carnet.this);
-					add(contactDetails,"contactDetails");
+					contactDetails = new Contact_Details(c, Contact_Carnet.this);
+					add(contactDetails, "contactDetails");
 					carnetCard.show(Contact_Carnet.this, "contactDetails");
-				
+
 				}
 			}
 
-		
-			
-			
 		}
 
 	}
-	
 
-
-	
 }
