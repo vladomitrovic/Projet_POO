@@ -42,10 +42,24 @@ import Galerie.Galerie;
 import Galerie.Photo;
 
 public class MainPanelGalerie extends JPanel {
+
+	// for MainPanelGalerie
 	public CardLayout c2 = new CardLayout();
 	private JPanel galeriePanel = new JPanel(new BorderLayout());
+	private OnePhotoPanel onePhotoPanel;
+
+	// for galeriePanel
 	private JPanel containerPhotos = new JPanel();
 	private JPanel titlePanel = new JPanel();
+
+	// for containerPhotos
+	private JScrollPane scrollPanePhotos = new JScrollPane(containerPhotos);
+	private ArrayList<JButton> photoButtons = new ArrayList<JButton>();
+	private Image img;
+	private Photo photo;
+	private Galerie galerie = new Galerie();
+
+	// for titlePanel
 	private FlowLayout flTitle = new FlowLayout();
 	private JPanel layoutGaleriePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	private LayoutGalerieButton buttonLayout = new LayoutGalerieButton();
@@ -53,14 +67,6 @@ public class MainPanelGalerie extends JPanel {
 	private JPanel titleGaleriePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	private JLabel title = new JLabel("Galerie");
 	private AddButton addButton = new AddButton();
-
-	private Galerie galerie = new Galerie();
-	private ArrayList<JButton> photoButtons = new ArrayList<JButton>();
-	private Photo photo;
-
-	private OnePhotoPanel onePhotoPanel;
-
-	private Image img;
 
 	public MainPanelGalerie() {
 		// setMainPanel
@@ -73,15 +79,14 @@ public class MainPanelGalerie extends JPanel {
 		flowLayout.setHgap(10);
 		flowLayout.setVgap(10);
 		containerPhotos.setLayout(flowLayout);
+		containerPhotos.setPreferredSize(new Dimension(400, 700));
 
 		// add images manually to gallery
 		photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 
-
-
 		// add containerPhoto and upPanel to galeriePanel
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
-		galeriePanel.add(containerPhotos);
+		galeriePanel.add(scrollPanePhotos);
 
 		// set label title panel
 		title.setForeground(Color.WHITE);
@@ -129,7 +134,7 @@ public class MainPanelGalerie extends JPanel {
 	public void addActionListenerAndToPanel(ArrayList<JButton> photoButtons, int index) {
 		photoButtons.get(index).addActionListener(new Photo_Click());
 		containerPhotos.removeAll();
-		for(int i = 0 ; i<photoButtons.size() ; i++){
+		for (int i = 0; i < photoButtons.size(); i++) {
 			containerPhotos.add(photoButtons.get(i));
 			containerPhotos.revalidate();
 			containerPhotos.repaint();
@@ -162,27 +167,23 @@ public class MainPanelGalerie extends JPanel {
 			if (flag == false) {
 				// modify size of buttons
 				for (int i = 0; i < photoButtons.size(); i++) {
-						photoButtons.get(i).setPreferredSize(new Dimension(95, 100));
-						containerPhotos.add(photoButtons.get(i));
-						containerPhotos.revalidate();
-						containerPhotos.repaint();
+					photoButtons.get(i).setPreferredSize(new Dimension(90, 100));
+					containerPhotos.add(photoButtons.get(i));
+					containerPhotos.revalidate();
+					containerPhotos.repaint();
 				}
-
-				galeriePanel.add(containerPhotos);
+				galeriePanel.add(scrollPanePhotos);
 				add(galeriePanel, "galeriePanel");
 				c2.show(MainPanelGalerie.this, "galeriePanel");
 			} else {
 				// modify size of buttons
 				for (int i = 0; i < photoButtons.size(); i++) {
-					if (photoButtons.get(i) != null){
-						photoButtons.get(i).setPreferredSize(new Dimension(130, 100));
-						containerPhotos.add(photoButtons.get(i));
-						containerPhotos.revalidate();
-						containerPhotos.repaint();
-					}
+					photoButtons.get(i).setPreferredSize(new Dimension(122, 100));
+					containerPhotos.add(photoButtons.get(i));
+					containerPhotos.revalidate();
+					containerPhotos.repaint();
 				}
-
-				galeriePanel.add(containerPhotos);
+				galeriePanel.add(scrollPanePhotos);
 				add(galeriePanel, "galeriePanel");
 				c2.show(MainPanelGalerie.this, "galeriePanel");
 			}
@@ -214,8 +215,7 @@ public class MainPanelGalerie extends JPanel {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(getParent());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				Photo photo1 = null;
-				galerie.addPhoto(createPhotoFit(img, photo1, chooser.getSelectedFile().getAbsolutePath()));
+				galerie.addPhoto(createPhotoFit(img, photo, chooser.getSelectedFile().getAbsolutePath()));
 				photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 				galeriePanel.add(containerPhotos);
 				c2.show(MainPanelGalerie.this, "galeriePanel");
@@ -225,7 +225,4 @@ public class MainPanelGalerie extends JPanel {
 
 	}
 
-	public void setContainerPhotos(JPanel panel) {
-		containerPhotos = panel ;
-	}
 }

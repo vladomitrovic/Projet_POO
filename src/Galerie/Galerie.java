@@ -33,7 +33,7 @@ public class Galerie {
 			buttons.get(i).setContentAreaFilled(false);
 			buttons.get(i).setFocusPainted(false);
 			buttons.get(i).setOpaque(false);
-			buttons.get(i).setPreferredSize(new Dimension(130, 100));
+			buttons.get(i).setPreferredSize(new Dimension(122, 100));
 			panelGalerie.addActionListenerAndToPanel(buttons, i);
 		}
 		
