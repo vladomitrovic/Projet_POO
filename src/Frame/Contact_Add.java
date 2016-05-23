@@ -48,6 +48,9 @@ public class Contact_Add extends JPanel {
 
 	Contact_Carnet top;
 
+	private Contact_Carnet carnet = new Contact_Carnet();
+	
+	
 	public Contact_Add(Contact_Carnet top) {
 		this.top = top;
 		this.setLayout(new BorderLayout());
@@ -112,6 +115,9 @@ public class Contact_Add extends JPanel {
 		lblCTel.setPreferredSize(ClblSize);
 		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
+		
+		System.out.println("------Contact_Add------");
+
 
 	}
 
@@ -129,8 +135,8 @@ public class Contact_Add extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			top.carnet.newContact(lblCPname.getText(), lblCName.getText(), lblCTel.getText());
 			top.carnet.serialize();
-			top.carnet.deseralize();
 			top.remove(Contact_Add.this);
+			carnet.creatButtonsContact();
 		}
 	}
 

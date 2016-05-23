@@ -37,13 +37,17 @@ public class Contact_Details extends JPanel {
 	
 	private FlowLayout detailsLayout = new FlowLayout();
 	Dimension lblSize=new Dimension(280, 25);
-	Dimension ClblSize=new Dimension(280, 20);
+	Dimension ClblSize=new Dimension(280, 25);
 	Font lblFont=new Font("Arial", Font.BOLD, 22);
 	Font cLblFont=new Font("Arial", Font.PLAIN, 20);
+	
+	private Contact contactDetails;
 	
 	Contact_Carnet top;
 
 	public Contact_Details(Contact c, Contact_Carnet top) {
+		contactDetails=c;
+		
 		this.top=top;
 		this.setLayout(new BorderLayout());
 
@@ -113,7 +117,8 @@ public class Contact_Details extends JPanel {
 		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
 		lblCTel.setText(c.getTel());
-
+		
+		System.out.println("------Contact_Details------");
 	}
 
 	class Modif_Click implements ActionListener {
@@ -121,7 +126,11 @@ public class Contact_Details extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
-			contentPane.setVisible(false);
+//			top.remove(Contact_Details.this);
+			
+			Contact_Modif modif=new Contact_Modif(contactDetails, null);
+			add(modif, "modif");
+			carnetCard.show(Contact_Details.this, "modif");
 
 		}
 
