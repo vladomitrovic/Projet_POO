@@ -23,7 +23,8 @@ public class Contact_Carnet extends JPanel {
 	private JLabel titleLbl=new JLabel("Contact");
 	
 	private JPanel listePanel = new JPanel();
-	private JScrollPane listeScroll =new JScrollPane(listePanel);
+	private JScrollPane listeScroll =new JScrollPane(listePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 	private Contact_Details contactDetails;
 	private Contact_Add contactAdd;
@@ -74,7 +75,7 @@ public class Contact_Carnet extends JPanel {
 		
 
 
-		GridLayout grid = new GridLayout(12, 1);
+		GridLayout grid = new GridLayout(carnet.getCarnet().size()	, 1);
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
 		
@@ -82,6 +83,7 @@ public class Contact_Carnet extends JPanel {
 //		listeScroll.setOpaque(false);
 		listeScroll.setPreferredSize(new Dimension(425, 642));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
 
 
 		carnet.deseralize();
