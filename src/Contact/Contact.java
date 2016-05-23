@@ -1,10 +1,11 @@
 package Contact;
 import java.io.Serializable;
+import java.util.Collections;
 
 import Galerie.Photo;
 
 
-public class Contact implements Serializable{
+public class Contact implements Serializable {
 
 	private String nom, prenom, tel;
 	private Photo photo;
@@ -54,7 +55,7 @@ public class Contact implements Serializable{
 	
 	
 
-	
+
 	
 	
 	
