@@ -53,7 +53,6 @@ public class MainPanelGalerie extends JPanel {
 	private JPanel titlePanel = new JPanel();
 
 	// for containerPhotos
-	private JScrollPane scrollPanePhotos = new JScrollPane(containerPhotos);
 	private ArrayList<JButton> photoButtons = new ArrayList<JButton>();
 	private Image img;
 	private Photo photo;
@@ -70,7 +69,7 @@ public class MainPanelGalerie extends JPanel {
 
 	public MainPanelGalerie() {
 		// setMainPanel
-		setPreferredSize(new Dimension(480, 800));
+		setPreferredSize(new Dimension(480, 1250));
 		setLayout(new BorderLayout());
 
 		// set containerPhotos
@@ -79,14 +78,13 @@ public class MainPanelGalerie extends JPanel {
 		flowLayout.setHgap(10);
 		flowLayout.setVgap(10);
 		containerPhotos.setLayout(flowLayout);
-		containerPhotos.setPreferredSize(new Dimension(400, 700));
 
 		// add images manually to gallery
 		photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 
 		// add containerPhoto and upPanel to galeriePanel
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
-		galeriePanel.add(scrollPanePhotos);
+		galeriePanel.add(containerPhotos);
 
 		// set label title panel
 		title.setForeground(Color.WHITE);
@@ -123,6 +121,10 @@ public class MainPanelGalerie extends JPanel {
 		MainPanelGalerie.this.repaint();
 	}
 
+	public Galerie getGalerie() {
+		return galerie;
+	}
+
 	public JPanel getContainerPhotos() {
 		return containerPhotos;
 	}
@@ -157,6 +159,15 @@ public class MainPanelGalerie extends JPanel {
 
 	}
 
+	public void deletePhoto(ArrayList<Photo> photos, int index) {
+		photos.remove(index);
+		galerie.serialize();
+		galerie.updateButtons(MainPanelGalerie.this, photos) ;
+		galeriePanel.add(containerPhotos);
+		c2.show(MainPanelGalerie.this, "galeriePanel");
+
+	}
+
 	class Layout_Galerie implements ActionListener {
 		boolean flag = true;
 
@@ -172,7 +183,7 @@ public class MainPanelGalerie extends JPanel {
 					containerPhotos.revalidate();
 					containerPhotos.repaint();
 				}
-				galeriePanel.add(scrollPanePhotos);
+				galeriePanel.add(containerPhotos);
 				add(galeriePanel, "galeriePanel");
 				c2.show(MainPanelGalerie.this, "galeriePanel");
 			} else {
@@ -183,7 +194,7 @@ public class MainPanelGalerie extends JPanel {
 					containerPhotos.revalidate();
 					containerPhotos.repaint();
 				}
-				galeriePanel.add(scrollPanePhotos);
+				galeriePanel.add(containerPhotos);
 				add(galeriePanel, "galeriePanel");
 				c2.show(MainPanelGalerie.this, "galeriePanel");
 			}

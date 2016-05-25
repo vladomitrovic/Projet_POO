@@ -6,7 +6,9 @@ import javax.swing.ImageIcon;
 
 public class Photo extends ImageIcon implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String path;
+	private int id = -1 ;
 
 	public Photo(String path) {
 		super(path);
@@ -24,5 +26,15 @@ public class Photo extends ImageIcon implements Serializable {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 
 }
