@@ -34,7 +34,7 @@ public class Contact_Carnet extends JPanel {
 
 	FavorisButton favButton = new FavorisButton();
 
-	// JLabel nbContact = new JLabel();
+	JLabel nbContact = new JLabel();
 
 	public Contact_Carnet() {
 		setPreferredSize(new Dimension(480, 800));
@@ -78,8 +78,13 @@ public class Contact_Carnet extends JPanel {
 
 		carnet.deseralize();
 		creatButtonsContact();
+		
+		nbContact.setText(carnet.getCarnet().size()+" contacts");
+		nbContact.setPreferredSize(new Dimension(407, 50));
+		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
+		listePanel.add(nbContact);
+		
 		System.out.println("------Contact_Carnet------");
-
 	}
 
 	class Add_Click implements ActionListener {
@@ -90,7 +95,6 @@ public class Contact_Carnet extends JPanel {
 			add(contactAdd, "contactAdd");
 			carnetCard.show(Contact_Carnet.this, "contactAdd");
 		}
-
 	}
 
 	class Details_Click implements ActionListener {
@@ -110,6 +114,7 @@ public class Contact_Carnet extends JPanel {
 		}
 	}
 
+	
 	public void creatButtonsContact() {
 		listePanel.removeAll();
 
@@ -126,7 +131,5 @@ public class Contact_Carnet extends JPanel {
 			temp.setPreferredSize(new Dimension(407, 50));
 			listePanel.add(temp);
 		}
-
 	}
-
 }
