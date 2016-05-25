@@ -6,9 +6,11 @@ import Galerie.Photo;
 
 
 public class Contact implements Serializable {
-
+	private static final long serialVersionUID = 1928505403570541323L;
+	
 	private String nom, prenom, tel;
 	private Photo photo;
+	private int id;
 	
 	
 	public Contact(String nom, String prenom, String tel){
