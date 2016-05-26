@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import Elements.PhotoButton;
 import Frame.MainPanelGalerie;
 
 public class Galerie {
@@ -30,32 +31,24 @@ public class Galerie {
 		}
 	}
 
-	public ArrayList<JButton> updateButtons(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
-		idPhotos(photos) ;
-		ArrayList<JButton> buttons = new ArrayList<JButton>();
+	public ArrayList<PhotoButton> updateButtons(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
+		idPhotos(photos);
+		ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
 		for (int i = 0; i < photos.size(); i++) {
-			buttons.add(new JButton(photos.get(i)));
-			buttons.get(i).setBorderPainted(false);
-			buttons.get(i).setContentAreaFilled(false);
-			buttons.get(i).setFocusPainted(false);
-			buttons.get(i).setOpaque(false);
+			buttons.add(new PhotoButton(photos.get(i)));
 			buttons.get(i).setPreferredSize(new Dimension(122, 100));
 			panelGalerie.addActionListenerAndToPanel(buttons, i);
 		}
-		
-		return buttons ;
+
+		return buttons;
 	}
 
-	public ArrayList<JButton> addButton(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
+	public ArrayList<PhotoButton> addButton(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
 
 		idPhotos(photos);
-		ArrayList<JButton> buttons = new ArrayList<JButton>();
+		ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
 		for (int i = 0; i < photos.size(); i++) {
-			buttons.add(new JButton(photos.get(i)));
-			buttons.get(i).setBorderPainted(false);
-			buttons.get(i).setContentAreaFilled(false);
-			buttons.get(i).setFocusPainted(false);
-			buttons.get(i).setOpaque(false);
+			buttons.add(new PhotoButton(photos.get(i)));
 			buttons.get(i).setPreferredSize(new Dimension(122, 100));
 			panelGalerie.addActionListenerAndToPanel(buttons, i);
 		}
@@ -93,8 +86,5 @@ public class Galerie {
 
 	}
 
-	public int getCpt() {
-		return cpt;
-	}
 
 }

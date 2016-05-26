@@ -38,6 +38,7 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import Elements.AddButton;
 import Elements.BackButton;
 import Elements.LayoutGalerieButton;
+import Elements.PhotoButton;
 import Galerie.Galerie;
 import Galerie.Photo;
 
@@ -53,7 +54,7 @@ public class MainPanelGalerie extends JPanel {
 	private JPanel titlePanel = new JPanel();
 
 	// for containerPhotos
-	private ArrayList<JButton> photoButtons = new ArrayList<JButton>();
+	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
 	private Image img;
 	private Photo photo;
 	private Galerie galerie = new Galerie();
@@ -124,6 +125,10 @@ public class MainPanelGalerie extends JPanel {
 	public Galerie getGalerie() {
 		return galerie;
 	}
+	
+	public ArrayList<PhotoButton> getPhotoButtons() {
+		return photoButtons;
+	}
 
 	public JPanel getContainerPhotos() {
 		return containerPhotos;
@@ -133,7 +138,7 @@ public class MainPanelGalerie extends JPanel {
 		return titlePanel;
 	}
 
-	public void addActionListenerAndToPanel(ArrayList<JButton> photoButtons, int index) {
+	public void addActionListenerAndToPanel(ArrayList<PhotoButton> photoButtons, int index) {
 		photoButtons.get(index).addActionListener(new Photo_Click());
 		containerPhotos.removeAll();
 		for (int i = 0; i < photoButtons.size(); i++) {
