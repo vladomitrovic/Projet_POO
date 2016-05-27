@@ -133,6 +133,11 @@ public class MainPanelGalerie extends JPanel {
 	public JPanel getContainerPhotos() {
 		return containerPhotos;
 	}
+	
+
+	public CardLayout getCardLayout() {
+		return c2;
+	}
 
 	public JPanel getTitlePanel() {
 		return titlePanel;

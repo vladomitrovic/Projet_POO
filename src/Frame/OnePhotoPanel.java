@@ -109,7 +109,6 @@ public class OnePhotoPanel extends JPanel {
 			// TODO Auto-generated method stub
 			top.removePanel(OnePhotoPanel.this);
 		}
-
 	}
 
 	class Delete_Click implements ActionListener {
@@ -119,7 +118,6 @@ public class OnePhotoPanel extends JPanel {
 			// TODO Auto-generated method stub
 			top.deletePhoto(top.getGalerie().deserialize(), photo1.getId());
 			top.removePanel(OnePhotoPanel.this);
-
 		}
 
 	}
@@ -129,7 +127,11 @@ public class OnePhotoPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			OnePhotoPanel.this.removeAll();
+			top.remove(OnePhotoPanel.this);
+			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo1.getId() - 1).getIcon();
+			OnePhotoPanel onePhotoPanel = new OnePhotoPanel(previousPhoto, top);
+			top.add(onePhotoPanel, "newPhotoPanel");
+			top.getCardLayout().show(top, "newPhotoPanel");
 		}
 
 	}
@@ -139,7 +141,11 @@ public class OnePhotoPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-
+			top.remove(OnePhotoPanel.this);
+			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo1.getId() + 1).getIcon();
+			OnePhotoPanel onePhotoPanel = new OnePhotoPanel(previousPhoto, top);
+			top.add(onePhotoPanel, "newPhotoPanel");
+			top.getCardLayout().show(top, "newPhotoPanel");
 		}
 
 	}
