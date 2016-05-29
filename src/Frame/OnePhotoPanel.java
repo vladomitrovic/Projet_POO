@@ -1,6 +1,7 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -9,7 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -21,8 +26,7 @@ import Galerie.Photo;
 
 public class OnePhotoPanel extends JPanel {
 
-	private Image photo;
-	private Photo photo1;
+	private Photo photo;
 	private BackButton backButton = new BackButton();
 	private JPanel upPhotoPanel = new JPanel(new GridLayout(1, 2));
 	private JPanel backPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -35,10 +39,13 @@ public class OnePhotoPanel extends JPanel {
 	private JPanel nextImagePanel = new JPanel(new BorderLayout());
 	private JButton nextImage = new JButton(new Photo("Pictures/rightArrow.png"));
 
+	// for the background
+	private BufferedImage buffImage;
+
 	private MainPanelGalerie top;
 
 	public OnePhotoPanel(Photo photo, MainPanelGalerie top) {
-		photo1 = photo;
+		this.photo = photo;
 		this.top = top;
 		setLayout(new BorderLayout());
 
@@ -67,7 +74,7 @@ public class OnePhotoPanel extends JPanel {
 		setButtons(previousImage);
 		setButtons(nextImage);
 
-		if (photo1.getId() == 0)
+		if (photo.getId() == 0)
 			previousImage.setEnabled(false);
 		else if (photo.getId() == (top.getPhotoButtons().size() - 1))
 			nextImage.setEnabled(false);
@@ -82,9 +89,15 @@ public class OnePhotoPanel extends JPanel {
 		add(upPhotoPanel, BorderLayout.NORTH);
 		add(previousImagePanel, BorderLayout.WEST);
 		add(nextImagePanel, BorderLayout.EAST);
+		setBackground(Color.BLACK);
 
 		// set the img for the paintComponent
-		this.photo = photo.getImage();
+		try {
+			buffImage = ImageIO.read(new File(photo.getPath()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -99,7 +112,24 @@ public class OnePhotoPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		g.drawImage(photo, 0, 0, getWidth(), getHeight(), this);
+
+		int xAlignement = (getWidth() - buffImage.getWidth()) / 2;
+		int yAlignement = (getHeight() - buffImage.getHeight()) / 2;
+		int h = buffImage.getHeight();
+		int w = buffImage.getWidth();
+
+		// // Scale Horizontally:
+		// if (w > this.getWidth()) {
+		// w = this.getWidth();
+		// }
+		//
+		// // Scale Vertically:
+		// if (h > this.getHeight()) {
+		// h = this.getHeight();
+		// }
+
+		// Draw it
+		g.drawImage(buffImage, xAlignement, yAlignement, w, h, this);
 	}
 
 	class Back_PhotoClick implements ActionListener {
@@ -116,7 +146,7 @@ public class OnePhotoPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			top.deletePhoto(top.getGalerie().deserialize(), photo1.getId());
+			top.deletePhoto(top.getGalerie().deserialize(), photo.getId());
 			top.removePanel(OnePhotoPanel.this);
 		}
 
@@ -128,7 +158,7 @@ public class OnePhotoPanel extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			top.remove(OnePhotoPanel.this);
-			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo1.getId() - 1).getIcon();
+			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo.getId() - 1).getIcon();
 			OnePhotoPanel onePhotoPanel = new OnePhotoPanel(previousPhoto, top);
 			top.add(onePhotoPanel, "newPhotoPanel");
 			top.getCardLayout().show(top, "newPhotoPanel");
@@ -142,7 +172,7 @@ public class OnePhotoPanel extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			top.remove(OnePhotoPanel.this);
-			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo1.getId() + 1).getIcon();
+			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo.getId() + 1).getIcon();
 			OnePhotoPanel onePhotoPanel = new OnePhotoPanel(previousPhoto, top);
 			top.add(onePhotoPanel, "newPhotoPanel");
 			top.getCardLayout().show(top, "newPhotoPanel");
