@@ -4,75 +4,49 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import Galerie.Photo;
+import javax.swing.SwingConstants;
 
 public class TopBarPanel extends JPanel {
 
-	private JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	private JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-	private Photo backPhoto = new Photo("Pictures/back.png");
-	private JButton backButton = new JButton(backPhoto);
-	private Photo addPhoto = new Photo("Pictures/plus-button.png");
-	private JButton addButton = new JButton(addPhoto);
-	private JPanel centerPanel;
-	private JPanel panelLauncher;
+	private JLabel vladoAleks = new JLabel("Vlado et Aleks");
+	private JLabel calendar = new JLabel();
+	private JLabel time = new JLabel();
+	private GridLayout gridL = new GridLayout(1, 3);
 
-	public TopBarPanel(JPanel centerPanel, JPanel panelLauncher) {
-		this.centerPanel = centerPanel;
-		this.panelLauncher = panelLauncher;
-		setLayout(new GridLayout(1, 2));
-		leftPanel.setBackground(Color.DARK_GRAY);
-		rightPanel.setBackground(Color.DARK_GRAY);
+	public TopBarPanel() {
+		//set mainPanel
+		setBackground(Color.BLACK);
+		setPreferredSize(new Dimension(25, 25));
+		gridL.setHgap(90);
+		setLayout(gridL);
 
-		// set backButton
-		backButton.setBorderPainted(false);
-		backButton.setContentAreaFilled(false);
-		backButton.setFocusPainted(false);
-		backButton.setOpaque(false);
-		backButton.addActionListener(new BackDesktop_Click());
-		backButton.setPreferredSize(new Dimension(24, 24));
+		// set the leftLabel
+		vladoAleks.setForeground(Color.WHITE);
+		vladoAleks.setAlignmentX(SwingConstants.LEFT);
 
-		// set addButton
-		addButton.setBorderPainted(false);
-		addButton.setContentAreaFilled(false);
-		addButton.setFocusPainted(false);
-		addButton.setOpaque(false);
-		addButton.setPreferredSize(new Dimension(24, 24));
+		// set the centerLabel (calendarDate)
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+		Date date = new Date();
+		String display = (dateFormat.format(date));
+		display = display.substring(0, 10);
+		calendar.setText(display);
+		calendar.setForeground(Color.WHITE);
 
-		if (centerPanel instanceof MainPanelGalerie) {
-//			addButton.addActionListener(new Add_PhotoClick());
-		} else if (centerPanel instanceof Contact_Carnet) {
-			// addButton.addActionListener();
-		}
+		// set the rightLabel
+		time.setText("Afficher l'heure");
+		time.setForeground(Color.WHITE);
 
-		// addButons to leftPanel
-
-		leftPanel.add(backButton, FlowLayout.LEFT);
-		rightPanel.add(addButton);
-
-		// add to TopBarPanel
-		add(leftPanel);
-		add(rightPanel);
-
-	}
-
-	class BackDesktop_Click implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			centerPanel.setVisible(false);
-			panelLauncher.setVisible(true);
-		}
-
+		// add the 3 labels to TopBarPanel
+		add(vladoAleks);
+		add(calendar);
+		add(time);
 	}
 
 }

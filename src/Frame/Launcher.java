@@ -19,7 +19,7 @@ public class Launcher extends JFrame {
 	private JPanel west = new JPanel();
 	private JPanel est = new JPanel();
 	private JPanel south = new JPanel();
-	private TopBarPanel2 topBar = new TopBarPanel2();
+	private TopBarPanel topBar = new TopBarPanel();
 	private Photo home = new Photo("Pictures/home.png");
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();

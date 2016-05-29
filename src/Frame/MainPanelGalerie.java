@@ -228,9 +228,9 @@ public class MainPanelGalerie extends JPanel {
 	class Add_Click implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		final public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			JFileChooser chooser = new JFileChooser();
+			final JFileChooser chooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, GIF, PNG, JPEG Images", "jpg", "gif",
 					"png", "jpeg");
 			chooser.setFileFilter(filter);
