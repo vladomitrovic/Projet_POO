@@ -94,30 +94,22 @@ public class OnePhotoPanel extends JPanel {
 		// set the img for the paintComponent
 		try {
 			System.out.println(photo.getPath());
-			buffImage = ImageIO.read(new File(photo.getPath())) ;
+			buffImage = ImageIO.read(new File(photo.getPath()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Image image = photo.getImage();
 
-	}
-
-	public void setButtons(JButton button) {
-		button.setBorderPainted(false);
-		button.setContentAreaFilled(false);
-		button.setFocusPainted(false);
-		button.setOpaque(false);
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		
+		Image image = photo.getImage();
+
 		int xAlignement = (int) ((getWidth() - photo.widthPhoto) / 2);
-		int yAlignement = (int) ((getHeight() -photo.heightPhoto) / 2);
+		int yAlignement = (int) ((getHeight() - photo.heightPhoto) / 2);
 		System.out.println(photo.widthPhoto);
 		int h = (int) photo.heightPhoto;
 		int w = (int) photo.widthPhoto;
@@ -133,7 +125,14 @@ public class OnePhotoPanel extends JPanel {
 		// }
 
 		// Draw it
-		g.drawImage(buffImage, 0, 0, getWidth(), getHeight(), this);
+		g.drawImage(image, xAlignement, yAlignement, w, h, this);
+	}
+
+	public void setButtons(JButton button) {
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setOpaque(false);
 	}
 
 	class Back_PhotoClick implements ActionListener {

@@ -17,10 +17,10 @@ import Frame.MainPanelGalerie;
 public class Galerie {
 
 	private ArrayList<Photo> photos = new ArrayList<Photo>();
-	private int cpt;
+	private ArrayList<Photo> vignettes = new ArrayList<Photo>();
+
 
 	public void addPhoto(Photo photo) {
-		System.out.println(cpt);
 		photos.add(photo);
 		serialize();
 	}
@@ -85,6 +85,5 @@ public class Galerie {
 		return photos;
 
 	}
-
 
 }
