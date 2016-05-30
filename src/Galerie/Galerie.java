@@ -33,6 +33,10 @@ public class Galerie {
 
 	public ArrayList<PhotoButton> updateButtons(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
 		idPhotos(photos);
+		if (photos.size() == 0) {
+			panelGalerie.getContainerPhotos().removeAll();
+			return null;
+		}
 		ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
 		for (int i = 0; i < photos.size(); i++) {
 			buttons.add(new PhotoButton(photos.get(i)));
@@ -46,6 +50,9 @@ public class Galerie {
 	public ArrayList<PhotoButton> addButton(MainPanelGalerie panelGalerie, ArrayList<Photo> photos) {
 
 		idPhotos(photos);
+		for (int i = 0; i < photos.size(); i++) {
+			System.out.println(photos.get(i).getId());
+		}
 		ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
 		for (int i = 0; i < photos.size(); i++) {
 			buttons.add(new PhotoButton(photos.get(i)));

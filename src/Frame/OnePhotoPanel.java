@@ -39,6 +39,8 @@ public class OnePhotoPanel extends JPanel {
 	private JPanel nextImagePanel = new JPanel(new BorderLayout());
 	private JButton nextImage = new JButton(new Photo("Pictures/rightArrow.png"));
 
+	// for the paintComponenent
+	private BufferedImage buffImage;
 	private MainPanelGalerie top;
 
 	public OnePhotoPanel(Photo photo, MainPanelGalerie top) {
@@ -71,7 +73,10 @@ public class OnePhotoPanel extends JPanel {
 		setButtons(previousImage);
 		setButtons(nextImage);
 
-		if (photo.getId() == 0)
+		if (photo.getId() == 0 && photo.getId() == (top.getPhotoButtons().size() - 1)) {
+			previousImage.setEnabled(false);
+			nextImage.setEnabled(false);
+		} else if (photo.getId() == 0)
 			previousImage.setEnabled(false);
 		else if (photo.getId() == (top.getPhotoButtons().size() - 1))
 			nextImage.setEnabled(false);
@@ -88,14 +93,14 @@ public class OnePhotoPanel extends JPanel {
 		add(nextImagePanel, BorderLayout.EAST);
 		setBackground(Color.BLACK);
 
-//		// set the img for the paintComponent
-//		try {
-//			System.out.println(photo.getPath());
-//			buffImage = ImageIO.read(new File(photo.getPath()));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		// set the img for the paintComponent
+		try {
+			System.out.println(photo.getPath());
+			buffImage = ImageIO.read(new File(photo.getPath()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -105,24 +110,24 @@ public class OnePhotoPanel extends JPanel {
 		super.paintComponent(g);
 		Image image = photo.getImage();
 
-		int xAlignement = (int) ((getWidth() - photo.widthPhoto) / 2);
-		int yAlignement = (int) ((getHeight() - photo.heightPhoto) / 2);
-		System.out.println(photo.widthPhoto);
-		int h = (int) photo.heightPhoto;
-		int w = (int) photo.widthPhoto;
+		int imageWidth = (int) photo.widthPhoto;
+		int imageHeight = (int) photo.heightPhoto;
+		int frameWidth = this.getWidth();
+		int frameHeight = this.getHeight();
 
-		// // Scale Horizontally:
-		// if (w > this.getWidth()) {
-		// w = this.getWidth();
-		// }
-		//
-		// // Scale Vertically:
-		// if (h > this.getHeight()) {
-		// h = this.getHeight();
-		// }
+		if (imageWidth > imageHeight) {
+			double ratioWidth = imageWidth / frameWidth;
+			imageWidth = frameWidth;
+			imageHeight = (int) (imageHeight / ratioWidth);
+		} else if (imageHeight > imageWidth) {
+			double ratioHeight = imageHeight / frameHeight;
+			imageHeight = frameHeight;
+			imageWidth = (int) (imageWidth / ratioHeight);
+		}
+		g.drawImage(image, (frameWidth - imageWidth) / 2, (frameHeight - imageHeight) / 2, imageWidth, imageHeight,
+				this);
+		
 
-		// Draw it
-		g.drawImage(image, xAlignement, yAlignement, w, h, this);
 	}
 
 	public void setButtons(JButton button) {
