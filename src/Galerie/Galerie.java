@@ -18,7 +18,7 @@ public class Galerie {
 
 	private ArrayList<Photo> photos = new ArrayList<Photo>();
 	private ArrayList<Photo> vignettes = new ArrayList<Photo>();
-
+	private int cpt;
 
 	public void addPhoto(Photo photo) {
 		photos.add(photo);

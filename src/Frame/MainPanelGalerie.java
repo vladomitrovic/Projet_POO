@@ -159,10 +159,10 @@ public class MainPanelGalerie extends JPanel {
 	public Photo createPhotoFit(Image img, Photo photo, String path) {
 		try {
 			img = ImageIO.read(new File(path));
-			Image newimg = img.getScaledInstance(130, 100, Image.SCALE_SMOOTH);
-			photo = new Photo(newimg);
 			photo.widthPhoto = img.getWidth(this);
 			photo.heightPhoto = img.getHeight(this);
+			Image newimg = img.getScaledInstance(130, 100, Image.SCALE_SMOOTH);
+			photo = new Photo(newimg);
 			photo.setPath(path);
 			return photo;
 		} catch (IOException e) {
@@ -240,7 +240,7 @@ public class MainPanelGalerie extends JPanel {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(getParent());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				galerie.addPhoto(createPhotoFit(img, photo, chooser.getSelectedFile().getPath()));
+				galerie.addPhoto(createPhotoFit(img, photo, chooser.getSelectedFile().getAbsolutePath()));
 				photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 				galeriePanel.add(containerPhotos);
 				c2.show(MainPanelGalerie.this, "galeriePanel");

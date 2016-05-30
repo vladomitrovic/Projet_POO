@@ -39,9 +39,6 @@ public class OnePhotoPanel extends JPanel {
 	private JPanel nextImagePanel = new JPanel(new BorderLayout());
 	private JButton nextImage = new JButton(new Photo("Pictures/rightArrow.png"));
 
-	// for the background
-	private BufferedImage buffImage;
-
 	private MainPanelGalerie top;
 
 	public OnePhotoPanel(Photo photo, MainPanelGalerie top) {
