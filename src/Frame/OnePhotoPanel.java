@@ -91,14 +91,14 @@ public class OnePhotoPanel extends JPanel {
 		add(nextImagePanel, BorderLayout.EAST);
 		setBackground(Color.BLACK);
 
-		// set the img for the paintComponent
-		try {
-			System.out.println(photo.getPath());
-			buffImage = ImageIO.read(new File(photo.getPath()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		// set the img for the paintComponent
+//		try {
+//			System.out.println(photo.getPath());
+//			buffImage = ImageIO.read(new File(photo.getPath()));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 
