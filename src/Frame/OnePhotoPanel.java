@@ -93,11 +93,14 @@ public class OnePhotoPanel extends JPanel {
 
 		// set the img for the paintComponent
 		try {
-			buffImage = ImageIO.read(new File(photo.getPath()));
+			System.out.println(photo.getPath());
+			buffImage = ImageIO.read(new File(photo.getPath())) ;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Image image = photo.getImage();
 
 	}
 
@@ -112,11 +115,12 @@ public class OnePhotoPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-
-		int xAlignement = (getWidth() - buffImage.getWidth()) / 2;
-		int yAlignement = (getHeight() - buffImage.getHeight()) / 2;
-		int h = buffImage.getHeight();
-		int w = buffImage.getWidth();
+		
+		int xAlignement = (int) ((getWidth() - photo.widthPhoto) / 2);
+		int yAlignement = (int) ((getHeight() -photo.heightPhoto) / 2);
+		System.out.println(photo.widthPhoto);
+		int h = (int) photo.heightPhoto;
+		int w = (int) photo.widthPhoto;
 
 		// // Scale Horizontally:
 		// if (w > this.getWidth()) {
@@ -129,7 +133,7 @@ public class OnePhotoPanel extends JPanel {
 		// }
 
 		// Draw it
-		g.drawImage(buffImage, xAlignement, yAlignement, w, h, this);
+		g.drawImage(buffImage, 0, 0, getWidth(), getHeight(), this);
 	}
 
 	class Back_PhotoClick implements ActionListener {

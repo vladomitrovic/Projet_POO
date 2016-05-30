@@ -67,6 +67,9 @@ public class MainPanelGalerie extends JPanel {
 	private JPanel titleGaleriePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	private JLabel title = new JLabel("Galerie");
 	private AddButton addButton = new AddButton();
+	
+	//Height and width photos
+
 
 	public MainPanelGalerie() {
 		// setMainPanel
@@ -125,7 +128,7 @@ public class MainPanelGalerie extends JPanel {
 	public Galerie getGalerie() {
 		return galerie;
 	}
-	
+
 	public ArrayList<PhotoButton> getPhotoButtons() {
 		return photoButtons;
 	}
@@ -133,7 +136,6 @@ public class MainPanelGalerie extends JPanel {
 	public JPanel getContainerPhotos() {
 		return containerPhotos;
 	}
-	
 
 	public CardLayout getCardLayout() {
 		return c2;
@@ -159,6 +161,8 @@ public class MainPanelGalerie extends JPanel {
 			img = ImageIO.read(new File(path));
 			Image newimg = img.getScaledInstance(130, 100, Image.SCALE_SMOOTH);
 			photo = new Photo(newimg);
+			photo.widthPhoto = img.getWidth(this);
+			photo.heightPhoto = img.getHeight(this);
 			photo.setPath(path);
 			return photo;
 		} catch (IOException e) {
@@ -172,7 +176,7 @@ public class MainPanelGalerie extends JPanel {
 	public void deletePhoto(ArrayList<Photo> photos, int index) {
 		photos.remove(index);
 		galerie.serialize();
-		galerie.updateButtons(MainPanelGalerie.this, photos) ;
+		galerie.updateButtons(MainPanelGalerie.this, photos);
 		galeriePanel.add(containerPhotos);
 		c2.show(MainPanelGalerie.this, "galeriePanel");
 
@@ -236,7 +240,7 @@ public class MainPanelGalerie extends JPanel {
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(getParent());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				galerie.addPhoto(createPhotoFit(img, photo, chooser.getSelectedFile().getAbsolutePath()));
+				galerie.addPhoto(createPhotoFit(img, photo, chooser.getSelectedFile().getPath()));
 				photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 				galeriePanel.add(containerPhotos);
 				c2.show(MainPanelGalerie.this, "galeriePanel");

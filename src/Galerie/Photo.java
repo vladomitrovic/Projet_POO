@@ -9,6 +9,8 @@ public class Photo extends ImageIcon implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String path;
 	private int id = -1 ;
+	public double heightPhoto ;
+	public double widthPhoto ;
 
 	public Photo(String path) {
 		super(path);
