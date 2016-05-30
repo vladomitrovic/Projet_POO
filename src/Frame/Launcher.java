@@ -29,6 +29,8 @@ public class Launcher extends JFrame {
 	public JPanel mainContainer = new JPanel();
 
 	public Launcher() {
+		
+		// ne pas oublier refaire launcher
 
 		// Préferences de la frame principale
 		setUndecorated(false);
