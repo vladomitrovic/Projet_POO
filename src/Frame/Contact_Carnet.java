@@ -114,12 +114,11 @@ public class Contact_Carnet extends JPanel {
 		}
 	}
 
-//	 A VOIR
+	
 	public void creatContactButtons() {
 		listePanel.removeAll();
 		carnet.deseralize();
 
-		// Création de tous les bouttons de contact avec prenom nom
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
 			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom());
