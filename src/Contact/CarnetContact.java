@@ -12,9 +12,8 @@ import javax.swing.JButton;
 
 public class CarnetContact {
 	private static final long serialVersionUID = 1L;
-	
+
 	private ArrayList<Contact> carnet = new ArrayList<Contact>();
-	
 
 	public CarnetContact() {
 
@@ -30,6 +29,8 @@ public class CarnetContact {
 
 	public void delContact(Contact contact) {
 		this.carnet.remove(contact);
+		refreshId();
+
 	}
 
 	public ArrayList<Contact> getCarnet() {
@@ -56,14 +57,12 @@ public class CarnetContact {
 
 	}
 
-
 	public void deseralize() {
 		try {
 			FileInputStream fis = new FileInputStream("Contacts/CarnetContact.serial");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			this.carnet= (ArrayList<Contact>)ois.readObject();
-			
-			
+			this.carnet = (ArrayList<Contact>) ois.readObject();
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,29 +73,29 @@ public class CarnetContact {
 
 	}
 
-	
-	public void show() {
-		String temp = "CarnetContact : \n";
-		
-		
-		for(int i=0; i<carnet.size();i++){
-			
-			temp += carnet.get(i).getNom() + "\n";
-			
+	private void refreshId() {
+
+		for (int i = 0; i > carnet.size(); i++) {
+			carnet.get(i).setId(i);
 		}
-		
-		System.out.println(temp);
-	
+
 	}
 
-	
-	public void sortAbc(){
-			
-			
-		}
-	
-	
+	public void show() {
+		String temp = "CarnetContact : \n";
 
-	
-	
+		for (int i = 0; i < carnet.size(); i++) {
+
+			temp += carnet.get(i).getNom() + "\n";
+
+		}
+
+		System.out.println(temp);
+
+	}
+
+	public void sortAbc() {
+
+	}
+
 }
