@@ -38,7 +38,7 @@ public class Contact_Modif extends JPanel {
 	private JPanel topPanel = new JPanel();
 	private FlowLayout topLayout = new FlowLayout();
 	private JLabel titleLbl = new JLabel("Contact");
-	private JButton modifyButton = new JButton("Enreg.");
+
 
 	BackButton backButton = new BackButton();
 
@@ -48,45 +48,48 @@ public class Contact_Modif extends JPanel {
 	Font lblFont = new Font("Arial", Font.BOLD, 22);
 	Font cLblFont = new Font("Arial", Font.PLAIN, 20);
 
-	JButton supprimer = new JButton("Supprimer");
+	private JButton modifyButton = new JButton("Enregistrer");
 	CarnetContact carnet=new CarnetContact();
 
 
 	private Contact contactModif;
+	
+	private int id;
 
 	Contact_Details top;
 
 	public Contact_Modif(int id, Contact_Details top ) {
 		
+		this.id=id;
 		carnet.deseralize();
 		contactModif=carnet.getCarnet().get(id);
 		
 		this.setLayout(new BorderLayout());
 		this.top = top;
 
-	
+		
 		contentPane.setLayout(new BorderLayout());
 
 		// Ajout des composant du topPanel
-		modifyButton.setContentAreaFilled(false);
-		modifyButton.setBorderPainted(false);
+//		modifyButton.setContentAreaFilled(false);
+//		modifyButton.setBorderPainted(false);
 		topLayout.setHgap(60);
 		topLayout.setVgap(10);
 		topPanel.setBackground(Color.GRAY);
 		topPanel.setLayout(topLayout);
 		topPanel.add(backButton);
 		topPanel.add(titleLbl);
-		topPanel.add(modifyButton);
+//		topPanel.add(modifyButton);
 		backButton.addActionListener(new Return_Click());
 		
- 		modifyButton.addActionListener(new Modif_Click());
- 		supprimer.addActionListener(new Delete_Click());
+// 		modifyButton.addActionListener(new Modif_Click());
+		modifyButton.addActionListener(new Modif_Click());
 		
 		
 		// Modification du titre
 		titleLbl.setForeground(Color.WHITE);
 		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
-		modifyButton.setForeground(Color.WHITE);
+		modifyButton.setForeground(Color.BLACK);
 
 		modifPanel.setLayout(new BorderLayout());
 		modifPanel.add(topPanel, BorderLayout.NORTH);
@@ -133,11 +136,11 @@ public class Contact_Modif extends JPanel {
 		panel.add(fieldTel);
 		fieldTel.setText(contactModif.getTel());
 
-		supprimer.setPreferredSize(lblSize);
-		supprimer.setContentAreaFilled(false);
-		panel.add(supprimer);
+		modifyButton.setPreferredSize(lblSize);
+		modifyButton.setContentAreaFilled(false);
+		panel.add(modifyButton);
 
-		System.out.println("------Contact_Details------");
+		System.out.println("------Contact_Modif------");
 
 	}
 
@@ -166,8 +169,11 @@ public class Contact_Modif extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			carnet.getCarnet().remove(contactModif.getId());
+			carnet.deleteContact(id);
 			carnet.serialize();
+			
+//			top.remove(Contact_Modif.this);
+			
 		}
 	}
 

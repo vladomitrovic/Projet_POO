@@ -135,9 +135,13 @@ public class Contact_Add extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			top.carnet.newContact(lblCPname.getText(), lblCName.getText(), lblCTel.getText());
 			top.carnet.serialize();
+			top.creatContactButtons();
 			top.remove(Contact_Add.this);
+
+
 			
-			carnet.creatContactButtons();
+
+			
 		}
 	}
 

@@ -27,8 +27,8 @@ public class CarnetContact {
 		this.carnet.add(contact);
 	}
 
-	public void delContact(Contact contact) {
-		this.carnet.remove(contact);
+	public void deleteContact(int id) {
+		this.carnet.remove(id);
 		refreshId();
 
 	}

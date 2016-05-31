@@ -23,8 +23,8 @@ public class Launcher extends JFrame {
 	private Photo home = new Photo("Pictures/home.png");
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
-	private MainPanelGalerie galerie = new MainPanelGalerie();
-	private Contact_Carnet carnet = new Contact_Carnet();
+	private MainPanelGalerie galerie;
+	private Contact_Carnet carnet;
 	public CardLayout c1 = new CardLayout();
 	public JPanel mainContainer = new JPanel();
 
@@ -122,7 +122,7 @@ public class Launcher extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-+generated method stub
+			galerie= new MainPanelGalerie();
 			mainContainer.add(galerie, "galerie");
 			c1.show(mainContainer, "galerie");
 		}
@@ -133,7 +133,7 @@ public class Launcher extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			carnet= new Contact_Carnet();
 			mainContainer.add(carnet, "carnet");
 			c1.show(mainContainer, "carnet");
 

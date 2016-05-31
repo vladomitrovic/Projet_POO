@@ -12,6 +12,7 @@ import Contact.Contact;
 import Elements.AddButton;
 import Elements.BackButton;
 import Elements.FavorisButton;
+import Elements.TrashButton;
 import Frame.Contact_Carnet.Add_Click;
 
 public class Contact_Details extends JPanel {
@@ -32,7 +33,8 @@ public class Contact_Details extends JPanel {
 	private FlowLayout topLayout = new FlowLayout();
 	private JLabel titleLbl = new JLabel("Contact");
 	private JButton modifyButton = new JButton("Modifier");
-
+	private TrashButton trash=new TrashButton();
+	
 	BackButton backButton = new BackButton();
 	
 	private FlowLayout detailsLayout = new FlowLayout();
@@ -61,21 +63,18 @@ public class Contact_Details extends JPanel {
 		contentPane.setLayout(new BorderLayout());
 
 		// Ajout des composant du topPanel
-		modifyButton.setContentAreaFilled(false);
-		modifyButton.setBorderPainted(false);
+
 		topLayout.setHgap(60);
 		topLayout.setVgap(10);
 		topPanel.setBackground(Color.GRAY);
 		topPanel.setLayout(topLayout);
 		topPanel.add(backButton);
 		topPanel.add(titleLbl);
-		topPanel.add(modifyButton);
+		topPanel.add(trash);
 		backButton.addActionListener(new Return_Click());
-		modifyButton.addActionListener(new Modif_Click());
 		// Modification du titre
 		titleLbl.setForeground(Color.WHITE);
 		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
-		modifyButton.setForeground(Color.WHITE);
 
 		detailsPanel.setLayout(new BorderLayout());
 		detailsPanel.add(topPanel, BorderLayout.NORTH);
@@ -125,6 +124,12 @@ public class Contact_Details extends JPanel {
 		panel.add(lblCTel);
 		lblCTel.setText(contactDetails.getTel());
 		
+		modifyButton.setContentAreaFilled(false);
+		modifyButton.setPreferredSize(ClblSize);
+		modifyButton.setForeground(Color.BLACK);
+		modifyButton.addActionListener(new Modif_Click());
+
+		panel.add(modifyButton);
 		System.out.println("------Contact_Details------");
 	}
 

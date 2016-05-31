@@ -65,27 +65,25 @@ public class Contact_Carnet extends JPanel {
 		setLayout(carnetCard);
 		add(carnetPanel, "carnetPanel");
 		carnetCard.show(Contact_Carnet.this, "carnetPanel");
+		
 
 		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
 		grid.setVgap(5);
-		// FlowLayout scrollLayout =new FlowLayout();
-		// scrollLayout.setHgap(10);
 		listePanel.setLayout(grid);
 
-		// listePanel.setOpaque(false);
-		// listeScroll.setOpaque(false);
 		listeScroll.setPreferredSize(new Dimension(425, 642));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		carnet.deseralize();
 		creatContactButtons();
 		
-		nbContact.setText(carnet.getCarnet().size()+" contacts");
-		nbContact.setPreferredSize(new Dimension(407, 50));
-		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
-		listePanel.add(nbContact);
+		
 		
 		System.out.println("------Contact_Carnet------");
+
+		
+
+		
 	}
 
 	class Add_Click implements ActionListener {
@@ -117,7 +115,7 @@ public class Contact_Carnet extends JPanel {
 	
 	public void creatContactButtons() {
 		listePanel.removeAll();
-		carnet.deseralize();
+		System.out.println("Removing all buttons");
 
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
@@ -127,7 +125,17 @@ public class Contact_Carnet extends JPanel {
 			temp.addActionListener(new Details_Click());
 			
 			listePanel.add(temp);
+			System.out.println("Add " +i);
 		}
+		
+		nbContact.setText(carnet.getCarnet().size()+" contacts");
+		nbContact.setPreferredSize(new Dimension(407, 50));
+		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
+		listePanel.add(nbContact);
+
+		
+
+		
 	}
 	
 
