@@ -108,10 +108,9 @@ public class OnePhotoPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
-		Image image = photo.getImage();
 
-		int imageWidth = (int) photo.widthPhoto;
-		int imageHeight = (int) photo.heightPhoto;
+		int imageWidth = (int) buffImage.getWidth();
+		int imageHeight = (int) buffImage.getHeight();
 		int frameWidth = this.getWidth();
 		int frameHeight = this.getHeight();
 
@@ -124,9 +123,8 @@ public class OnePhotoPanel extends JPanel {
 			imageHeight = frameHeight;
 			imageWidth = (int) (imageWidth / ratioHeight);
 		}
-		g.drawImage(image, (frameWidth - imageWidth) / 2, (frameHeight - imageHeight) / 2, imageWidth, imageHeight,
+		g.drawImage(buffImage, (frameWidth - imageWidth) / 2, (frameHeight - imageHeight) / 2, imageWidth, imageHeight,
 				this);
-		
 
 	}
 

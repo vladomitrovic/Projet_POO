@@ -237,18 +237,46 @@ public class MainPanelGalerie extends JPanel {
 
 	}
 
+	public int getNbOccurs(String str, char letter) {
+		int nb = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == letter)
+				nb++;
+		}
+		return nb;
+	}
+
+	public String cutWholePath(String str, int totalOccurs) {
+		int total = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (total == totalOccurs - 1) {
+				System.out.println(str.substring(i));
+				return str.substring(i);
+			}
+
+			if (str.charAt(i) == '\\') {
+				total++;
+			}
+		}
+
+		return "";
+	}
+
 	class Add_Click implements ActionListener {
 
 		@Override
 		final public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			final JFileChooser chooser = new JFileChooser();
+			final JFileChooser chooser = new JFileChooser("//Desktop");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, GIF, PNG, JPEG Images", "jpg", "gif",
 					"png", "jpeg");
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(getParent());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				galerie.addPhoto(createPhotoFit(img, photo, chooser.getSelectedFile().getAbsolutePath()));
+				String path = chooser.getSelectedFile().getAbsolutePath();
+				path = cutWholePath(path, getNbOccurs(path, '\\'));
+				System.out.println(path);
+				galerie.addPhoto(createPhotoFit(img, photo, path));
 				photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
 				galeriePanel.add(containerPhotos);
 				c2.show(MainPanelGalerie.this, "galeriePanel");
