@@ -35,9 +35,9 @@ public class OnePhotoPanel extends JPanel {
 
 	// for the diaporama
 	private JPanel previousImagePanel = new JPanel(new BorderLayout());
-	private JButton previousImage = new JButton(new Photo("Pictures/leftArrow.png"));
+	private JButton previousImage = new JButton(new Photo("PicturesElements/leftArrow.png"));
 	private JPanel nextImagePanel = new JPanel(new BorderLayout());
-	private JButton nextImage = new JButton(new Photo("Pictures/rightArrow.png"));
+	private JButton nextImage = new JButton(new Photo("PicturesElements/rightArrow.png"));
 
 	// for the paintComponenent
 	private BufferedImage buffImage;

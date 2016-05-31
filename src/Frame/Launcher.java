@@ -20,7 +20,7 @@ public class Launcher extends JFrame {
 	private JPanel est = new JPanel();
 	private JPanel south = new JPanel();
 	private TopBarPanel topBar = new TopBarPanel();
-	private Photo home = new Photo("Pictures/home.png");
+	private Photo home = new Photo("PicturesElements/home.png");
 	private JButton homeButton = new JButton(home);
 	private FlowLayout flSouth = new FlowLayout();
 	private MainPanelGalerie galerie;
