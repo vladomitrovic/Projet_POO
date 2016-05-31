@@ -11,6 +11,7 @@ import javax.swing.border.Border;
 import Contact.CarnetContact;
 import Contact.Contact;
 import Elements.AddButton;
+import Elements.ContactButton;
 import Elements.FavorisButton;
 import Galerie.Photo;
 
@@ -77,7 +78,7 @@ public class Contact_Carnet extends JPanel {
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		carnet.deseralize();
-		creatButtonsContact();
+		creatContactButtons();
 		
 		nbContact.setText(carnet.getCarnet().size()+" contacts");
 		nbContact.setPreferredSize(new Dimension(407, 50));
@@ -105,8 +106,7 @@ public class Contact_Carnet extends JPanel {
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
 
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
-					Contact c = carnet.getCarnet().get(i);
-					contactDetails = new Contact_Details(c, Contact_Carnet.this);
+					contactDetails = new Contact_Details(i, Contact_Carnet.this);
 					add(contactDetails, "contactDetails");
 					carnetCard.show(Contact_Carnet.this, "contactDetails");
 				}
@@ -115,21 +115,20 @@ public class Contact_Carnet extends JPanel {
 	}
 
 	
-	public void creatButtonsContact() {
+	public void creatContactButtons() {
 		listePanel.removeAll();
+		carnet.deseralize();
 
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			JButton temp = new JButton(c.getNom() + " " + c.getPrenom());
+			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom());
 
 			temp.setName("C" + i);
-			temp.setContentAreaFilled(false);
-			temp.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 			temp.addActionListener(new Details_Click());
-			temp.setHorizontalAlignment(SwingConstants.LEFT);
-			temp.setFont(new Font("Arial", Font.PLAIN, 20));
-			temp.setPreferredSize(new Dimension(407, 50));
+			
 			listePanel.add(temp);
 		}
 	}
+	
+
 }

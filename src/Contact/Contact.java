@@ -11,8 +11,25 @@ public class Contact implements Serializable {
 	private String nom, prenom, tel;
 	private Photo photo;
 	private int id;
+	private boolean favoris;
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isFavoris() {
+		return favoris;
+	}
+
+	public void setFavoris(boolean favoris) {
+		this.favoris = favoris;
+	}
+
 	public Contact(String nom, String prenom, String tel){
 		this.nom=nom;
 		this.prenom=prenom;

@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Contact.CarnetContact;
 import Contact.Contact;
 import Elements.BackButton;
 import Frame.Contact_Details.Modif_Click;
@@ -48,19 +49,22 @@ public class Contact_Modif extends JPanel {
 	Font cLblFont = new Font("Arial", Font.PLAIN, 20);
 
 	JButton supprimer = new JButton("Supprimer");
+	CarnetContact carnet=new CarnetContact();
+
 
 	private Contact contactModif;
 
 	Contact_Details top;
 
-	public Contact_Modif(Contact c, Contact_Details top) {
+	public Contact_Modif(int id, Contact_Details top ) {
 		
+		carnet.deseralize();
+		contactModif=carnet.getCarnet().get(id);
 		
 		this.setLayout(new BorderLayout());
 		this.top = top;
 
-		this.setLayout(new BorderLayout());
-
+	
 		contentPane.setLayout(new BorderLayout());
 
 		// Ajout des composant du topPanel
@@ -74,7 +78,11 @@ public class Contact_Modif extends JPanel {
 		topPanel.add(titleLbl);
 		topPanel.add(modifyButton);
 		backButton.addActionListener(new Return_Click());
-		// modifyButton.addActionListener(new Modif_Click());
+		
+ 		modifyButton.addActionListener(new Modif_Click());
+ 		supprimer.addActionListener(new Delete_Click());
+		
+		
 		// Modification du titre
 		titleLbl.setForeground(Color.WHITE);
 		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -103,7 +111,7 @@ public class Contact_Modif extends JPanel {
 		fieldPname.setPreferredSize(ClblSize);
 		fieldPname.setFont(cLblFont);
 		panel.add(fieldPname);
-		fieldPname.setText(c.getPrenom());
+		fieldPname.setText(contactModif.getPrenom());
 
 		lblNom.setPreferredSize(lblSize);
 		lblNom.setFont(lblFont);
@@ -113,7 +121,7 @@ public class Contact_Modif extends JPanel {
 		fieldName.setPreferredSize(ClblSize);
 		fieldName.setFont(cLblFont);
 		panel.add(fieldName);
-		fieldName.setText(c.getNom());
+		fieldName.setText(contactModif.getNom());
 
 		lblNumero.setPreferredSize(lblSize);
 		lblNumero.setFont(lblFont);
@@ -123,7 +131,7 @@ public class Contact_Modif extends JPanel {
 		fieldTel.setPreferredSize(ClblSize);
 		fieldTel.setFont(cLblFont);
 		panel.add(fieldTel);
-		fieldTel.setText(c.getTel());
+		fieldTel.setText(contactModif.getTel());
 
 		supprimer.setPreferredSize(lblSize);
 		supprimer.setContentAreaFilled(false);
@@ -138,6 +146,28 @@ public class Contact_Modif extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			top.remove(Contact_Modif.this);
+		}
+	}
+	
+	class Modif_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			carnet.getCarnet().get(contactModif.getId()).setNom(fieldName.getText());
+			carnet.getCarnet().get(contactModif.getId()).setPrenom(fieldPname.getText());
+			carnet.getCarnet().get(contactModif.getId()).setTel(fieldTel.getText());
+			carnet.serialize();
+			top.remove(Contact_Modif.this);
+
+		}
+	}
+	
+	class Delete_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			carnet.getCarnet().remove(contactModif.getId());
+			carnet.serialize();
 		}
 	}
 

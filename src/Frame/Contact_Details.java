@@ -43,10 +43,17 @@ public class Contact_Details extends JPanel {
 	
 	private Contact contactDetails;
 	
+	CarnetContact carnet=new CarnetContact();
+	
+	int id;
+	
 	Contact_Carnet top;
 
-	public Contact_Details(Contact c, Contact_Carnet top) {
-		contactDetails=c;
+	public Contact_Details(int id, Contact_Carnet top) {
+		this.id=id;
+		
+		carnet.deseralize();
+		contactDetails= carnet.getCarnet().get(id);
 		
 		this.top=top;
 		this.setLayout(new BorderLayout());
@@ -96,7 +103,7 @@ public class Contact_Details extends JPanel {
 		lblCPname.setPreferredSize(ClblSize);
 		lblCPname.setFont(cLblFont);
 		panel.add(lblCPname);
-		lblCPname.setText(c.getPrenom());
+		lblCPname.setText(contactDetails.getPrenom());
 
 		lblNom.setPreferredSize(lblSize);
 		lblNom.setFont(lblFont);
@@ -106,7 +113,7 @@ public class Contact_Details extends JPanel {
 		lblCName.setPreferredSize(ClblSize);
 		lblCName.setFont(cLblFont);
 		panel.add(lblCName);
-		lblCName.setText(c.getNom());
+		lblCName.setText(contactDetails.getNom());
 
 		lblNumero.setPreferredSize(lblSize);
 		lblNumero.setFont(lblFont);
@@ -116,7 +123,7 @@ public class Contact_Details extends JPanel {
 		lblCTel.setPreferredSize(ClblSize);
 		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
-		lblCTel.setText(c.getTel());
+		lblCTel.setText(contactDetails.getTel());
 		
 		System.out.println("------Contact_Details------");
 	}
@@ -128,7 +135,7 @@ public class Contact_Details extends JPanel {
 
 //			top.remove(Contact_Details.this);
 			
-			Contact_Modif modif=new Contact_Modif(contactDetails, null);
+			Contact_Modif modif=new Contact_Modif(id, Contact_Details.this);
 			add(modif, "modif");
 			carnetCard.show(Contact_Details.this, "modif");
 
