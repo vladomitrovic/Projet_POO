@@ -37,11 +37,14 @@ public class Galerie {
 			panelGalerie.getContainerPhotos().removeAll();
 			return null;
 		}
+
+		panelGalerie.getContainerPhotos().removeAll();
+
 		ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
 		for (int i = 0; i < photos.size(); i++) {
 			buttons.add(new PhotoButton(photos.get(i)));
 			buttons.get(i).setPreferredSize(new Dimension(122, 100));
-			panelGalerie.addActionListenerAndToPanel(buttons, i);
+			panelGalerie.addButtonsToPanel(buttons, i);
 		}
 
 		return buttons;
@@ -53,11 +56,15 @@ public class Galerie {
 		for (int i = 0; i < photos.size(); i++) {
 			System.out.println(photos.get(i).getId());
 		}
+
+		panelGalerie.getContainerPhotos().removeAll();
+
 		ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
 		for (int i = 0; i < photos.size(); i++) {
 			buttons.add(new PhotoButton(photos.get(i)));
 			buttons.get(i).setPreferredSize(new Dimension(122, 100));
-			panelGalerie.addActionListenerAndToPanel(buttons, i);
+			panelGalerie.addActionListener(buttons, i);
+			panelGalerie.addButtonsToPanel(buttons, i);
 		}
 
 		return buttons;
