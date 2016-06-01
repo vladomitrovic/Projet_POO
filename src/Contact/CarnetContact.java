@@ -19,8 +19,8 @@ public class CarnetContact {
 
 	}
 
-	public void newContact(String nom, String prenom, String tel) {
-		this.carnet.add(new Contact(nom, prenom, tel));
+	public void newContact(String nom, String prenom, String tel, boolean favoris) {
+		this.carnet.add(new Contact(nom, prenom, tel, favoris));
 	}
 
 	public void newContact(Contact contact) {

@@ -30,10 +30,11 @@ public class Contact implements Serializable {
 		this.favoris = favoris;
 	}
 
-	public Contact(String nom, String prenom, String tel){
+	public Contact(String nom, String prenom, String tel, boolean favoris){
 		this.nom=nom;
 		this.prenom=prenom;
 		this.tel=tel;
+		this.favoris=favoris;
 	}
 	
 	public String getNomPrenom() {

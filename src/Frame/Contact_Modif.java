@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -54,6 +55,8 @@ public class Contact_Modif extends JPanel {
 
 	private Contact contactModif;
 	
+	private JCheckBox favoris=new JCheckBox ("Favoris");
+	
 	private int id;
 
 	Contact_Details top;
@@ -82,7 +85,6 @@ public class Contact_Modif extends JPanel {
 //		topPanel.add(modifyButton);
 		backButton.addActionListener(new Return_Click());
 		
-// 		modifyButton.addActionListener(new Modif_Click());
 		modifyButton.addActionListener(new Modif_Click());
 		
 		
@@ -136,10 +138,16 @@ public class Contact_Modif extends JPanel {
 		panel.add(fieldTel);
 		fieldTel.setText(contactModif.getTel());
 
+		favoris.setPreferredSize(lblSize);
+		favoris.setSelected(carnet.getCarnet().get(id).isFavoris());
+		panel.add(favoris);
+		
 		modifyButton.setPreferredSize(lblSize);
 		modifyButton.setContentAreaFilled(false);
 		panel.add(modifyButton);
 
+
+		
 		System.out.println("------Contact_Modif------");
 
 	}
@@ -156,25 +164,17 @@ public class Contact_Modif extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			carnet.getCarnet().get(contactModif.getId()).setNom(fieldName.getText());
-			carnet.getCarnet().get(contactModif.getId()).setPrenom(fieldPname.getText());
-			carnet.getCarnet().get(contactModif.getId()).setTel(fieldTel.getText());
+			carnet.getCarnet().get(id).setNom(fieldName.getText());
+			carnet.getCarnet().get(id).setPrenom(fieldPname.getText());
+			carnet.getCarnet().get(id).setTel(fieldTel.getText());
+			carnet.getCarnet().get(id).setFavoris(favoris.isSelected());
 			carnet.serialize();
+			top.refresh();
 			top.remove(Contact_Modif.this);
 
 		}
 	}
 	
-	class Delete_Click implements ActionListener {
 
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			carnet.deleteContact(id);
-			carnet.serialize();
-			
-//			top.remove(Contact_Modif.this);
-			
-		}
-	}
 
 }

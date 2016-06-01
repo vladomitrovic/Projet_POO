@@ -77,13 +77,8 @@ public class Contact_Carnet extends JPanel {
 		carnet.deseralize();
 		creatContactButtons();
 		
-		
-		
-		System.out.println("------Contact_Carnet------");
-
-		
-
-		
+	
+		System.out.println("------Contact_Carnet------");	
 	}
 
 	class Add_Click implements ActionListener {
@@ -100,9 +95,7 @@ public class Contact_Carnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
-
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					contactDetails = new Contact_Details(i, Contact_Carnet.this);
 					add(contactDetails, "contactDetails");
@@ -112,14 +105,13 @@ public class Contact_Carnet extends JPanel {
 		}
 	}
 
-	
 	public void creatContactButtons() {
 		listePanel.removeAll();
 		System.out.println("Removing all buttons");
 
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom());
+			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom()+" "+c.isFavoris());
 
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
@@ -132,10 +124,6 @@ public class Contact_Carnet extends JPanel {
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
-
-		
-
-		
 	}
 	
 

@@ -71,6 +71,7 @@ public class Contact_Details extends JPanel {
 		topPanel.add(backButton);
 		topPanel.add(titleLbl);
 		topPanel.add(trash);
+		trash.addActionListener(new Trash_Click());
 		backButton.addActionListener(new Return_Click());
 		// Modification du titre
 		titleLbl.setForeground(Color.WHITE);
@@ -137,27 +138,39 @@ public class Contact_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
 //			top.remove(Contact_Details.this);
-			
 			Contact_Modif modif=new Contact_Modif(id, Contact_Details.this);
 			add(modif, "modif");
 			carnetCard.show(Contact_Details.this, "modif");
-
 		}
-
 	}
 
 	class Return_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
 			top.remove(Contact_Details.this);
-	
-
 		}
 
 	}
 
+	class Trash_Click implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			top.carnet.deleteContact(id);
+			carnet.serialize();
+			top.creatContactButtons();
+			top.remove(Contact_Details.this);	
+		}
+	}
+	
+	public void refresh(){
+		carnet.deseralize();
+		contactDetails= carnet.getCarnet().get(id);
+		lblCPname.setText(contactDetails.getPrenom());
+		lblCName.setText(contactDetails.getNom());
+		lblCTel.setText(contactDetails.getTel());
+
+	}
 }

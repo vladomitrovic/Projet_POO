@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Elements.BackButton;
 import Frame.Contact_Details.Modif_Click;
@@ -49,6 +51,8 @@ public class Contact_Add extends JPanel {
 	Contact_Carnet top;
 
 	private Contact_Carnet carnet = new Contact_Carnet();
+	
+	private JCheckBox favoris=new JCheckBox ("Favoris");
 	
 	
 	public Contact_Add(Contact_Carnet top) {
@@ -116,6 +120,10 @@ public class Contact_Add extends JPanel {
 		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
 		
+		favoris.setPreferredSize(lblSize);
+//		favoris.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(favoris);
+		
 		System.out.println("------Contact_Add------");
 
 
@@ -133,10 +141,11 @@ public class Contact_Add extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			top.carnet.newContact(lblCPname.getText(), lblCName.getText(), lblCTel.getText());
+			top.carnet.newContact(lblCPname.getText(), lblCName.getText(), lblCTel.getText(), favoris.isSelected());
 			top.carnet.serialize();
 			top.creatContactButtons();
 			top.remove(Contact_Add.this);
+			
 
 
 			
