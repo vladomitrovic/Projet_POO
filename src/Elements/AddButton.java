@@ -8,7 +8,7 @@ import Galerie.Photo;
 
 public class AddButton extends JButton {
 	
-	private Photo addPhoto = new Photo("Pictures/plus-button.png") ;
+	private Photo addPhoto = new Photo("PicturesElements/plus-button.png") ;
 	
 
 	public AddButton(){

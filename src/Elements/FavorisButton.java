@@ -8,7 +8,7 @@ import Galerie.Photo;
 
 public class FavorisButton extends JButton {
 	
-	private Photo favorisPhoto = new Photo("Pictures/favoris.png") ;
+	private Photo favorisPhoto = new Photo("PicturesElements/favoris.png") ;
 	
 
 	public FavorisButton(){

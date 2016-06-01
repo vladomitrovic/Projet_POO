@@ -6,7 +6,7 @@ import Galerie.Photo;
 
 public class LayoutGalerieButton extends JButton{
 	
-	private Photo layoutButton = new Photo("Pictures/justify.png") ;
+	private Photo layoutButton = new Photo("PicturesElements/justify.png") ;
 	
 	public LayoutGalerieButton(){
 		setIcon(layoutButton);

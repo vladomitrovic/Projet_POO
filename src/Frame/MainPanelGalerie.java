@@ -157,33 +157,27 @@ public class MainPanelGalerie extends JPanel {
 
 	}
 
-	// public Photo createPhotoFit(Image img, Photo photo, String path) {
-	// try {
-	// img = ImageIO.read(new File(path));
-	// Image newimg = img.getScaledInstance(130, 100, Image.SCALE_SMOOTH);
-	// photo = new Photo(newimg);
-	// photo.widthPhoto = img.getWidth(this);
-	// photo.heightPhoto = img.getHeight(this);
-	// photo.setPath(path);
-	// return photo;
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// return null;
-	//
-	// }
-
 	public Photo createPhotoFit(Image img, Photo photo, String path) {
-		photo = new Photo(path);
-		img = photo.getImage();
-		photo.heightPhoto = img.getHeight(this);
-		photo.widthPhoto = img.getWidth(this);
-		return photo;
+		try {
+			img = ImageIO.read(new File(path));
+			Image newimg = img.getScaledInstance(130, 100, Image.SCALE_SMOOTH);
+			photo = new Photo(newimg);
+			photo.setPath(path);
+			return photo;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 
 	public void deletePhoto(ArrayList<Photo> photos, int index) {
 		photos.remove(index);
+		System.out.println(photoButtons.size());
+		photoButtons.remove(index);
+		System.out.println(photoButtons.size());
+
 		galerie.serialize();
 		galerie.updateButtons(MainPanelGalerie.this, photos);
 		galeriePanel.add(containerPhotos);
@@ -205,20 +199,20 @@ public class MainPanelGalerie extends JPanel {
 					containerPhotos.revalidate();
 					containerPhotos.repaint();
 				}
-				galeriePanel.add(containerPhotos);
-				add(galeriePanel, "galeriePanel");
-				c2.show(MainPanelGalerie.this, "galeriePanel");
+//				galeriePanel.add(containerPhotos);
+//				add(galeriePanel, "galeriePanel");
+//				c2.show(MainPanelGalerie.this, "galeriePanel");
 			} else {
 				// modify size of buttons
 				for (int i = 0; i < photoButtons.size(); i++) {
 					photoButtons.get(i).setPreferredSize(new Dimension(122, 100));
-					containerPhotos.add(photoButtons.get(i));
+//					containerPhotos.add(photoButtons.get(i));
 					containerPhotos.revalidate();
 					containerPhotos.repaint();
 				}
-				galeriePanel.add(containerPhotos);
-				add(galeriePanel, "galeriePanel");
-				c2.show(MainPanelGalerie.this, "galeriePanel");
+//				galeriePanel.add(containerPhotos);
+//				add(galeriePanel, "galeriePanel");
+//				c2.show(MainPanelGalerie.this, "galeriePanel");
 			}
 		}
 	}
@@ -237,44 +231,19 @@ public class MainPanelGalerie extends JPanel {
 
 	}
 
-	public int getNbOccurs(String str, char letter) {
-		int nb = 0;
-		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) == letter)
-				nb++;
-		}
-		return nb;
-	}
-
-	public String cutWholePath(String str, int totalOccurs) {
-		int total = 0;
-		for (int i = 0; i < str.length(); i++) {
-			if (total == totalOccurs - 1) {
-				System.out.println(str.substring(i));
-				return str.substring(i);
-			}
-
-			if (str.charAt(i) == '\\') {
-				total++;
-			}
-		}
-
-		return "";
-	}
-
 	class Add_Click implements ActionListener {
 
 		@Override
 		final public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			final JFileChooser chooser = new JFileChooser("//Desktop");
+			final JFileChooser chooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, GIF, PNG, JPEG Images", "jpg", "gif",
 					"png", "jpeg");
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(getParent());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				String path = chooser.getSelectedFile().getAbsolutePath();
-				path = cutWholePath(path, getNbOccurs(path, '\\'));
+				String path = "Pictures/";
+				path += chooser.getSelectedFile().getName();
 				System.out.println(path);
 				galerie.addPhoto(createPhotoFit(img, photo, path));
 				photoButtons = galerie.addButton(MainPanelGalerie.this, galerie.deserialize());
