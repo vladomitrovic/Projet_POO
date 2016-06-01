@@ -65,7 +65,6 @@ public class Contact_Carnet extends JPanel {
 		setLayout(carnetCard);
 		add(carnetPanel, "carnetPanel");
 		carnetCard.show(Contact_Carnet.this, "carnetPanel");
-		
 
 		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
 		grid.setVgap(5);
@@ -76,9 +75,8 @@ public class Contact_Carnet extends JPanel {
 
 		carnet.deseralize();
 		creatContactButtons();
-		
-	
-		System.out.println("------Contact_Carnet------");	
+
+		System.out.println("------Contact_Carnet------");
 	}
 
 	class Add_Click implements ActionListener {
@@ -105,26 +103,57 @@ public class Contact_Carnet extends JPanel {
 		}
 	}
 
+	class Favoris_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			creatFavorisButtons();
+		}
+	}
+	
 	public void creatContactButtons() {
 		listePanel.removeAll();
 		System.out.println("Removing all buttons");
 
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom()+" "+c.isFavoris());
+			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
 
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
-			
+
 			listePanel.add(temp);
-			System.out.println("Add " +i);
+			System.out.println("Add " + i);
 		}
-		
-		nbContact.setText(carnet.getCarnet().size()+" contacts");
+
+		nbContact.setText(carnet.getCarnet().size() + " contacts");
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
 	}
-	
+
+	public void creatFavorisButtons() {
+		listePanel.removeAll();
+		System.out.println("Removing all buttons");
+
+		for (int i = 0; i < carnet.getCarnet().size(); i++) {
+			Contact c = carnet.getCarnet().get(i);
+			if (c.isFavoris()) {
+				ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
+				temp.setName("C" + i);
+				temp.addActionListener(new Details_Click());
+				listePanel.add(temp);
+				System.out.println("Add " + i);
+			}
+
+		}
+
+		titleLbl.setText("Favoris");
+		
+		nbContact.setText(carnet.getCarnet().size() + " contacts");
+		nbContact.setPreferredSize(new Dimension(407, 50));
+		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
+		listePanel.add(nbContact);
+	}
 
 }
