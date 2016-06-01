@@ -53,6 +53,7 @@ public class Contact_Carnet extends JPanel {
 		topPanel.add(favButton);
 		topPanel.add(titleLbl);
 		topPanel.add(addButton);
+		favButton.addActionListener(new Favoris_Click());
 		addButton.addActionListener(new Add_Click());
 
 		// Ajout du topPanel et de la liste des contacts au panel contact
