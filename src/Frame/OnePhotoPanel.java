@@ -149,7 +149,7 @@ public class OnePhotoPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			top.deletePhoto(top.getGalerie().deserialize(), photo.getId());
+			top.getGalerie().deletePhoto(top, photo.getId(), photo.getPath());
 			top.removePanel(OnePhotoPanel.this);
 		}
 
