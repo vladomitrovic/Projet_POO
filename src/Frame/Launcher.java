@@ -13,12 +13,14 @@ import Galerie.Photo;
 
 public class Launcher extends JFrame {
 
-	// pour le cadre (nord sud est west)
+	//TopBarPanel
+	private TopBarPanel topBar = new TopBarPanel();
+
+	// pour le cadre (sud est west)
 	private JPanel west = new JPanel();
 	private JPanel est = new JPanel();
 	private JPanel south = new JPanel();
 	private FlowLayout flSouth = new FlowLayout();
-	private TopBarPanel topBar = new TopBarPanel();
 	private HomeButton homeButton = new HomeButton();
 
 	// Panel parent pour cardLayout
@@ -60,8 +62,6 @@ public class Launcher extends JFrame {
 		panelApplication.add(btnGalerie);
 		panelApplication.add(btnAutres);
 		panelApplication.add(btnSettings);
-		
-//		panelApplication.setImage(new Photo("Pictures/animal1.jpeg"));
 
 		// create the border
 		createBorder();
@@ -131,15 +131,15 @@ public class Launcher extends JFrame {
 		}
 
 	}
-	
+
 	class Settings_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
 
 }
