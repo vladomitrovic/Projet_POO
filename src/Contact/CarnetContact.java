@@ -52,6 +52,7 @@ public class CarnetContact {
 			oos.close();
 			
 			fos.close();
+			System.out.println("serialize");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -66,6 +67,8 @@ public class CarnetContact {
 			this.carnet = (ArrayList<Contact>) ois.readObject();
 
 			ois.close();
+			System.out.println("dserialize");
+
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

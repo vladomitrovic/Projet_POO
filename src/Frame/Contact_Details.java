@@ -155,7 +155,7 @@ public class Contact_Details extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			top.carnet.deleteContact(id);
-			carnet.serialize();
+			top.carnet.serialize();
 			top.creatContactButtons();
 			top.remove(Contact_Details.this);	
 		}

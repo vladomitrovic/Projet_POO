@@ -49,7 +49,7 @@ public class Contact_Modif extends JPanel {
 	private Dimension ClblSize = new Dimension(280, 25);
 	private Font lblFont = new Font("Arial", Font.BOLD, 22);
 	private Font cLblFont = new Font("Arial", Font.PLAIN, 20);
-
+	private JPanel panel = new JPanel();
 	private JButton modifyButton = new JButton("Enregistrer");
 	private Contact contactModif;
 	private JCheckBox favoris=new JCheckBox ("Favoris");
@@ -86,12 +86,34 @@ public class Contact_Modif extends JPanel {
 		add(modifPanel, "modifPanel");
 		carnetCard.show(Contact_Modif.this, "ModifPanel");
 
-		JPanel panel = new JPanel();
+		
 		contentPane.add(panel, BorderLayout.CENTER);
 		detailsLayout.setVgap(25);
 		detailsLayout.setHgap(10);
 		panel.setLayout(detailsLayout);
 
+		addLabel();
+		
+		
+		modifyButton.setPreferredSize(lblSize);
+		modifyButton.setContentAreaFilled(false);
+		panel.add(modifyButton);
+
+
+		
+		System.out.println("------Contact_Modif------");
+
+	}
+
+	class Return_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			top.remove(Contact_Modif.this);
+		}
+	}
+	
+	private void addLabel(){
 		lblPrenom.setPreferredSize(lblSize);
 		lblPrenom.setFont(lblFont);
 		lblPrenom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
@@ -125,26 +147,7 @@ public class Contact_Modif extends JPanel {
 		favoris.setPreferredSize(lblSize);
 		favoris.setSelected(carnet.getCarnet().get(id).isFavoris());
 		panel.add(favoris);
-		
-		modifyButton.setPreferredSize(lblSize);
-		modifyButton.setContentAreaFilled(false);
-		panel.add(modifyButton);
-
-
-		
-		System.out.println("------Contact_Modif------");
-
 	}
-
-	class Return_Click implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			top.remove(Contact_Modif.this);
-		}
-	}
-	
-	
 
 	
 	class Modif_Click implements ActionListener {

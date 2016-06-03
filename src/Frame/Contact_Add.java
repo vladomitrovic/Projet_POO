@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Elements.BackButton;
+import Elements.TopTitleBar;
 import Frame.Contact_Details.Modif_Click;
 import Frame.Contact_Details.Return_Click;
 
@@ -35,7 +36,7 @@ public class Contact_Add extends JPanel {
 	private JTextField lblCPname = new JTextField("");
 	private JTextField lblCTel = new JTextField("");
 
-	private JPanel topPanel = new JPanel();
+	private JPanel topPanel1 = new JPanel();
 	private FlowLayout topLayout = new FlowLayout();
 	private JLabel titleLbl = new JLabel("Contact");
 	private JButton addButton = new JButton("Ajouter");
@@ -53,7 +54,7 @@ public class Contact_Add extends JPanel {
 	private Contact_Carnet carnet = new Contact_Carnet();
 	
 	private JCheckBox favoris=new JCheckBox ("Favoris");
-	
+	private TopTitleBar topPanel;
 	
 	public Contact_Add(Contact_Carnet top) {
 		this.top = top;
@@ -61,23 +62,28 @@ public class Contact_Add extends JPanel {
 
 		contentPane.setLayout(new BorderLayout());
 
-		// Ajout des composant du topPanel
-		addButton.setContentAreaFilled(false);
-		addButton.setBorderPainted(false);
-		topLayout.setHgap(60);
-		topLayout.setVgap(10);
-		topPanel.setBackground(Color.GRAY);
-		topPanel.setLayout(topLayout);
-		topPanel.add(backButton);
-		topPanel.add(titleLbl);
-		topPanel.add(addButton);
-		backButton.addActionListener(new Return_Click());
-		addButton.addActionListener(new add_Click());
-		// Modification du titre
-		titleLbl.setForeground(Color.WHITE);
-		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
-		addButton.setForeground(Color.WHITE);
+//		// Ajout des composant du topPanel
+//		addButton.setContentAreaFilled(false);
+//		addButton.setBorderPainted(false);
+//		topLayout.setHgap(60);
+//		topLayout.setVgap(10);
+//		topPanel.setBackground(Color.GRAY);
+//		topPanel.setLayout(topLayout);
+//		topPanel.add(backButton);
+//		topPanel.add(titleLbl);
+//		topPanel.add(addButton);
+//		backButton.addActionListener(new Return_Click());
+//		addButton.addActionListener(new add_Click());
+//		// Modification du titre
+//		titleLbl.setForeground(Color.WHITE);
+//		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
+//		addButton.setForeground(Color.WHITE);
 
+		
+//		topPanel=new TopTitleBar();
+		
+		
+		
 		newContactPanel.setLayout(new BorderLayout());
 		newContactPanel.add(topPanel, BorderLayout.NORTH);
 		newContactPanel.add(contentPane);
