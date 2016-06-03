@@ -7,6 +7,7 @@ import javax.swing.*;
 import Contact.CarnetContact;
 import Contact.Contact;
 import Elements.AddButton;
+import Elements.BackButton;
 import Elements.ContactButton;
 import Elements.FavorisButton;
 import Elements.TopTitleBar;
@@ -82,7 +83,18 @@ public class Contact_Carnet extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			creatFavorisButtons();
+			topPanel.setLeftButton(new BackButton(), new ReturnFavoris_Click());
 		}
+	}
+	
+	class ReturnFavoris_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			creatContactButtons();
+			topPanel.setLeftButton(new FavorisButton(), new Favoris_Click());
+		}
+		
 	}
 	
 	public void creatContactButtons() {
@@ -107,7 +119,6 @@ public class Contact_Carnet extends JPanel {
 
 	public void creatFavorisButtons() {
 		listePanel.removeAll();
-		System.out.println("Removing all buttons");
 		int cpt=0;
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);

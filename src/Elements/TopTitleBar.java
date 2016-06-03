@@ -15,9 +15,11 @@ public class TopTitleBar extends JPanel {
 
 	private JLabel label;
 	private JPanel emptyPanel=new JPanel();
+	private JButton leftButton;
 
 	public TopTitleBar(JButton leftButton, ActionListener leftAction, String title, JButton rightButton,
 			ActionListener rightAction, Color coloBackground) {
+		this.leftButton=leftButton;
 		setLayout(new BorderLayout());
 		setBackground(coloBackground);
 		setPreferredSize(new Dimension(480, 60));
@@ -38,7 +40,6 @@ public class TopTitleBar extends JPanel {
 		add(rightButton, BorderLayout.EAST);
 		System.out.println(rightButton.getPreferredSize());
 	}
-	
 	
 	//Without rightButton
 	public TopTitleBar(JButton leftButton, ActionListener leftAction, String title, Color coloBackground) {
@@ -64,11 +65,16 @@ public class TopTitleBar extends JPanel {
 
 	}
 
-	
 	public void setLabelText(String label) {
 		this.label.setText(label);
 	}
-	
-	
-
+		
+	public void setLeftButton(JButton leftButton, ActionListener leftAction){
+		remove(this.leftButton);
+		this.leftButton=leftButton;
+		leftButton.addActionListener(leftAction);
+		add(leftButton, BorderLayout.WEST);
+		revalidate();
+		repaint();
+	}
 }
