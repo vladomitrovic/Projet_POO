@@ -50,6 +50,8 @@ public class CarnetContact {
 			oos.flush();
 
 			oos.close();
+			
+			fos.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -63,6 +65,8 @@ public class CarnetContact {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			this.carnet = (ArrayList<Contact>) ois.readObject();
 
+			ois.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

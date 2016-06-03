@@ -3,62 +3,34 @@ package Frame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.*;
-import javax.swing.border.Border;
-
 import Contact.CarnetContact;
 import Contact.Contact;
 import Elements.AddButton;
 import Elements.ContactButton;
 import Elements.FavorisButton;
-import Galerie.Photo;
+import Elements.TopTitleBar;
 
 public class Contact_Carnet extends JPanel {
 
 	public CardLayout carnetCard = new CardLayout();
 	private JPanel carnetPanel = new JPanel();
-	private JPanel topPanel = new JPanel();
-	private FlowLayout topLayout = new FlowLayout();
-	private JLabel titleLbl = new JLabel("Contact");
-
 	private JPanel listePanel = new JPanel();
 	private JScrollPane listeScroll = new JScrollPane(listePanel);
-
 	private Contact_Details contactDetails;
 	private Contact_Add contactAdd;
-
+	private TopTitleBar topPanel;
+	private JLabel nbContact = new JLabel();
 	CarnetContact carnet = new CarnetContact();
 
-	AddButton addButton = new AddButton();
-
-	FavorisButton favButton = new FavorisButton();
-
-	JLabel nbContact = new JLabel();
-
 	public Contact_Carnet() {
-		setPreferredSize(new Dimension(480, 800));
-		setLayout(new BorderLayout());
+	
+		//Création TopTitleBar
+		topPanel=new TopTitleBar(new FavorisButton(), new Favoris_Click(), "Contacts", new AddButton(), new Add_Click(), Color.GRAY);
 
-		// Modification du titre
-		titleLbl.setForeground(Color.WHITE);
-		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
-
-		// Ajout des composant du topPanel
-		topLayout.setHgap(67);
-		topLayout.setVgap(10);
-		topPanel.setBackground(Color.GRAY);
-		topPanel.setLayout(topLayout);
-		topPanel.add(favButton);
-		topPanel.add(titleLbl);
-		topPanel.add(addButton);
-		favButton.addActionListener(new Favoris_Click());
-		addButton.addActionListener(new Add_Click());
 
 		// Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
-		// add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
 		carnetPanel.add(listeScroll);
 
@@ -67,10 +39,10 @@ public class Contact_Carnet extends JPanel {
 		add(carnetPanel, "carnetPanel");
 		carnetCard.show(Contact_Carnet.this, "carnetPanel");
 
+		
 		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
-
 		listeScroll.setPreferredSize(new Dimension(425, 642));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
@@ -122,7 +94,7 @@ public class Contact_Carnet extends JPanel {
 
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
-
+			
 			listePanel.add(temp);
 			System.out.println("Add " + i);
 		}
@@ -136,22 +108,21 @@ public class Contact_Carnet extends JPanel {
 	public void creatFavorisButtons() {
 		listePanel.removeAll();
 		System.out.println("Removing all buttons");
-
+		int cpt=0;
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
 			if (c.isFavoris()) {
+				cpt++;
 				ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);
 				System.out.println("Add " + i);
 			}
-
-		}
-
-		titleLbl.setText("Favoris");
+		}	
+		topPanel.setLabelText("Favoris");
 		
-		nbContact.setText(carnet.getCarnet().size() + " contacts");
+		nbContact.setText(cpt+" / "+carnet.getCarnet().size() + " contacts");
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);

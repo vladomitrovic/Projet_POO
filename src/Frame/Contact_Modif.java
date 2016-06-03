@@ -18,9 +18,16 @@ import javax.swing.JTextField;
 
 import Contact.CarnetContact;
 import Contact.Contact;
+import Elements.AddButton;
 import Elements.BackButton;
+import Elements.FavorisButton;
+import Elements.TopTitleBar;
+import Elements.TrashButton;
+import Frame.Contact_Carnet.Add_Click;
+import Frame.Contact_Carnet.Favoris_Click;
 import Frame.Contact_Details.Modif_Click;
 import Frame.Contact_Details.Return_Click;
+import Frame.Contact_Details.Trash_Click;
 
 public class Contact_Modif extends JPanel {
 
@@ -36,30 +43,20 @@ public class Contact_Modif extends JPanel {
 	private JTextField fieldPname = new JTextField("");
 	private JTextField fieldTel = new JTextField("");
 
-	private JPanel topPanel = new JPanel();
-	private FlowLayout topLayout = new FlowLayout();
-	private JLabel titleLbl = new JLabel("Contact");
-
-
-	BackButton backButton = new BackButton();
 
 	private FlowLayout detailsLayout = new FlowLayout();
-	Dimension lblSize = new Dimension(280, 25);
-	Dimension ClblSize = new Dimension(280, 25);
-	Font lblFont = new Font("Arial", Font.BOLD, 22);
-	Font cLblFont = new Font("Arial", Font.PLAIN, 20);
+	private Dimension lblSize = new Dimension(280, 25);
+	private Dimension ClblSize = new Dimension(280, 25);
+	private Font lblFont = new Font("Arial", Font.BOLD, 22);
+	private Font cLblFont = new Font("Arial", Font.PLAIN, 20);
 
 	private JButton modifyButton = new JButton("Enregistrer");
-	CarnetContact carnet=new CarnetContact();
-
-
 	private Contact contactModif;
-	
 	private JCheckBox favoris=new JCheckBox ("Favoris");
-	
 	private int id;
-
-	Contact_Details top;
+	private Contact_Details top;
+	private TopTitleBar topPanel;
+	private CarnetContact carnet=new CarnetContact();
 
 	public Contact_Modif(int id, Contact_Details top ) {
 		
@@ -73,24 +70,11 @@ public class Contact_Modif extends JPanel {
 		
 		contentPane.setLayout(new BorderLayout());
 
-		// Ajout des composant du topPanel
-//		modifyButton.setContentAreaFilled(false);
-//		modifyButton.setBorderPainted(false);
-		topLayout.setHgap(60);
-		topLayout.setVgap(10);
-		topPanel.setBackground(Color.GRAY);
-		topPanel.setLayout(topLayout);
-		topPanel.add(backButton);
-		topPanel.add(titleLbl);
-//		topPanel.add(modifyButton);
-		backButton.addActionListener(new Return_Click());
-		
+	
 		modifyButton.addActionListener(new Modif_Click());
 		
-		
-		// Modification du titre
-		titleLbl.setForeground(Color.WHITE);
-		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
+		topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", Color.GRAY);
+	
 		modifyButton.setForeground(Color.BLACK);
 
 		modifPanel.setLayout(new BorderLayout());
@@ -159,6 +143,9 @@ public class Contact_Modif extends JPanel {
 			top.remove(Contact_Modif.this);
 		}
 	}
+	
+	
+
 	
 	class Modif_Click implements ActionListener {
 

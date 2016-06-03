@@ -3,8 +3,12 @@ package Frame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import Contact.CarnetContact;
@@ -12,8 +16,11 @@ import Contact.Contact;
 import Elements.AddButton;
 import Elements.BackButton;
 import Elements.FavorisButton;
+import Elements.TopTitleBar;
 import Elements.TrashButton;
 import Frame.Contact_Carnet.Add_Click;
+import Frame.Contact_Carnet.Favoris_Click;
+import Galerie.Photo;
 
 public class Contact_Details extends JPanel {
 
@@ -29,28 +36,22 @@ public class Contact_Details extends JPanel {
 	private JLabel lblCPname = new JLabel("");
 	private JLabel lblCTel = new JLabel("");
 
-	private JPanel topPanel = new JPanel();
-	private FlowLayout topLayout = new FlowLayout();
-	private JLabel titleLbl = new JLabel("Contact");
 	private JButton modifyButton = new JButton("Modifier");
-	private TrashButton trash=new TrashButton();
-	
-	BackButton backButton = new BackButton();
-	
+	private JButton picture=new JButton();
 	private FlowLayout detailsLayout = new FlowLayout();
-	Dimension lblSize=new Dimension(280, 25);
-	Dimension ClblSize=new Dimension(280, 25);
-	Font lblFont=new Font("Arial", Font.BOLD, 22);
-	Font cLblFont=new Font("Arial", Font.PLAIN, 20);
+	private Dimension lblSize=new Dimension(280, 25);
+	private Dimension ClblSize=new Dimension(280, 25);
+	private Font lblFont=new Font("Arial", Font.BOLD, 22);
+	private Font cLblFont=new Font("Arial", Font.PLAIN, 20);
+	private Border lblBorder= BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY);
 	
 	private Contact contactDetails;
+	private CarnetContact carnet=new CarnetContact();
+	private int id;
+	private Contact_Carnet top;
+	private TopTitleBar topPanel;
+	private JPanel panel = new JPanel();
 	
-	CarnetContact carnet=new CarnetContact();
-	
-	int id;
-	
-	Contact_Carnet top;
-
 	public Contact_Details(int id, Contact_Carnet top) {
 		this.id=id;
 		
@@ -62,42 +63,44 @@ public class Contact_Details extends JPanel {
 
 		contentPane.setLayout(new BorderLayout());
 
-		// Ajout des composant du topPanel
-
-		topLayout.setHgap(60);
-		topLayout.setVgap(10);
-		topPanel.setBackground(Color.GRAY);
-		topPanel.setLayout(topLayout);
-		topPanel.add(backButton);
-		topPanel.add(titleLbl);
-		topPanel.add(trash);
-		trash.addActionListener(new Trash_Click());
-		backButton.addActionListener(new Return_Click());
-		// Modification du titre
-		titleLbl.setForeground(Color.WHITE);
-		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
+		// Configuration du topPanel
+		topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", new TrashButton(), new Trash_Click(), Color.GRAY);
 
 		detailsPanel.setLayout(new BorderLayout());
 		detailsPanel.add(topPanel, BorderLayout.NORTH);
 		detailsPanel.add(contentPane);
-		
-		
-		
+
 		// Ajout du contact panel au panel principal
 		setLayout(carnetCard);
 		add(detailsPanel, "detailsPanel");
 		carnetCard.show(Contact_Details.this, "detailsPanel");
 
-		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		detailsLayout.setVgap(25);
 		detailsLayout.setHgap(10);
 		panel.setLayout(detailsLayout);
 
+		
+		picture.setIcon(creatPhotoFit(carnet.getCarnet().get(id).getPhoto()));
+		picture.setPreferredSize(new Dimension(150, 180));
+		panel.add(picture);
 
+		addLabels();
+		
+		modifyButton.setContentAreaFilled(false);
+		modifyButton.setPreferredSize(ClblSize);
+		modifyButton.setForeground(Color.BLACK);
+		modifyButton.addActionListener(new Modif_Click());
+		panel.add(modifyButton);
+		
+		
+		System.out.println("------Contact_Details------");
+	}
+
+	private void addLabels(){
 		lblPrenom.setPreferredSize(lblSize);
 		lblPrenom.setFont(lblFont);
-		lblPrenom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
+		lblPrenom.setBorder(lblBorder);
 		panel.add(lblPrenom);
 
 		lblCPname.setPreferredSize(ClblSize);
@@ -107,7 +110,7 @@ public class Contact_Details extends JPanel {
 
 		lblNom.setPreferredSize(lblSize);
 		lblNom.setFont(lblFont);
-		lblNom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
+		lblNom.setBorder(lblBorder);
 		panel.add(lblNom);
 
 		lblCName.setPreferredSize(ClblSize);
@@ -117,28 +120,19 @@ public class Contact_Details extends JPanel {
 
 		lblNumero.setPreferredSize(lblSize);
 		lblNumero.setFont(lblFont);
-		lblNumero.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
+		lblNumero.setBorder(lblBorder);
 		panel.add(lblNumero);
 
 		lblCTel.setPreferredSize(ClblSize);
 		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
 		lblCTel.setText(contactDetails.getTel());
-		
-		modifyButton.setContentAreaFilled(false);
-		modifyButton.setPreferredSize(ClblSize);
-		modifyButton.setForeground(Color.BLACK);
-		modifyButton.addActionListener(new Modif_Click());
-
-		panel.add(modifyButton);
-		System.out.println("------Contact_Details------");
 	}
-
+	
 	class Modif_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-//			top.remove(Contact_Details.this);
 			Contact_Modif modif=new Contact_Modif(id, Contact_Details.this);
 			add(modif, "modif");
 			carnetCard.show(Contact_Details.this, "modif");
@@ -175,4 +169,15 @@ public class Contact_Details extends JPanel {
 		lblCTel.setText(contactDetails.getTel());
 
 	}
+	
+	public Photo creatPhotoFit(Photo photo){
+		
+		Image img= photo.getImage();
+		Image newImg= img.getScaledInstance(150, 180, Image.SCALE_SMOOTH);
+		photo=new Photo(newImg);
+		return photo;
+			
+
+	}
+	
 }

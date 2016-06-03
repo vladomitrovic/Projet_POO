@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 public class TopTitleBar extends JPanel {
 
 	private JLabel label;
+	private JPanel emptyPanel=new JPanel();
 
 	public TopTitleBar(JButton leftButton, ActionListener leftAction, String title, JButton rightButton,
 			ActionListener rightAction, Color coloBackground) {
@@ -35,6 +36,39 @@ public class TopTitleBar extends JPanel {
 		add(leftButton, BorderLayout.WEST);
 		add(label, BorderLayout.CENTER);
 		add(rightButton, BorderLayout.EAST);
+		System.out.println(rightButton.getPreferredSize());
 	}
+	
+	
+	//Without rightButton
+	public TopTitleBar(JButton leftButton, ActionListener leftAction, String title, Color coloBackground) {
+		setLayout(new BorderLayout());
+		setBackground(coloBackground);
+		setPreferredSize(new Dimension(480, 60));
+
+		// set the jlabel
+		label = new JLabel(title);
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Arial", Font.PLAIN, 35));
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setVerticalAlignment(JLabel.CENTER);
+
+		// add actionListener
+		leftButton.addActionListener(leftAction);
+
+		emptyPanel.setPreferredSize(new Dimension(58,34));
+		emptyPanel.setBackground(coloBackground);
+		add(emptyPanel, BorderLayout.EAST);
+		add(leftButton, BorderLayout.WEST);
+		add(label, BorderLayout.CENTER);
+
+	}
+
+	
+	public void setLabelText(String label) {
+		this.label.setText(label);
+	}
+	
+	
 
 }

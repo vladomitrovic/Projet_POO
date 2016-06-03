@@ -8,7 +8,7 @@ import Galerie.Photo;
 public class Contact implements Serializable {
 	private static final long serialVersionUID = 1928505403570541323L;
 	
-	private Photo photo;
+	private Photo photo= new Photo("PicturesElements/default_Contact.png");
 	private String nom, prenom, tel;
 	private int id;
 	private boolean favoris;
