@@ -17,8 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Elements.AddButton;
 import Elements.BackButton;
+import Elements.FavorisButton;
+import Elements.OkButton;
 import Elements.TopTitleBar;
+import Frame.Contact_Carnet.Add_Click;
+import Frame.Contact_Carnet.Favoris_Click;
 import Frame.Contact_Details.Modif_Click;
 import Frame.Contact_Details.Return_Click;
 
@@ -36,10 +41,7 @@ public class Contact_Add extends JPanel {
 	private JTextField lblCPname = new JTextField("");
 	private JTextField lblCTel = new JTextField("");
 
-	private JPanel topPanel1 = new JPanel();
-	private FlowLayout topLayout = new FlowLayout();
-	private JLabel titleLbl = new JLabel("Contact");
-	private JButton addButton = new JButton("Ajouter");
+
 
 	BackButton backButton = new BackButton();
 
@@ -80,7 +82,7 @@ public class Contact_Add extends JPanel {
 //		addButton.setForeground(Color.WHITE);
 
 		
-//		topPanel=new TopTitleBar();
+		topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", new OkButton(), new Add_Click(), Color.GRAY);
 		
 		
 		
@@ -143,7 +145,7 @@ public class Contact_Add extends JPanel {
 		}
 	}
 	
-	class add_Click implements ActionListener {
+	class Add_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {

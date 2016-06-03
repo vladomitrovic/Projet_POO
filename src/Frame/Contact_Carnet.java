@@ -87,10 +87,10 @@ public class Contact_Carnet extends JPanel {
 	public void creatContactButtons() {
 		listePanel.removeAll();
 		System.out.println("Removing all buttons");
-
+		carnet.refreshId();
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
+			ContactButton temp = new ContactButton(c.getId()+" " +c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
 
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());

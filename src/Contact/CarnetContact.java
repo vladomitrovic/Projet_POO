@@ -54,7 +54,6 @@ public class CarnetContact {
 			oos.close();
 			
 			fos.close();
-			System.out.println("serialize");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -69,7 +68,6 @@ public class CarnetContact {
 			this.carnet = (ArrayList<Contact>) ois.readObject();
 
 			ois.close();
-			System.out.println("dserialize");
 
 			
 		} catch (IOException e) {
@@ -82,11 +80,11 @@ public class CarnetContact {
 
 	}
 
-	private void refreshId() {
-
-		for (int i = 0; i > carnet.size(); i++) {
+	public void refreshId() {
+		for (int i = 0; i < carnet.size(); i++) {
 			carnet.get(i).setId(i);
 		}
+	
 
 	}
 
