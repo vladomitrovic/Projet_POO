@@ -1,19 +1,14 @@
 package Elements;
 
-import javax.swing.JButton;
 
 import Galerie.Photo;
 
-public class LayoutGalerieButton extends JButton{
+public class LayoutGalerieButton extends TopBarButton{
 	
 	private Photo layoutButton = new Photo("PicturesElements/justify.png") ;
 	
 	public LayoutGalerieButton(){
 		setIcon(layoutButton);
-		setBorderPainted(false);
-		setContentAreaFilled(false);
-		setFocusPainted(false);
-		setOpaque(false);
 	}
 
 }

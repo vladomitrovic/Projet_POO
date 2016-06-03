@@ -6,17 +6,13 @@ import javax.swing.JButton;
 
 import Galerie.Photo;
 
-public class FavorisButton extends JButton {
+public class FavorisButton extends TopBarButton {
 	
 	private Photo favorisPhoto = new Photo("PicturesElements/favoris.png") ;
 	
 
 	public FavorisButton(){
 		setIcon(favorisPhoto);
-		setBorderPainted(false);
-		setContentAreaFilled(false);
-		setFocusPainted(false);
-		setOpaque(false);
 	}
 
 }

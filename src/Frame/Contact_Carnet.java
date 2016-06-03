@@ -91,7 +91,7 @@ public class Contact_Carnet extends JPanel {
 		carnet.refreshId();
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(c.getPrenom() + " " + c.getNom() + " " + c.isFavoris());
+			ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
 			
@@ -113,7 +113,7 @@ public class Contact_Carnet extends JPanel {
 			Contact c = carnet.getCarnet().get(i);
 			if (c.isFavoris()) {
 				cpt++;
-				ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom() + " " + c.isFavoris());
+				ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);

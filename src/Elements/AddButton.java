@@ -1,23 +1,14 @@
 package Elements;
 
-import java.awt.FlowLayout;
 
-import javax.swing.JButton;
 
 import Galerie.Photo;
 
-public class AddButton extends JButton {
+public class AddButton extends TopBarButton {
 	
 	private Photo addPhoto = new Photo("PicturesElements/plus-button.png") ;
-	
 
 	public AddButton(){
 		setIcon(addPhoto);
-		setBorderPainted(false);
-		setContentAreaFilled(false);
-		setFocusPainted(false);
-		setOpaque(false);
-	
 	}
-
 }
