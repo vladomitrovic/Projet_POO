@@ -28,7 +28,7 @@ public class Launcher extends JFrame {
 	// pour le fond d'écran
 	private Photo wallpaper = new Photo("PicturesElements/wallpaper.jpg");
 
-	// Panel contenant wallPaper et applications
+	// panel pour les applications
 	private PanelApplications panelApplication = new PanelApplications(wallpaper);
 
 	// Boutons pour applications
@@ -60,6 +60,8 @@ public class Launcher extends JFrame {
 		panelApplication.add(btnGalerie);
 		panelApplication.add(btnAutres);
 		panelApplication.add(btnSettings);
+		
+//		panelApplication.setImage(new Photo("Pictures/animal1.jpeg"));
 
 		// create the border
 		createBorder();
@@ -128,6 +130,16 @@ public class Launcher extends JFrame {
 
 		}
 
+	}
+	
+	class Settings_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

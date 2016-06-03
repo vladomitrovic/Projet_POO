@@ -18,6 +18,10 @@ public class PanelApplications extends JPanel {
 		setLayout(fl);
 	}
 
+	public void setImage(Photo photo) {
+		this.photo = photo;
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub

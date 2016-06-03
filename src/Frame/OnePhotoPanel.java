@@ -28,9 +28,7 @@ public class OnePhotoPanel extends JPanel {
 
 	private Photo photo;
 	private BackButton backButton = new BackButton();
-	private JPanel upPhotoPanel = new JPanel(new GridLayout(1, 2));
-	private JPanel backPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	private JPanel trashPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	private JPanel upPhotoPanel = new JPanel(new GridLayout(1, 3));
 	private TrashButton trashButton = new TrashButton();
 
 	// for the diaporama
@@ -52,17 +50,13 @@ public class OnePhotoPanel extends JPanel {
 		backButton.addActionListener(new Back_PhotoClick());
 		trashButton.addActionListener(new Delete_Click());
 
-		// set backPanel
-		backPanel.add(backButton);
-		backPanel.setOpaque(false);
-
-		// set trashPanel
-		trashPanel.add(trashButton);
-		trashPanel.setOpaque(false);
+		// set buttons
+		backButton.setHorizontalAlignment(SwingConstants.LEFT);
+		trashButton.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		// add to upPhotoPanel
-		upPhotoPanel.add(backPanel);
-		upPhotoPanel.add(trashPanel);
+		upPhotoPanel.add(backButton);
+		upPhotoPanel.add(trashButton);
 		upPhotoPanel.setOpaque(false);
 
 		// set buttons for the diaporama
@@ -103,18 +97,8 @@ public class OnePhotoPanel extends JPanel {
 		Photo newPhoto = new Photo(photo.getPath());
 		Image img = newPhoto.getImage();
 
-		// int imageWidth = (int) img.getWidth(this);
-		// int imageHeight = (int) img.getHeight(this);
-		 int frameWidth = this.getWidth();
-		 int frameHeight = this.getHeight();
-		////
-		//// g.drawImage(img, x, y, width, height, observer);
-		//// return ;
-
-		// imageWidth = (int) img.getWidth(this);
-		// imageHeight = (int) img.getHeight(this);
-//		 frameWidth = this.getWidth();
-//		 frameHeight = this.getHeight();
+		int frameWidth = this.getWidth();
+		int frameHeight = this.getHeight();
 
 		double imageWidth = img.getWidth(this);
 		double imageHeight = img.getHeight(this);
@@ -126,12 +110,14 @@ public class OnePhotoPanel extends JPanel {
 			double ratioWidth = imageWidth / frameWidth;
 			imageWidth = frameWidth;
 			imageHeight = (int) (imageHeight / ratioWidth);
-			g.drawImage(img, (int)(frameWidth - imageWidth) / 2, (int)(frameHeight - imageHeight) / 2, (int)imageWidth, (int)newH, this);
+			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
+					(int) imageWidth, (int) newH, this);
 		} else if (imageHeight > imageWidth) {
 			double ratioHeight = imageHeight / frameHeight;
 			imageHeight = frameHeight;
 			imageWidth = (int) (imageWidth / ratioHeight);
-			g.drawImage(img, (int)(frameWidth - imageWidth) / 2, (int)(frameHeight - imageHeight) / 2, (int)newW, (int)imageHeight, this);
+			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) newW,
+					(int) imageHeight, this);
 
 		}
 

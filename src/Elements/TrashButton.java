@@ -1,5 +1,6 @@
 package Elements;
 
+import javax.swing.SwingConstants;
 
 import Galerie.Photo;
 

@@ -1,6 +1,8 @@
 package Elements;
 
 
+import javax.swing.SwingConstants;
+
 import Galerie.Photo;
 
 public class BackButton extends TopBarButton{
