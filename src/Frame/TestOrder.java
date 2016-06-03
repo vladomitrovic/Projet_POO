@@ -30,7 +30,7 @@ public class TestOrder {
 	public static void order(ArrayList<Contact> contacts, ArrayList<String> contactNames) {
 
 		for (int i = 0; i < contacts.size(); i++) {
-			contactNames.add(contacts.get(i).getNomPrenom() + contacts.get(i).getId());
+			contactNames.add(contacts.get(i).getPrenom() + contacts.get(i).getNom() + contacts.get(i).getId());
 
 		}
 
@@ -54,9 +54,9 @@ public class TestOrder {
 			contacts2.add(new Contact());
 		}
 
-		//modification de l'ordre
+		// modification de l'ordre
 		for (int i = 0; i < contacts.size(); i++) {
-			String comparaison = contacts.get(i).getNomPrenom() + contacts.get(i).getId();
+			String comparaison = contacts.get(i).getPrenom() + contacts.get(i).getNom() + contacts.get(i).getId();
 			System.out.println("index: " + i);
 			System.out.println("Comparaison de : " + comparaison);
 			for (int j = 0; j < contacts.size(); j++) {
