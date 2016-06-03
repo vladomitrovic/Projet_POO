@@ -93,15 +93,6 @@ public class OnePhotoPanel extends JPanel {
 		add(nextImagePanel, BorderLayout.EAST);
 		setBackground(Color.BLACK);
 
-		// set the img for the paintComponent
-		try {
-			System.out.println(photo.getPath());
-			buffImage = ImageIO.read(new File(photo.getPath()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	@Override
@@ -109,22 +100,40 @@ public class OnePhotoPanel extends JPanel {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 
-		int imageWidth = (int) buffImage.getWidth();
-		int imageHeight = (int) buffImage.getHeight();
-		int frameWidth = this.getWidth();
-		int frameHeight = this.getHeight();
+		Photo newPhoto = new Photo(photo.getPath());
+		Image img = newPhoto.getImage();
+
+		// int imageWidth = (int) img.getWidth(this);
+		// int imageHeight = (int) img.getHeight(this);
+		 int frameWidth = this.getWidth();
+		 int frameHeight = this.getHeight();
+		////
+		//// g.drawImage(img, x, y, width, height, observer);
+		//// return ;
+
+		// imageWidth = (int) img.getWidth(this);
+		// imageHeight = (int) img.getHeight(this);
+//		 frameWidth = this.getWidth();
+//		 frameHeight = this.getHeight();
+
+		double imageWidth = img.getWidth(this);
+		double imageHeight = img.getHeight(this);
+
+		double newW = (imageWidth / imageHeight) * frameHeight;
+		double newH = (imageHeight / imageWidth) * frameWidth;
 
 		if (imageWidth > imageHeight) {
 			double ratioWidth = imageWidth / frameWidth;
 			imageWidth = frameWidth;
 			imageHeight = (int) (imageHeight / ratioWidth);
+			g.drawImage(img, (int)(frameWidth - imageWidth) / 2, (int)(frameHeight - imageHeight) / 2, (int)imageWidth, (int)newH, this);
 		} else if (imageHeight > imageWidth) {
 			double ratioHeight = imageHeight / frameHeight;
 			imageHeight = frameHeight;
 			imageWidth = (int) (imageWidth / ratioHeight);
+			g.drawImage(img, (int)(frameWidth - imageWidth) / 2, (int)(frameHeight - imageHeight) / 2, (int)newW, (int)imageHeight, this);
+
 		}
-		g.drawImage(buffImage, (frameWidth - imageWidth) / 2, (frameHeight - imageHeight) / 2, imageWidth, imageHeight,
-				this);
 
 	}
 

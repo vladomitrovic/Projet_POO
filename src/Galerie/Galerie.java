@@ -47,7 +47,7 @@ public class Galerie {
 		setNamesFromDirectory();
 
 		panelGalerie.getContainerPhotos().removeAll();
-		
+
 		for (int i = 0; i < name.size(); i++) {
 			photos.add(panelGalerie.createPhotoFit(name.get(i)));
 			photoButtons.add(new PhotoButton(photos.get(i)));
@@ -80,6 +80,8 @@ public class Galerie {
 			// File permission problems are caught here.
 			System.err.println(x);
 		}
+		
+		idPhotos();
 
 		// add the buttons to ContainerPhotos
 		panelGalerie.getContainerPhotos().removeAll();
@@ -97,7 +99,7 @@ public class Galerie {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile())
 				if (listOfFiles[i].getName().endsWith(".jpeg") || listOfFiles[i].getName().endsWith(".jpg")
-						|| listOfFiles[i].getName().endsWith(".png"))
+						|| listOfFiles[i].getName().endsWith(".png") || listOfFiles[i].getName().endsWith(".PNG"))
 					name.add("Pictures/" + listOfFiles[i].getName());
 		}
 	}

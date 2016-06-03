@@ -21,10 +21,12 @@ public class CarnetContact {
 
 	public void newContact(String nom, String prenom, String tel, boolean favoris) {
 		this.carnet.add(new Contact(nom, prenom, tel, favoris));
+		refreshId();
 	}
 
 	public void newContact(Contact contact) {
 		this.carnet.add(contact);
+		refreshId();
 	}
 
 	public void deleteContact(int id) {

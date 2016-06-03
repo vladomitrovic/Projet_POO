@@ -59,17 +59,15 @@ public class MainPanelGalerie extends JPanel {
 			new AddButton(), new Add_Click(), Color.RED);
 	// for containerPhotos
 	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
-	private JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+	private JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private Galerie galerie = new Galerie();
 
-	private int width = 125;
+	private int width = 128;
 	private int height = 115;
 	private Dimension dimension = new Dimension(width, height);
 
 	// for titlePanel
-
-
 
 	public MainPanelGalerie() {
 		// setMainPanel
@@ -78,8 +76,8 @@ public class MainPanelGalerie extends JPanel {
 		// set containerPhotos
 		WrapLayout flowLayout = new WrapLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
-		flowLayout.setHgap(10);
-		flowLayout.setVgap(10);
+		flowLayout.setHgap(5);
+		flowLayout.setVgap(5);
 		containerPhotos.setLayout(flowLayout);
 
 		// add photoButtons to gallery
@@ -138,32 +136,14 @@ public class MainPanelGalerie extends JPanel {
 	}
 
 	public Photo createPhotoFit(String path) {
-		try {
-			Image img = ImageIO.read(new File(path));
-			Image newimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-			Photo photo = new Photo(newimg);
-			photo.setPath(path);
-			return photo;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		Photo photo = new Photo(path);
+		Image img = photo.getImage();
+		Image newimg = img.getScaledInstance(width, height, Image.SCALE_FAST);
+		photo = new Photo(newimg);
+		photo.setPath(path);
+		return photo;
 
 	}
-
-	// public void deletePhoto(ArrayList<Photo> photos, int index) {
-	// photos.remove(index);
-	// System.out.println(photoButtons.size());
-	// photoButtons.remove(index);
-	// System.out.println(photoButtons.size());
-	//
-	// galerie.serialize();
-	// galerie.updateButtons(MainPanelGalerie.this, photos);
-	// galeriePanel.add(scroll);
-	// c2.show(MainPanelGalerie.this, "galeriePanel");
-	//
-	// }
 
 	class Layout_Galerie implements ActionListener {
 		boolean flag = true;
@@ -187,7 +167,7 @@ public class MainPanelGalerie extends JPanel {
 			} else {
 				// modify size of buttons
 				for (int i = 0; i < photoButtons.size(); i++) {
-					width = 125;
+					width = 128;
 					height = 115;
 					dimension.width = width;
 					dimension.height = height;
@@ -229,7 +209,7 @@ public class MainPanelGalerie extends JPanel {
 			// TODO Auto-generated method stub
 			final JFileChooser chooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, GIF, PNG, JPEG Images", "jpg", "gif",
-					"png", "jpeg");
+					"png", "jpeg", "PNG");
 			chooser.setFileFilter(filter);
 			int returnVal = chooser.showOpenDialog(getParent());
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
