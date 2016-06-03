@@ -30,9 +30,9 @@ public class Contact implements Serializable {
 		this.favoris = favoris;
 	}
 
-	public Contact(String nom, String prenom, String tel, boolean favoris){
-		this.nom=nom;
+	public Contact(String prenom, String nom, String tel, boolean favoris){
 		this.prenom=prenom;
+		this.nom=nom;
 		this.tel=tel;
 		this.favoris=favoris;
 	}
@@ -41,9 +41,6 @@ public class Contact implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getNomPrenom() {
-		return prenom+" "+nom;
-	}
 	
 	public String getNom() {
 		return nom;

@@ -10,72 +10,29 @@ public class TestOrder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<Contact> contacts = new ArrayList<Contact>();
-		ArrayList<String> contactNames = new ArrayList<String>();
+	
 
 		CarnetContact carnet = new CarnetContact();
 		carnet.deseralize();
-		for (int i = 0; i < carnet.getCarnet().size(); i++) {
-			System.out.println(carnet.getCarnet().get(i).getNomPrenom());
-		}
-		System.out.println();
-		System.out.println();
-		System.out.println("--------------------");
+	
+		carnet.newContact("Vlado", "Mitrovic", "079 439 22 26", true);
+		carnet.newContact("Aleks", "Lazic", "079 741 85 96", true);
+		carnet.newContact("Fargas", "Clerc", "077 852 22 26", false);
+		carnet.newContact("Adam", "Smith", "078 456 52 63", false);
+		carnet.newContact("Robert", "Seligman", "074 456 78 96", true);
+		carnet.newContact("Hugo", "Rebelo", "079 478 45 26", true);
+		carnet.newContact("Natalija", "Mitrovic", "078 456 22 26", true);
+		carnet.newContact("Dragan", "Mitrovic", "079 375 22 26", true);
+		carnet.newContact("Milica", "Mitrovic", "079 478 22 45", true);
+		carnet.newContact("Pero", "Lazic", "079 456 47 26", false);
+		carnet.newContact("Dan", "De Girolamo", "079 654 25 26", true);
+		carnet.newContact("Jean", "Martin", "079 478 45 85", false);
+		carnet.newContact("Paul", "Dupont", "074 456 25 68", false);
 
-		order(carnet.getCarnet(), contactNames);
-		contacts = orderContacts(carnet.getCarnet(), contactNames);
-
-	}
-
-	public static void order(ArrayList<Contact> contacts, ArrayList<String> contactNames) {
-
-		for (int i = 0; i < contacts.size(); i++) {
-			contactNames.add(contacts.get(i).getNomPrenom() + contacts.get(i).getId());
-
-		}
-
-		Collections.sort(contactNames.subList(0, contactNames.size()));
-
-		System.out.println("ORDER OF STRING ARRAYLIST\n");
-
-		for (int i = 0; i < contactNames.size(); i++) {
-			System.out.println(contactNames.get(i).toString());
-		}
-
-		System.out.println("-----------------------------");
+		carnet.serialize();
 
 	}
 
-	public static ArrayList<Contact> orderContacts(ArrayList<Contact> contacts, ArrayList<String> contactNames) {
-		ArrayList<Contact> contacts2 = new ArrayList<Contact>();
 
-		// création d'un tableau de contact vide de la bonne taille
-		for (int i = 0; i < contacts.size(); i++) {
-			contacts2.add(new Contact());
-		}
 
-		//modification de l'ordre
-		for (int i = 0; i < contacts.size(); i++) {
-			String comparaison = contacts.get(i).getNomPrenom() + contacts.get(i).getId();
-			System.out.println("index: " + i);
-			System.out.println("Comparaison de : " + comparaison);
-			for (int j = 0; j < contacts.size(); j++) {
-				System.out.println("avec : " + contactNames.get(j).toString() + "\n---------");
-				if (comparaison.equals(contactNames.get(j).toString())) {
-					contacts2.set(j, contacts.get(i));
-					System.out.println("OK" + j + "\n--------------------------");
-					break;
-				}
-			}
-		}
-
-		System.out.println("ORDER OF CONTACT ARRAYLIST\n");
-
-		for (int i = 0; i < contacts2.size(); i++) {
-			System.out.println(contacts2.get(i).getNomPrenom());
-		}
-
-		return contacts2;
-
-	}
 }
