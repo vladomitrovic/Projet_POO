@@ -80,7 +80,7 @@ public class Galerie {
 			// File permission problems are caught here.
 			System.err.println(x);
 		}
-		
+
 		idPhotos();
 
 		// add the buttons to ContainerPhotos
@@ -109,76 +109,5 @@ public class Galerie {
 			photos.get(i).setId(i);
 		}
 	}
-
-	// public ArrayList<PhotoButton> updateButtons(MainPanelGalerie
-	// panelGalerie, ArrayList<Photo> photos) {
-	// idPhotos(photos);
-	// if (photos.size() == 0) {
-	// panelGalerie.getContainerPhotos().removeAll();
-	// return null;
-	// }
-	//
-	// panelGalerie.getContainerPhotos().removeAll();
-	//
-	// ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
-	// for (int i = 0; i < photos.size(); i++) {
-	// buttons.add(new PhotoButton(photos.get(i)));
-	// buttons.get(i).setPreferredSize(new Dimension(122, 100));
-	// panelGalerie.addButtonsToPanel(buttons, i);
-	// }
-	//
-	// return buttons;
-	// }
-
-	// public ArrayList<PhotoButton> addButton(MainPanelGalerie panelGalerie,
-	// ArrayList<Photo> photos) {
-	//
-	// idPhotos(photos);
-	// for (int i = 0; i < photos.size(); i++) {
-	// System.out.println(photos.get(i).getId());
-	// }
-	//
-	// panelGalerie.getContainerPhotos().removeAll();
-	//
-	// ArrayList<PhotoButton> buttons = new ArrayList<PhotoButton>();
-	// for (int i = 0; i < photos.size(); i++) {
-	// buttons.add(new PhotoButton(photos.get(i)));
-	// buttons.get(i).setPreferredSize(new Dimension(122, 100));
-	// panelGalerie.addActionListener(buttons, i);
-	// panelGalerie.addButtonsToPanel(buttons, i);
-	// }
-	//
-	// return buttons;
-	// }
-	//
-	// public void serialize() {
-	// try {
-	// FileOutputStream fos = new FileOutputStream("Galerie/Photos.serial");
-	// ObjectOutputStream oos = new ObjectOutputStream(fos);
-	// oos.writeObject(photos);
-	// oos.flush();
-	// oos.close();
-	// fos.close();
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
-	//
-	// @SuppressWarnings("unchecked")
-	// public ArrayList<Photo> deserialize() {
-	// try {
-	// FileInputStream in = new FileInputStream("Galerie/Photos.serial");
-	// ObjectInputStream ois = new ObjectInputStream(in);
-	// photos = (ArrayList<Photo>) ois.readObject();
-	// ois.close();
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// } catch (ClassNotFoundException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// return photos;
-	//
-	// }
 
 }
