@@ -47,6 +47,7 @@ public class Contact_Carnet extends JPanel {
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		carnet.deseralize();
+
 		creatContactButtons();
 
 		System.out.println("------Contact_Carnet------");
@@ -90,8 +91,7 @@ public class Contact_Carnet extends JPanel {
 		carnet.refreshId();
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(c.getId()+" " +c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
-
+			ContactButton temp = new ContactButton(c.getPrenom() + " " + c.getNom() + " " + c.isFavoris());
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
 			
@@ -113,7 +113,7 @@ public class Contact_Carnet extends JPanel {
 			Contact c = carnet.getCarnet().get(i);
 			if (c.isFavoris()) {
 				cpt++;
-				ContactButton temp = new ContactButton(c.getNom() + " " + c.getPrenom() + " " + c.isFavoris());
+				ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom() + " " + c.isFavoris());
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);
