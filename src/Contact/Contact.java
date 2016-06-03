@@ -37,6 +37,10 @@ public class Contact implements Serializable {
 		this.favoris=favoris;
 	}
 	
+	public Contact() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNomPrenom() {
 		return prenom+" "+nom;
 	}

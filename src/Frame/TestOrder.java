@@ -12,10 +12,16 @@ public class TestOrder {
 		// TODO Auto-generated method stub
 		ArrayList<Contact> contacts = new ArrayList<Contact>();
 		ArrayList<String> contactNames = new ArrayList<String>();
-		
-		CarnetContact carnet=new CarnetContact();
+
+		CarnetContact carnet = new CarnetContact();
 		carnet.deseralize();
-		carnet.show();
+		for (int i = 0; i < carnet.getCarnet().size(); i++) {
+			System.out.println(carnet.getCarnet().get(i).getNomPrenom());
+		}
+		System.out.println();
+		System.out.println();
+		System.out.println("--------------------");
+
 		order(carnet.getCarnet(), contactNames);
 		contacts = orderContacts(carnet.getCarnet(), contactNames);
 
@@ -24,8 +30,8 @@ public class TestOrder {
 	public static void order(ArrayList<Contact> contacts, ArrayList<String> contactNames) {
 
 		for (int i = 0; i < contacts.size(); i++) {
-			contactNames.add(contacts.get(i).getId() + contacts.get(i).getNomPrenom());
-			
+			contactNames.add(contacts.get(i).getNomPrenom() + contacts.get(i).getId());
+
 		}
 
 		Collections.sort(contactNames.subList(0, contactNames.size()));
@@ -36,16 +42,28 @@ public class TestOrder {
 			System.out.println(contactNames.get(i).toString());
 		}
 
+		System.out.println("-----------------------------");
+
 	}
 
 	public static ArrayList<Contact> orderContacts(ArrayList<Contact> contacts, ArrayList<String> contactNames) {
-		ArrayList<Contact> contacts2 = contacts;
+		ArrayList<Contact> contacts2 = new ArrayList<Contact>();
+
+		// création d'un tableau de contact vide de la bonne taille
 		for (int i = 0; i < contacts.size(); i++) {
-			String comparaison = contacts.get(i).getId() + contacts.get(i).getNomPrenom();
+			contacts2.add(new Contact());
+		}
+
+		//modification de l'ordre
+		for (int i = 0; i < contacts.size(); i++) {
+			String comparaison = contacts.get(i).getNomPrenom() + contacts.get(i).getId();
+			System.out.println("index: " + i);
+			System.out.println("Comparaison de : " + comparaison);
 			for (int j = 0; j < contacts.size(); j++) {
-				if (comparaison.equals(contactNames.get(j))) {
-					System.out.println("Index : "+j+" "+ "Name : "+contacts.get(i).getNomPrenom());
+				System.out.println("avec : " + contactNames.get(j).toString() + "\n---------");
+				if (comparaison.equals(contactNames.get(j).toString())) {
 					contacts2.set(j, contacts.get(i));
+					System.out.println("OK" + j + "\n--------------------------");
 					break;
 				}
 			}
