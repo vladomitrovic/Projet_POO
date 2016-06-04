@@ -13,7 +13,7 @@ import Galerie.Photo;
 
 public class Launcher extends JFrame {
 
-	//TopBarPanel
+	// TopBarPanel
 	private TopBarPanel topBar = new TopBarPanel();
 
 	// pour le cadre (sud est west)
@@ -39,7 +39,7 @@ public class Launcher extends JFrame {
 	private ApplicationButton btnAutres = new ApplicationButton(new Photo("PicturesElements/unknown.png"));
 	private ApplicationButton btnSettings = new ApplicationButton(new Photo("PicturesElements/settings.png"));
 
-	private MainPanelGalerie galerie;
+	private MainPanelGalerie galerie = new MainPanelGalerie();
 	private Contact_Carnet carnet;
 
 	public Launcher() {
@@ -113,7 +113,6 @@ public class Launcher extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			galerie = new MainPanelGalerie();
 			mainContainer.add(galerie, "galerie");
 			c1.show(mainContainer, "galerie");
 		}
