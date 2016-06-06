@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import Elements.ApplicationButton;
 import Elements.HomeButton;
+import Elements.TopBarPanel;
 import Galerie.Photo;
 
 public class Launcher extends JFrame {
