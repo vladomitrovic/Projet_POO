@@ -28,11 +28,8 @@ public class Launcher extends JFrame {
 	public CardLayout c1 = new CardLayout();
 	public JPanel mainContainer = new JPanel();
 
-	// pour le fond d'écran
-	private Photo wallpaper = new Photo("PicturesElements/wallpaper.jpg");
-
 	// panel pour les applications
-	private PanelApplications panelApplication = new PanelApplications(wallpaper);
+	private PanelApplications panelApplication = new PanelApplications();
 
 	// Boutons pour applications
 	private ApplicationButton btnContacts = new ApplicationButton(new Photo("PicturesElements/phone-book.png"));
@@ -81,7 +78,7 @@ public class Launcher extends JFrame {
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
 		add(south, BorderLayout.SOUTH);
-		add(mainContainer, BorderLayout.CENTER);
+		add(mainContainer);
 
 		pack();
 

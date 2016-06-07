@@ -191,7 +191,7 @@ public class OnePhotoPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			top.setImagePanelApplication(photo);
+			top.setImagePanelApplication(new Photo(photo.getPath()));
 			JOptionPane.showMessageDialog(null, "Le fond d'écran a été modifié");
 			
 		}

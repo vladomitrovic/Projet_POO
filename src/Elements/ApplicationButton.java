@@ -4,7 +4,7 @@ import javax.swing.JButton;
 
 import Galerie.Photo;
 
-public class ApplicationButton extends JButton {
+public class ApplicationButton extends TopBarButton {
 
 	public ApplicationButton(Photo photo) {
 		setIcon(photo);
