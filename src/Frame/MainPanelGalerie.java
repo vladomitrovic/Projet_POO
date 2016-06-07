@@ -57,6 +57,7 @@ public class MainPanelGalerie extends JPanel {
 	private JPanel containerPhotos = new JPanel();
 	private TopTitleBar titlePanel = new TopTitleBar(new LayoutGalerieButton(), new Layout_Galerie(), "Galerie",
 			new AddButton(), new Add_Click(), Color.RED);
+	
 	// for containerPhotos
 	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
 	private JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -67,12 +68,11 @@ public class MainPanelGalerie extends JPanel {
 	private int height = 115;
 	private Dimension dimension = new Dimension(width, height);
 
-	// for titlePanel
-
-	public MainPanelGalerie() {
-		// setMainPanel
-		setLayout(new BorderLayout());
-
+	private PanelApplications top ;
+	
+	public MainPanelGalerie(PanelApplications top) {
+		this.top = top ;
+		
 		// set containerPhotos
 		WrapLayout flowLayout = new WrapLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
@@ -87,7 +87,7 @@ public class MainPanelGalerie extends JPanel {
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
 		galeriePanel.add(scroll);
 
-		// add panels to principal Panel
+		// add panels to MainPanelGalerie
 		setLayout(c2);
 		add(galeriePanel, "galeriePanel");
 		c2.show(MainPanelGalerie.this, "galeriePanel");
@@ -100,6 +100,10 @@ public class MainPanelGalerie extends JPanel {
 		MainPanelGalerie.this.repaint();
 	}
 
+	public void setImagePanelApplication(Photo photo){
+		top.setImage(photo); ;
+	}
+	
 	public Dimension getDimension() {
 		return dimension;
 	}
@@ -163,7 +167,6 @@ public class MainPanelGalerie extends JPanel {
 				}
 				containerPhotos.revalidate();
 				containerPhotos.repaint();
-
 			} else {
 				// modify size of buttons
 				for (int i = 0; i < photoButtons.size(); i++) {

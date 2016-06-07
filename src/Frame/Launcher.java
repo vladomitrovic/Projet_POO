@@ -40,18 +40,18 @@ public class Launcher extends JFrame {
 	private ApplicationButton btnAutres = new ApplicationButton(new Photo("PicturesElements/unknown.png"));
 	private ApplicationButton btnSettings = new ApplicationButton(new Photo("PicturesElements/settings.png"));
 
-	private MainPanelGalerie galerie = new MainPanelGalerie();
+	private MainPanelGalerie galerie = new MainPanelGalerie(panelApplication);
 	private Contact_Carnet carnet;
 
 	public Launcher() {
 
 		// Préferences de la frame principale
-		setUndecorated(false);
+		// setUndecorated(false);
 		setPreferredSize(new Dimension(480, 800));
 		setSize(480, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setAlwaysOnTop(true);
+//		setAlwaysOnTop(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// ajout des actionlistener sur les boutons
@@ -96,7 +96,6 @@ public class Launcher extends JFrame {
 
 		south.setBackground(Color.BLACK);
 		flSouth.setAlignment(flSouth.CENTER);
-		flSouth.setVgap(10);
 		south.setLayout(flSouth);
 	}
 
@@ -129,7 +128,6 @@ public class Launcher extends JFrame {
 			c1.show(mainContainer, "carnet");
 
 		}
-
 	}
 
 	class Settings_Click implements ActionListener {
