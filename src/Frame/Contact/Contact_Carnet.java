@@ -3,6 +3,10 @@ package Frame.Contact;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.*;
 import Contact.CarnetContact;
 import Contact.Contact;
@@ -16,6 +20,7 @@ public class Contact_Carnet extends JPanel {
 
 	public CardLayout carnetCard = new CardLayout();
 	private JPanel carnetPanel = new JPanel();
+	private JPanel searchList = new JPanel();
 	private JPanel listePanel = new JPanel();
 	private JScrollPane listeScroll = new JScrollPane(listePanel);
 	private Contact_Details contactDetails;
@@ -23,7 +28,7 @@ public class Contact_Carnet extends JPanel {
 	private TopTitleBar topPanel;
 	private JLabel nbContact = new JLabel();
 	private JTextField recherche=new JTextField();
-	private JButton search=new JButton("Rechercher");
+//	private JButton search=new JButton("Rechercher");
 	CarnetContact carnet = new CarnetContact();
 
 	public Contact_Carnet() {
@@ -35,8 +40,12 @@ public class Contact_Carnet extends JPanel {
 		// Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
-		listePanel.add(recherche);
-		carnetPanel.add(listeScroll);
+		carnetPanel.add(searchList);
+		
+		recherche.setPreferredSize(new Dimension(425, 30));
+		recherche.addKeyListener(new SearchListener());
+		searchList.add(recherche, BorderLayout.NORTH);
+		searchList.add(listeScroll);
 
 		// Ajout du contact panel au panel principal
 		setLayout(carnetCard);
@@ -47,7 +56,7 @@ public class Contact_Carnet extends JPanel {
 		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
-		listeScroll.setPreferredSize(new Dimension(425, 642));
+		listeScroll.setPreferredSize(new Dimension(425, 602));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		carnet.deseralize();
@@ -72,6 +81,7 @@ public class Contact_Carnet extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			for (int i = 0; i < carnet.getCarnet().size(); i++) {
 				if (((JButton) e.getSource()).getName().equals(("C" + i))) {
 					contactDetails = new Contact_Details(i, Contact_Carnet.this);
@@ -102,9 +112,16 @@ public class Contact_Carnet extends JPanel {
 		
 	}
 	
+	class SearchListener extends KeyAdapter{
+		@Override
+		public void keyReleased(KeyEvent e) {
+			research(recherche.getText().toLowerCase());
+			System.out.println(recherche.getText());
+		}	
+	}
+	
 	public void creatContactButtons() {
 		listePanel.removeAll();
-		System.out.println("Removing all buttons");
 		carnet.refreshId();
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
@@ -113,15 +130,38 @@ public class Contact_Carnet extends JPanel {
 			temp.addActionListener(new Details_Click());
 			
 			listePanel.add(temp);
-			System.out.println("Add " + i);
 		}
-
 		nbContact.setText(carnet.getCarnet().size() + " contacts");
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
 	}
 
+	public void research(String search){
+		listePanel.removeAll();
+		int cpt=0;
+		for (int i = 0; i < carnet.getCarnet().size(); i++) {
+			Contact c = carnet.getCarnet().get(i);
+			
+			if (c.getPrenom().toLowerCase().startsWith(search) || c.getNom().toLowerCase().startsWith(search) 
+				 || c.getNomPrenom().toLowerCase().startsWith(search) || c.getPrenomNom().toLowerCase().startsWith(search)) {
+
+				cpt++;
+				ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
+				temp.setName("C" + i);
+				temp.addActionListener(new Details_Click());
+				listePanel.add(temp);
+				System.out.println("Add " + i);
+			}
+		}
+		
+		nbContact.setText(cpt+" / "+carnet.getCarnet().size() + " contacts");
+		nbContact.setPreferredSize(new Dimension(407, 50));
+		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
+		listePanel.add(nbContact);
+		
+	}
+	
 	public void creatFavorisButtons() {
 		listePanel.removeAll();
 		int cpt=0;
@@ -144,4 +184,7 @@ public class Contact_Carnet extends JPanel {
 		listePanel.add(nbContact);
 	}
 
+	
+	
+	
 }

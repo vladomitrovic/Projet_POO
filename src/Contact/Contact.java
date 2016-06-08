@@ -45,6 +45,14 @@ public class Contact implements Serializable {
 	public String getNom() {
 		return nom;
 	}
+	
+	public String getPrenomNom(){
+		return prenom+" "+nom;
+	}
+	
+	public String getNomPrenom(){
+		return nom+" "+prenom;
+	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
