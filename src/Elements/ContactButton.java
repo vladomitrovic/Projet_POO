@@ -21,7 +21,7 @@ public class ContactButton extends JButton{
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setFont(new Font("Arial", Font.PLAIN, 20));
-		setPreferredSize(new Dimension(407, 50));
+		setPreferredSize(new Dimension(400, 40));
 		
 	}
 

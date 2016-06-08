@@ -15,6 +15,7 @@ import Elements.BackButton;
 import Elements.ContactButton;
 import Elements.FavorisButton;
 import Elements.TopTitleBar;
+import Elements.WrapLayout;
 
 public class Contact_Carnet extends JPanel {
 
@@ -22,7 +23,7 @@ public class Contact_Carnet extends JPanel {
 	private JPanel carnetPanel = new JPanel();
 	private JPanel searchList = new JPanel();
 	private JPanel listePanel = new JPanel();
-	private JScrollPane listeScroll = new JScrollPane(listePanel);
+	private JScrollPane listeScroll = new JScrollPane(listePanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private Contact_Details contactDetails;
 	private Contact_Add contactAdd;
 	private TopTitleBar topPanel;
@@ -44,6 +45,7 @@ public class Contact_Carnet extends JPanel {
 		
 		recherche.setPreferredSize(new Dimension(425, 30));
 		recherche.addKeyListener(new SearchListener());
+		
 		searchList.add(recherche, BorderLayout.NORTH);
 		searchList.add(listeScroll);
 
@@ -53,14 +55,15 @@ public class Contact_Carnet extends JPanel {
 		carnetCard.show(Contact_Carnet.this, "carnetPanel");
 
 		
-		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
-		grid.setVgap(5);
-		listePanel.setLayout(grid);
+//		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
+//		grid.setVgap(5);
+		WrapLayout wrap=  new WrapLayout();
+		wrap.setVgap(5);
+		listePanel.setLayout(wrap);
 		listeScroll.setPreferredSize(new Dimension(425, 602));
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		carnet.deseralize();
-		
 
 		creatContactButtons();
 
@@ -125,7 +128,7 @@ public class Contact_Carnet extends JPanel {
 		carnet.refreshId();
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
+			ContactButton temp = new ContactButton(c.getPrenom() + " " + c.getNom());
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
 			
