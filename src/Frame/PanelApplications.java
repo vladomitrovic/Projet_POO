@@ -24,10 +24,10 @@ public class PanelApplications extends JPanel {
 	}
 
 	public void getPhotoWallpaper() {
-		File folder = new File("WallpaperApplication/");
+		File folder = new File("./WallpaperApplication/");
 		File[] image = folder.listFiles();
 		String[] name = new String[image.length];
-		name[0] = "WallpaperApplication/" + image[0].getName();
+		name[0] = "./WallpaperApplication/" + image[0].getName();
 		photo = new Photo(name[0]);
 
 	}
