@@ -22,6 +22,8 @@ public class Contact_Carnet extends JPanel {
 	private Contact_Add contactAdd;
 	private TopTitleBar topPanel;
 	private JLabel nbContact = new JLabel();
+	private JTextField recherche=new JTextField();
+	private JButton search=new JButton("Rechercher");
 	CarnetContact carnet = new CarnetContact();
 
 	public Contact_Carnet() {
@@ -33,6 +35,7 @@ public class Contact_Carnet extends JPanel {
 		// Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
 		carnetPanel.add(topPanel, BorderLayout.NORTH);
+		listePanel.add(recherche);
 		carnetPanel.add(listeScroll);
 
 		// Ajout du contact panel au panel principal
@@ -48,6 +51,7 @@ public class Contact_Carnet extends JPanel {
 		listeScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		carnet.deseralize();
+		
 
 		creatContactButtons();
 
@@ -93,6 +97,7 @@ public class Contact_Carnet extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			creatContactButtons();
 			topPanel.setLeftButton(new FavorisButton(), new Favoris_Click());
+			topPanel.setLabelText("Contact");
 		}
 		
 	}
