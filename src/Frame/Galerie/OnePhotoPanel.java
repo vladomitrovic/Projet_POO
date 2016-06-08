@@ -1,35 +1,33 @@
-package Frame;
+package Frame.Galerie;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Elements.BackButton;
 import Elements.TrashButton;
+import Elements.WallpaperButton;
 import Galerie.Photo;
 
 public class OnePhotoPanel extends JPanel {
 
 	private Photo photo;
-	private BackButton backButton = new BackButton();
+
+	// upPhotoPanel with buttons
 	private JPanel upPhotoPanel = new JPanel(new GridLayout(1, 3));
+	private BackButton backButton = new BackButton();
 	private TrashButton trashButton = new TrashButton();
+	private WallpaperButton wallpaperButton = new WallpaperButton();
 
 	// for the diaporama
 	private JPanel previousImagePanel = new JPanel(new BorderLayout());
@@ -49,6 +47,7 @@ public class OnePhotoPanel extends JPanel {
 		// add listeners to buttons
 		backButton.addActionListener(new Back_PhotoClick());
 		trashButton.addActionListener(new Delete_Click());
+		wallpaperButton.addActionListener(new Wallpaper_Click());
 
 		// set buttons
 		backButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -56,6 +55,7 @@ public class OnePhotoPanel extends JPanel {
 
 		// add to upPhotoPanel
 		upPhotoPanel.add(backButton);
+		upPhotoPanel.add(wallpaperButton);
 		upPhotoPanel.add(trashButton);
 		upPhotoPanel.setOpaque(false);
 
@@ -176,5 +176,16 @@ public class OnePhotoPanel extends JPanel {
 			top.getCardLayout().show(top, "newPhotoPanel");
 		}
 
+	}
+
+	class Wallpaper_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			top.setImagePanelApplication(new Photo(photo.getPath()));
+			JOptionPane.showMessageDialog(null, "Le fond d'écran a été modifié");
+
+		}
 	}
 }

@@ -1,15 +1,21 @@
 package Frame;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Elements.ApplicationButton;
 import Elements.HomeButton;
 import Elements.TopBarPanel;
+import Frame.Contact.Contact_Carnet;
+import Frame.Galerie.MainPanelGalerie;
 import Galerie.Photo;
 
 public class Launcher extends JFrame {
@@ -28,11 +34,8 @@ public class Launcher extends JFrame {
 	public CardLayout c1 = new CardLayout();
 	public JPanel mainContainer = new JPanel();
 
-	// pour le fond d'écran
-	private Photo wallpaper = new Photo("PicturesElements/wallpaper.jpg");
-
 	// panel pour les applications
-	private PanelApplications panelApplication = new PanelApplications(wallpaper);
+	private PanelApplications panelApplication = new PanelApplications();
 
 	// Boutons pour applications
 	private ApplicationButton btnContacts = new ApplicationButton(new Photo("PicturesElements/phone-book.png"));
@@ -40,18 +43,18 @@ public class Launcher extends JFrame {
 	private ApplicationButton btnAutres = new ApplicationButton(new Photo("PicturesElements/unknown.png"));
 	private ApplicationButton btnSettings = new ApplicationButton(new Photo("PicturesElements/settings.png"));
 
-	private MainPanelGalerie galerie = new MainPanelGalerie();
+	private MainPanelGalerie galerie = new MainPanelGalerie(panelApplication);
 	private Contact_Carnet carnet;
 
 	public Launcher() {
 
 		// Préferences de la frame principale
-		setUndecorated(false);
+		// setUndecorated(false);
 		setPreferredSize(new Dimension(480, 800));
 		setSize(480, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setAlwaysOnTop(true);
+		// setAlwaysOnTop(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// ajout des actionlistener sur les boutons
@@ -81,7 +84,7 @@ public class Launcher extends JFrame {
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
 		add(south, BorderLayout.SOUTH);
-		add(mainContainer, BorderLayout.CENTER);
+		add(mainContainer);
 
 		pack();
 
@@ -96,7 +99,6 @@ public class Launcher extends JFrame {
 
 		south.setBackground(Color.BLACK);
 		flSouth.setAlignment(flSouth.CENTER);
-		flSouth.setVgap(10);
 		south.setLayout(flSouth);
 	}
 
@@ -129,7 +131,6 @@ public class Launcher extends JFrame {
 			c1.show(mainContainer, "carnet");
 
 		}
-
 	}
 
 	class Settings_Click implements ActionListener {
