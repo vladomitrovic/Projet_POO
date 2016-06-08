@@ -1,4 +1,4 @@
-package Frame;
+package Frame.Contact;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -10,22 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
-import Elements.AddButton;
 import Elements.BackButton;
-import Elements.FavorisButton;
 import Elements.OkButton;
 import Elements.TopTitleBar;
-import Frame.Contact_Carnet.Add_Click;
-import Frame.Contact_Carnet.Favoris_Click;
-import Frame.Contact_Details.Modif_Click;
-import Frame.Contact_Details.Return_Click;
 
 public class Contact_Add extends JPanel {
 
@@ -41,8 +33,6 @@ public class Contact_Add extends JPanel {
 	private JTextField lblCPname = new JTextField("");
 	private JTextField lblCTel = new JTextField("");
 
-
-
 	BackButton backButton = new BackButton();
 
 	private FlowLayout detailsLayout = new FlowLayout();
@@ -54,38 +44,36 @@ public class Contact_Add extends JPanel {
 	Contact_Carnet top;
 
 	private Contact_Carnet carnet = new Contact_Carnet();
-	
-	private JCheckBox favoris=new JCheckBox ("Favoris");
+
+	private JCheckBox favoris = new JCheckBox("Favoris");
 	private TopTitleBar topPanel;
-	
+
 	public Contact_Add(Contact_Carnet top) {
 		this.top = top;
 		this.setLayout(new BorderLayout());
 
 		contentPane.setLayout(new BorderLayout());
 
-//		// Ajout des composant du topPanel
-//		addButton.setContentAreaFilled(false);
-//		addButton.setBorderPainted(false);
-//		topLayout.setHgap(60);
-//		topLayout.setVgap(10);
-//		topPanel.setBackground(Color.GRAY);
-//		topPanel.setLayout(topLayout);
-//		topPanel.add(backButton);
-//		topPanel.add(titleLbl);
-//		topPanel.add(addButton);
-//		backButton.addActionListener(new Return_Click());
-//		addButton.addActionListener(new add_Click());
-//		// Modification du titre
-//		titleLbl.setForeground(Color.WHITE);
-//		titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
-//		addButton.setForeground(Color.WHITE);
+		// // Ajout des composant du topPanel
+		// addButton.setContentAreaFilled(false);
+		// addButton.setBorderPainted(false);
+		// topLayout.setHgap(60);
+		// topLayout.setVgap(10);
+		// topPanel.setBackground(Color.GRAY);
+		// topPanel.setLayout(topLayout);
+		// topPanel.add(backButton);
+		// topPanel.add(titleLbl);
+		// topPanel.add(addButton);
+		// backButton.addActionListener(new Return_Click());
+		// addButton.addActionListener(new add_Click());
+		// // Modification du titre
+		// titleLbl.setForeground(Color.WHITE);
+		// titleLbl.setFont(new Font("Arial", Font.PLAIN, 30));
+		// addButton.setForeground(Color.WHITE);
 
-		
-		topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", new OkButton(), new Add_Click(), Color.GRAY);
-		
-		
-		
+		topPanel = new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", new OkButton(), new Add_Click(),
+				Color.GRAY);
+
 		newContactPanel.setLayout(new BorderLayout());
 		newContactPanel.add(topPanel, BorderLayout.NORTH);
 		newContactPanel.add(contentPane);
@@ -127,13 +115,12 @@ public class Contact_Add extends JPanel {
 		lblCTel.setPreferredSize(ClblSize);
 		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
-		
-		favoris.setPreferredSize(lblSize);
-//		favoris.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(favoris);
-		
-		System.out.println("------Contact_Add------");
 
+		favoris.setPreferredSize(lblSize);
+		// favoris.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(favoris);
+
+		System.out.println("------Contact_Add------");
 
 	}
 
@@ -144,7 +131,7 @@ public class Contact_Add extends JPanel {
 			top.remove(Contact_Add.this);
 		}
 	}
-	
+
 	class Add_Click implements ActionListener {
 
 		@Override
@@ -153,12 +140,7 @@ public class Contact_Add extends JPanel {
 			top.carnet.serialize();
 			top.creatContactButtons();
 			top.remove(Contact_Add.this);
-			
 
-
-			
-
-			
 		}
 	}
 

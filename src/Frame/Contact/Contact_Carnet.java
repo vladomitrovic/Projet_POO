@@ -1,4 +1,4 @@
-package Frame;
+package Frame.Contact;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,10 +25,10 @@ public class Contact_Carnet extends JPanel {
 	CarnetContact carnet = new CarnetContact();
 
 	public Contact_Carnet() {
-	
-		//Création TopTitleBar
-		topPanel=new TopTitleBar(new FavorisButton(), new Favoris_Click(), "Contacts", new AddButton(), new Add_Click(), Color.GRAY);
 
+		// Création TopTitleBar
+		topPanel = new TopTitleBar(new FavorisButton(), new Favoris_Click(), "Contacts", new AddButton(),
+				new Add_Click(), Color.GRAY);
 
 		// Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
@@ -40,7 +40,6 @@ public class Contact_Carnet extends JPanel {
 		add(carnetPanel, "carnetPanel");
 		carnetCard.show(Contact_Carnet.this, "carnetPanel");
 
-		
 		GridLayout grid = new GridLayout(carnet.getCarnet().size(), 1);
 		grid.setVgap(5);
 		listePanel.setLayout(grid);
@@ -86,7 +85,7 @@ public class Contact_Carnet extends JPanel {
 			topPanel.setLeftButton(new BackButton(), new ReturnFavoris_Click());
 		}
 	}
-	
+
 	class ReturnFavoris_Click implements ActionListener {
 
 		@Override
@@ -94,19 +93,19 @@ public class Contact_Carnet extends JPanel {
 			creatContactButtons();
 			topPanel.setLeftButton(new FavorisButton(), new Favoris_Click());
 		}
-		
+
 	}
-	
+
 	public void creatContactButtons() {
 		listePanel.removeAll();
 		System.out.println("Removing all buttons");
 		carnet.refreshId();
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
-			ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
+			ContactButton temp = new ContactButton(" " + c.getPrenom() + " " + c.getNom());
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
-			
+
 			listePanel.add(temp);
 			System.out.println("Add " + i);
 		}
@@ -119,21 +118,21 @@ public class Contact_Carnet extends JPanel {
 
 	public void creatFavorisButtons() {
 		listePanel.removeAll();
-		int cpt=0;
+		int cpt = 0;
 		for (int i = 0; i < carnet.getCarnet().size(); i++) {
 			Contact c = carnet.getCarnet().get(i);
 			if (c.isFavoris()) {
 				cpt++;
-				ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
+				ContactButton temp = new ContactButton(" " + c.getPrenom() + " " + c.getNom());
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);
 				System.out.println("Add " + i);
 			}
-		}	
+		}
 		topPanel.setLabelText("Favoris");
-		
-		nbContact.setText(cpt+" / "+carnet.getCarnet().size() + " contacts");
+
+		nbContact.setText(cpt + " / " + carnet.getCarnet().size() + " contacts");
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);

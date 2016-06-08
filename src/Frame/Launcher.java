@@ -1,15 +1,21 @@
 package Frame;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Elements.ApplicationButton;
 import Elements.HomeButton;
 import Elements.TopBarPanel;
+import Frame.Contact.Contact_Carnet;
+import Frame.Galerie.MainPanelGalerie;
 import Galerie.Photo;
 
 public class Launcher extends JFrame {
@@ -48,7 +54,7 @@ public class Launcher extends JFrame {
 		setSize(480, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
-//		setAlwaysOnTop(true);
+		// setAlwaysOnTop(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// ajout des actionlistener sur les boutons

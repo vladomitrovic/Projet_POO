@@ -1,22 +1,14 @@
-package Frame;
+package Frame.Galerie;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Timer;
 
-import javax.imageio.ImageIO;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -193,7 +185,7 @@ public class OnePhotoPanel extends JPanel {
 			// TODO Auto-generated method stub
 			top.setImagePanelApplication(new Photo(photo.getPath()));
 			JOptionPane.showMessageDialog(null, "Le fond d'écran a été modifié");
-			
+
 		}
 	}
 }

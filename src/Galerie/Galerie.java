@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import Elements.PhotoButton;
-import Frame.MainPanelGalerie;
+import Frame.Galerie.MainPanelGalerie;
 
 public class Galerie {
 

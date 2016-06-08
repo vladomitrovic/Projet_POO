@@ -1,4 +1,4 @@
-package Frame;
+package Frame.Contact;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -18,16 +18,8 @@ import javax.swing.JTextField;
 
 import Contact.CarnetContact;
 import Contact.Contact;
-import Elements.AddButton;
 import Elements.BackButton;
-import Elements.FavorisButton;
 import Elements.TopTitleBar;
-import Elements.TrashButton;
-import Frame.Contact_Carnet.Add_Click;
-import Frame.Contact_Carnet.Favoris_Click;
-import Frame.Contact_Details.Modif_Click;
-import Frame.Contact_Details.Return_Click;
-import Frame.Contact_Details.Trash_Click;
 
 public class Contact_Modif extends JPanel {
 
@@ -43,7 +35,6 @@ public class Contact_Modif extends JPanel {
 	private JTextField fieldPname = new JTextField("");
 	private JTextField fieldTel = new JTextField("");
 
-
 	private FlowLayout detailsLayout = new FlowLayout();
 	private Dimension lblSize = new Dimension(280, 25);
 	private Dimension ClblSize = new Dimension(280, 25);
@@ -52,29 +43,27 @@ public class Contact_Modif extends JPanel {
 	private JPanel panel = new JPanel();
 	private JButton modifyButton = new JButton("Enregistrer");
 	private Contact contactModif;
-	private JCheckBox favoris=new JCheckBox ("Favoris");
+	private JCheckBox favoris = new JCheckBox("Favoris");
 	private int id;
 	private Contact_Details top;
 	private TopTitleBar topPanel;
-	private CarnetContact carnet=new CarnetContact();
+	private CarnetContact carnet = new CarnetContact();
 
-	public Contact_Modif(int id, Contact_Details top ) {
-		
-		this.id=id;
+	public Contact_Modif(int id, Contact_Details top) {
+
+		this.id = id;
 		carnet.deseralize();
-		contactModif=carnet.getCarnet().get(id);
-		
+		contactModif = carnet.getCarnet().get(id);
+
 		this.setLayout(new BorderLayout());
 		this.top = top;
 
-		
 		contentPane.setLayout(new BorderLayout());
 
-	
 		modifyButton.addActionListener(new Modif_Click());
-		
-		topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", Color.GRAY);
-	
+
+		topPanel = new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", Color.GRAY);
+
 		modifyButton.setForeground(Color.BLACK);
 
 		modifPanel.setLayout(new BorderLayout());
@@ -86,21 +75,17 @@ public class Contact_Modif extends JPanel {
 		add(modifPanel, "modifPanel");
 		carnetCard.show(Contact_Modif.this, "ModifPanel");
 
-		
 		contentPane.add(panel, BorderLayout.CENTER);
 		detailsLayout.setVgap(25);
 		detailsLayout.setHgap(10);
 		panel.setLayout(detailsLayout);
 
 		addLabel();
-		
-		
+
 		modifyButton.setPreferredSize(lblSize);
 		modifyButton.setContentAreaFilled(false);
 		panel.add(modifyButton);
 
-
-		
 		System.out.println("------Contact_Modif------");
 
 	}
@@ -112,8 +97,8 @@ public class Contact_Modif extends JPanel {
 			top.remove(Contact_Modif.this);
 		}
 	}
-	
-	private void addLabel(){
+
+	private void addLabel() {
 		lblPrenom.setPreferredSize(lblSize);
 		lblPrenom.setFont(lblFont);
 		lblPrenom.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY));
@@ -149,7 +134,6 @@ public class Contact_Modif extends JPanel {
 		panel.add(favoris);
 	}
 
-	
 	class Modif_Click implements ActionListener {
 
 		@Override
@@ -164,7 +148,5 @@ public class Contact_Modif extends JPanel {
 
 		}
 	}
-	
-
 
 }
