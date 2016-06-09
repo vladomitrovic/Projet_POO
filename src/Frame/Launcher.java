@@ -51,7 +51,6 @@ public class Launcher extends JFrame {
 	public Launcher() {
 
 		// Préferences de la frame principale
-		// setUndecorated(false);
 		setPreferredSize(new Dimension(480, 800));
 		setSize(480, 800);
 		setLocationRelativeTo(null);

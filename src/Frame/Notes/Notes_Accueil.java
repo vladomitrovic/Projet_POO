@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Elements.AddButton;
+import Elements.NotesButton;
 import Elements.TopTitleBar;
+import Elements.WrapLayout;
 
 public class Notes_Accueil extends JPanel {
 
@@ -18,8 +20,8 @@ public class Notes_Accueil extends JPanel {
 
 	private JPanel panelBlocNotes = new JPanel(new BorderLayout());
 	private TopTitleBar titleBar = new TopTitleBar("Notes", 255, 218, 1, new AddButton(), new Add_Click());
-	private JPanel panelNotes = new JPanel();
-	private JScrollPane scroll = new JScrollPane(panelNotes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+	private JPanel panelNotes = new JPanel(new WrapLayout(WrapLayout.LEFT, 10, 10));
+	private JScrollPane scroll = new JScrollPane(panelNotes, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 	public Notes_Accueil() {
@@ -32,6 +34,22 @@ public class Notes_Accueil extends JPanel {
 
 		// add to Notes_Accueil
 		add(panelBlocNotes);
+
+		// add NotesButton to panelNotes
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("Test"));
+
+
 	}
 
 	class Add_Click implements ActionListener {
