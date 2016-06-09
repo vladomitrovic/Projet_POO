@@ -1,20 +1,27 @@
 package Elements;
 
+import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 import Galerie.Photo;
 
 public class NotesButton extends TopBarButton {
 
-	private Photo photo = new Photo("PicturesElements/note_background_1.png");
+	private Photo photo = new Photo("PicturesElements/note_background.png");
 
 	public NotesButton(String text) {
 		setText(text);
-		setPreferredSize(new Dimension(190, 190));
+		setPreferredSize(new Dimension(190, 230));
+		setVerticalTextPosition(0);
+		setVerticalAlignment(SwingConstants.TOP);
+		setHorizontalAlignment(SwingConstants.LEFT);
+		setMargin(new Insets(15, 15, 15, 15));
 	}
 
 	@Override
