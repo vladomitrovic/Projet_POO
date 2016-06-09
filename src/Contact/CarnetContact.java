@@ -22,10 +22,7 @@ public class CarnetContact {
 		refreshId();
 	}
 
-	public void newContact(Contact contact) {
-		this.carnet.add(contact);
-		refreshId();
-	}
+	
 
 	public void deleteContact(int id) {
 		this.carnet.remove(id);
@@ -58,10 +55,8 @@ public class CarnetContact {
 			this.carnet = (ArrayList<Contact>) ois.readObject();
 			ois.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -108,6 +103,8 @@ public class CarnetContact {
 		carnet=contactAbc;
 	}
 
+	
+//	---------------A SUPPRIMER---------------
 	public void show() {
 		String temp = "CarnetContact : \n";
 		for (int i = 0; i < carnet.size(); i++) {
