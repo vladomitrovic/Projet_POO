@@ -15,7 +15,8 @@ import Elements.ApplicationButton;
 import Elements.HomeButton;
 import Elements.TopBarPanel;
 import Frame.Contact.Contact_Carnet;
-import Frame.Galerie.MainPanelGalerie;
+import Frame.Galerie.Galerie_Accueil;
+import Frame.Notes.Notes_Accueil;
 import Galerie.Photo;
 
 public class Launcher extends JFrame {
@@ -40,11 +41,12 @@ public class Launcher extends JFrame {
 	// Boutons pour applications
 	private ApplicationButton btnContacts = new ApplicationButton(new Photo("PicturesElements/phone-book.png"));
 	private ApplicationButton btnGalerie = new ApplicationButton(new Photo("PicturesElements/gallery.png"));
-	private ApplicationButton btnAutres = new ApplicationButton(new Photo("PicturesElements/unknown.png"));
+	private ApplicationButton btnNotes = new ApplicationButton(new Photo("PicturesElements/note.png"));
 	private ApplicationButton btnSettings = new ApplicationButton(new Photo("PicturesElements/settings.png"));
 
-	private MainPanelGalerie galerie = new MainPanelGalerie(panelApplication);
+	private Galerie_Accueil galerie = new Galerie_Accueil(panelApplication);
 	private Contact_Carnet carnet;
+	private Notes_Accueil notes = new Notes_Accueil();
 
 	public Launcher() {
 
@@ -60,11 +62,12 @@ public class Launcher extends JFrame {
 		// ajout des actionlistener sur les boutons
 		btnGalerie.addActionListener(new Galerie_Click());
 		btnContacts.addActionListener(new Contact_Click());
+		btnNotes.addActionListener(new Notes_Click());
 
 		// ajout des boutons à la frame
 		panelApplication.add(btnContacts);
 		panelApplication.add(btnGalerie);
-		panelApplication.add(btnAutres);
+		panelApplication.add(btnNotes);
 		panelApplication.add(btnSettings);
 
 		// create the border
@@ -133,12 +136,13 @@ public class Launcher extends JFrame {
 		}
 	}
 
-	class Settings_Click implements ActionListener {
+	class Notes_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-
+			mainContainer.add(notes, "notes");
+			c1.show(mainContainer, "notes");
 		}
 
 	}

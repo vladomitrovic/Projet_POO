@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import Elements.PhotoButton;
-import Frame.Galerie.MainPanelGalerie;
+import Frame.Galerie.Galerie_Accueil;
 
 public class Galerie {
 
@@ -25,7 +25,7 @@ public class Galerie {
 	private ArrayList<String> name = new ArrayList<String>();
 	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
 
-	public ArrayList<PhotoButton> createPhotoButtons(MainPanelGalerie panelGalerie) {
+	public ArrayList<PhotoButton> createPhotoButtons(Galerie_Accueil panelGalerie) {
 		setNamesFromDirectory();
 		for (int i = 0; i < name.size(); i++) {
 			photos.add(panelGalerie.createPhotoFit(name.get(i)));
@@ -40,7 +40,7 @@ public class Galerie {
 
 	}
 
-	public ArrayList<PhotoButton> updateButtons(MainPanelGalerie panelGalerie) {
+	public ArrayList<PhotoButton> updateButtons(Galerie_Accueil panelGalerie) {
 		photos.clear();
 		name.clear();
 		photoButtons.clear();
@@ -61,7 +61,7 @@ public class Galerie {
 
 	}
 
-	public void deletePhoto(MainPanelGalerie panelGalerie, int index, String chemin) {
+	public void deletePhoto(Galerie_Accueil panelGalerie, int index, String chemin) {
 		// remove from all ArrayList
 		photos.remove(index);
 		name.remove(index);

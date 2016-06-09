@@ -28,12 +28,12 @@ import Frame.PanelApplications;
 import Galerie.Galerie;
 import Galerie.Photo;
 
-public class MainPanelGalerie extends JPanel {
+public class Galerie_Accueil extends JPanel {
 
 	// for MainPanelGalerie
 	public CardLayout c2 = new CardLayout();
 	private JPanel galeriePanel = new JPanel(new BorderLayout());
-	private OnePhotoPanel onePhotoPanel;
+	private OnePhoto onePhoto;
 
 	// for galeriePanel
 	private JPanel containerPhotos = new JPanel();
@@ -52,7 +52,7 @@ public class MainPanelGalerie extends JPanel {
 
 	private PanelApplications top;
 
-	public MainPanelGalerie(PanelApplications top) {
+	public Galerie_Accueil(PanelApplications top) {
 		this.top = top;
 
 		// set containerPhotos
@@ -63,7 +63,7 @@ public class MainPanelGalerie extends JPanel {
 		containerPhotos.setLayout(flowLayout);
 
 		// add photoButtons to gallery
-		photoButtons = galerie.createPhotoButtons(MainPanelGalerie.this);
+		photoButtons = galerie.createPhotoButtons(Galerie_Accueil.this);
 
 		// add containerPhoto and upPanel to galeriePanel
 		galeriePanel.add(titlePanel, BorderLayout.NORTH);
@@ -72,14 +72,14 @@ public class MainPanelGalerie extends JPanel {
 		// add panels to MainPanelGalerie
 		setLayout(c2);
 		add(galeriePanel, "galeriePanel");
-		c2.show(MainPanelGalerie.this, "galeriePanel");
+		c2.show(Galerie_Accueil.this, "galeriePanel");
 
 	}
 
 	public void removePanel(JPanel panelRemove) {
-		MainPanelGalerie.this.remove(panelRemove);
-		MainPanelGalerie.this.revalidate();
-		MainPanelGalerie.this.repaint();
+		Galerie_Accueil.this.remove(panelRemove);
+		Galerie_Accueil.this.revalidate();
+		Galerie_Accueil.this.repaint();
 	}
 
 	public void setImagePanelApplication(Photo photo) {
@@ -172,9 +172,9 @@ public class MainPanelGalerie extends JPanel {
 			// TODO Auto-generated method stub
 			JButton button = (JButton) e.getSource();
 			Photo photo = (Photo) button.getIcon();
-			onePhotoPanel = new OnePhotoPanel(photo, MainPanelGalerie.this);
-			add(onePhotoPanel, "onePhotoPanel");
-			c2.show(MainPanelGalerie.this, "onePhotoPanel");
+			onePhoto = new OnePhoto(photo, Galerie_Accueil.this);
+			add(onePhoto, "onePhotoPanel");
+			c2.show(Galerie_Accueil.this, "onePhotoPanel");
 		}
 
 	}
@@ -202,7 +202,7 @@ public class MainPanelGalerie extends JPanel {
 				File source = new File(chooser.getSelectedFile().getAbsolutePath());
 				File dest = new File("Pictures/" + chooser.getSelectedFile().getName());
 				copyFile(source, dest);
-				galerie.updateButtons(MainPanelGalerie.this);
+				galerie.updateButtons(Galerie_Accueil.this);
 			}
 		}
 
