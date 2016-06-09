@@ -20,8 +20,8 @@ public class NotesButton extends TopBarButton {
 		setPreferredSize(new Dimension(190, 230));
 		setVerticalTextPosition(0);
 		setVerticalAlignment(SwingConstants.TOP);
-		setHorizontalAlignment(SwingConstants.CENTER);
-		setMargin(new Insets(10, 10, 10, 10));
+		setHorizontalAlignment(SwingConstants.LEFT);
+		setMargin(new Insets(15, 15, 15, 15));
 	}
 
 	@Override

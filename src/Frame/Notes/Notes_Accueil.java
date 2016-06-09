@@ -46,7 +46,7 @@ public class Notes_Accueil extends JPanel {
 				+ "fjadsklfjaslkfjasldkfjasklfjasldkf"
 				+ "jadslfkjdslkfjdsklfjds"
 				+ "lfkjdslkfjasdlfkjadslfkjdsflkadsflkadsfjlkj"));
-		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton("<html>fnord<br />foo</html>"));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
