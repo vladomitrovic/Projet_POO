@@ -12,8 +12,21 @@ public class BlocNotes {
 	private ArrayList<Note> blocNotes = new ArrayList<Note>();
 
 	public void newNote(String texte) {
-		blocNotes.add(new Note(texte));
+		blocNotes.add(new Note(displayInButton(texte)));
 		refreshId();
+	}
+
+	public String displayInButton(String texte) {
+		String returnText = "<html>";
+		for (int i = 0; i < texte.length(); i++) {
+			if (i % 15 != 0)
+				returnText += texte.charAt(i);
+			else
+				returnText += "<br />"+texte.charAt(i);
+		}
+		returnText += "</html>";
+		return returnText;
+
 	}
 
 	public void deleteNote(int id) {

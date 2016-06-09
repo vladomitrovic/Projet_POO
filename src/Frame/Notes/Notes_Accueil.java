@@ -12,6 +12,7 @@ import Elements.AddButton;
 import Elements.NotesButton;
 import Elements.TopTitleBar;
 import Elements.WrapLayout;
+import Notes.BlocNotes;
 
 public class Notes_Accueil extends JPanel {
 
@@ -28,6 +29,8 @@ public class Notes_Accueil extends JPanel {
 	private JPanel panelNotes = new JPanel(new WrapLayout(WrapLayout.LEFT, 10, 10));
 	private JScrollPane scroll = new JScrollPane(panelNotes, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	
+	private BlocNotes blocNotes = new BlocNotes();
 
 	public Notes_Accueil() {
 		// set Notes_Accueil
@@ -46,8 +49,10 @@ public class Notes_Accueil extends JPanel {
 				+ "fjadsklfjaslkfjasldkfjasklfjasldkf"
 				+ "jadslfkjdslkfjdsklfjds"
 				+ "lfkjdslkfjasdlfkjadslfkjdsflkadsflkadsfjlkj"));
+		
+		String s= "élsjsafdsfasdfasfadsfsadfasfadsfadsfasfadsfasdfasdfasdfdfs";
 		panelNotes.add(new NotesButton("<html>fnord<br />foo</html>"));
-		panelNotes.add(new NotesButton("Test"));
+		panelNotes.add(new NotesButton(blocNotes.displayInButton(s)));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
