@@ -18,8 +18,13 @@ public class Notes_Accueil extends JPanel {
 	// for Panel Notes_Accueil
 	private CardLayout c1 = new CardLayout();
 
+	// panel BlocNotes contains titleBar and Panelnotes
 	private JPanel panelBlocNotes = new JPanel(new BorderLayout());
-	private TopTitleBar titleBar = new TopTitleBar("Notes", 255, 218, 1, new AddButton(), new Add_Click());
+
+	// for titlePanel
+	private TopTitleBar titleBar = new TopTitleBar("Notes", 120, 95, 248, new AddButton(), new Add_Click());
+
+	// for panelBlocNotes
 	private JPanel panelNotes = new JPanel(new WrapLayout(WrapLayout.LEFT, 10, 10));
 	private JScrollPane scroll = new JScrollPane(panelNotes, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -36,6 +41,11 @@ public class Notes_Accueil extends JPanel {
 		add(panelBlocNotes);
 
 		// add NotesButton to panelNotes
+		panelNotes.add(new NotesButton(
+				"asflksjdflkasjdflksdfjalsk"
+				+ "fjadsklfjaslkfjasldkfjasklfjasldkf"
+				+ "jadslfkjdslkfjdsklfjds"
+				+ "lfkjdslkfjasdlfkjadslfkjdsflkadsflkadsfjlkj"));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
@@ -47,8 +57,6 @@ public class Notes_Accueil extends JPanel {
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
 		panelNotes.add(new NotesButton("Test"));
-		panelNotes.add(new NotesButton("Test"));
-
 
 	}
 
@@ -57,6 +65,7 @@ public class Notes_Accueil extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			System.out.println("salut");
 		}
 
 	}
