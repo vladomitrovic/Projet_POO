@@ -4,6 +4,7 @@ import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -20,6 +21,7 @@ public class NotesButton extends TopBarButton {
 		setVerticalTextPosition(0);
 		setVerticalAlignment(SwingConstants.TOP);
 		setHorizontalAlignment(SwingConstants.CENTER);
+		setMargin(new Insets(10, 10, 10, 10));
 	}
 
 	@Override
