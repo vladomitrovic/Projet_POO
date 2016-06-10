@@ -22,20 +22,23 @@ import Elements.OkButton;
 import Elements.TopTitleBar;
 import Elements.TrashButton;
 import Galerie.Photo;
+import Notes.Note;
 
 public class Notes_Details extends JPanel {
 
-	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(), null,
-			new Color(252, 105, 17));
+	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(),
+			new Delete_Click(), new Color(252, 105, 17));
 	private JTextArea textArea = new JTextArea();
 
 	// Photo for paintComponent
 	private Photo photo = new Photo("PicturesElements/fondEcranNote.png");
 
 	private Notes_Accueil top;
+	private Note note;
 
-	public Notes_Details(String texte, Notes_Accueil top) {
+	public Notes_Details(String texte, Notes_Accueil top, Note note) {
 		this.top = top;
+		this.note = note;
 		// set layout
 		setLayout(new BorderLayout());
 
@@ -71,12 +74,24 @@ public class Notes_Details extends JPanel {
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
 			if (dialogButton == JOptionPane.YES_OPTION) {
-				
+
 				top.removePanel(Notes_Details.this);
 			}
 			if (dialogButton == JOptionPane.NO_OPTION) {
 				top.removePanel(Notes_Details.this);
 			}
+		}
+
+	}
+
+	class Delete_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			top.getBlocNotes().deleteNote(note.getId());
+			top.removePanel(Notes_Details.this);
+			System.out.println("j'ai supprimé l'image");
 		}
 
 	}

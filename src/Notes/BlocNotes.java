@@ -19,7 +19,6 @@ public class BlocNotes {
 		blocNotes.add(new Note(texte));
 		refreshId();
 		notesButtons.add(new NotesButton(displayInButton(texte)));
-
 	}
 
 	public ArrayList<NotesButton> getNotesButtons() {
@@ -51,6 +50,7 @@ public class BlocNotes {
 
 	public void deleteNote(int id) {
 		blocNotes.remove(id);
+		notesButtons.remove(id);
 		refreshId();
 	}
 
