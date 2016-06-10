@@ -104,7 +104,6 @@ public class Contact_Details extends JPanel {
 		panel.add(modifyButton);
 		
 
-		System.out.println("------Contact_Details------");
 	}
 
 

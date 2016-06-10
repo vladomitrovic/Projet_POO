@@ -59,7 +59,6 @@ public class Contact_Image extends JPanel {
 			JButton button = (JButton) e.getSource();
 			Photo photo= (Photo) button.getIcon();
 			top.getCarnet().getCarnet().get(id).setPhoto(photo.getPath());
-			System.out.println("Choose pic");
 			top.getCarnet().serialize();
 			top.remove(Contact_Image.this);
 			top.setPicture(photo.getPath());

@@ -70,18 +70,23 @@ public class Notes_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			int dialogButton = JOptionPane.YES_NO_OPTION;
-			JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
-			if (dialogButton == JOptionPane.YES_OPTION) {
-
-				top.removePanel(Notes_Details.this);
-			}
-			if (dialogButton == JOptionPane.NO_OPTION) {
-				top.removePanel(Notes_Details.this);
+			// If no modif on textArea, no confirmation
+			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte())) {
+				top.remove(Notes_Details.this);
+			} else {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
+				if (dialogButton == JOptionPane.YES_OPTION) {
+					top.getBlocNotes().getBlocNotes().get(note.getId()).setTexte(textArea.getText());
+					top.getBlocNotes().serialize();
+					top.creatNotesButtons();
+					top.remove(Notes_Details.this);
+				}
+				if (dialogButton == JOptionPane.NO_OPTION) {
+					top.remove(Notes_Details.this);
+				}
 			}
 		}
-
 	}
 
 	class Delete_Click implements ActionListener {
@@ -90,7 +95,8 @@ public class Notes_Details extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			top.getBlocNotes().deleteNote(note.getId());
-			top.removePanel(Notes_Details.this);
+			top.creatNotesButtons();
+			top.remove(Notes_Details.this);
 			System.out.println("j'ai supprimé l'image");
 		}
 

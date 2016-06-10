@@ -88,6 +88,7 @@ public class Contact_Carnet extends JPanel {
 					contactDetails = new Contact_Details(i, Contact_Carnet.this);
 					add(contactDetails, "contactDetails");
 					carnetCard.show(Contact_Carnet.this, "contactDetails");
+					return;
 				}
 			}
 		}
@@ -117,7 +118,6 @@ public class Contact_Carnet extends JPanel {
 		@Override
 		public void keyReleased(KeyEvent e) {
 			research(recherche.getText().toLowerCase());
-			System.out.println(recherche.getText());
 		}	
 	}
 	
@@ -152,7 +152,6 @@ public class Contact_Carnet extends JPanel {
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);
-				System.out.println("Add " + i);
 			}
 		}	
 		topPanel.setLabelText("Favoris");
@@ -178,7 +177,6 @@ public class Contact_Carnet extends JPanel {
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);
-				System.out.println("Add " + i);
 			}
 		}
 		

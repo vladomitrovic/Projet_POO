@@ -61,15 +61,10 @@ public class Notes_Accueil extends JPanel {
 		panelBlocNotes.add(titleBar, BorderLayout.NORTH);
 		panelBlocNotes.add(scroll);
 
-		panelNotes.add(new NotesButton("adlljfhkajdsfhoi"));
-
-		
-		
-		
 		creatNotesButtons();
 		
 		
-		
+//		creatNotesButtons();
 //		addNotesToPanel();
 //		addActionListenerToNotesButtons();
 	}
@@ -81,15 +76,14 @@ public class Notes_Accueil extends JPanel {
 		
 		for(int i=0; i< blocNotes.getBlocNotes().size();i++){
 			Note n = blocNotes.getBlocNotes().get(i);
-			NotesButton temp = new NotesButton (n.getTexte());
-			temp.setName("N"+1);
+			NotesButton temp = new NotesButton (blocNotes.displayInButton(n.getTexte()));
+			temp.setName("N"+i);
 			temp.addActionListener(new Notes_Click());
 			panelNotes.add(temp);
-			System.out.println("Add note "+i);
 		}
-		System.out.println("Fin creat");
-		
 	}
+	
+	
 	
 	public void removePanel(JPanel panel) {
 		System.out.println("Je suis rentré dans la méthode removePanel");
@@ -100,7 +94,6 @@ public class Notes_Accueil extends JPanel {
 
 	}
 
-	
 	public void addNotesToPanel() {
 		panelNotes.removeAll();
 		for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
@@ -124,8 +117,10 @@ public class Notes_Accueil extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			System.out.println("Click note details");
+			
 			// TODO Auto-generated method stub
-			for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
+			for (int i = 0; i < blocNotes.getBlocNotes().size(); i++) {
 				if (((JButton) e.getSource()).getName().equals("N" + i)) {
 					Note note = blocNotes.getBlocNotes().get(i);
 					Notes_Details noteDetails = new Notes_Details(blocNotes.getBlocNotes().get(i).getTexte(),
@@ -144,11 +139,18 @@ public class Notes_Accueil extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			// Notes_Details noteDetails = new Notes_Details("",
-			// Notes_Accueil.this);
-			// add(noteDetails, "noteDetails");
-			// c1.show(Notes_Accueil.this, "noteDetails");
+//			 TODO Auto-generated method stub
+//			 Notes_Details noteDetails = new Notes_Details("",
+//			 Notes_Accueil.this);
+//			 add(noteDetails, "noteDetails");
+//			 c1.show(Notes_Accueil.this, "noteDetails");
+			
+		Note n = new Note("");
+		blocNotes.addNote(n);
+		Notes_Details noteDetails = new Notes_Details(n.getTexte(),
+				Notes_Accueil.this, n);
+		add(noteDetails, "noteDetails");
+		c1.show(Notes_Accueil.this, "noteDetails");	
 		}
 
 	}

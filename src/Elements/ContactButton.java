@@ -39,13 +39,11 @@ public class ContactButton extends JButton{
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			setBackground(Color.cyan);
-			System.out.println("Entered");
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			setBackground(Color.LIGHT_GRAY);
-			System.out.println("Exited");
 
 		}
 

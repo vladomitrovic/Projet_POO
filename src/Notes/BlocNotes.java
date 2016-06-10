@@ -21,6 +21,11 @@ public class BlocNotes {
 		refreshId();
 		notesButtons.add(new NotesButton(displayInButton(texte)));
 	}
+	
+	public void addNote(Note n){
+		blocNotes.add(n);
+		refreshId();
+	}
 
 	public ArrayList<NotesButton> getNotesButtons() {
 		return notesButtons;
@@ -51,9 +56,11 @@ public class BlocNotes {
 
 	public void deleteNote(int id) {
 		blocNotes.remove(id);
-		notesButtons.remove(id);
+//		notesButtons.remove(id);
 		refreshId();
 	}
+	
+
 
 	public ArrayList<Note> getBlocNotes() {
 		return blocNotes;

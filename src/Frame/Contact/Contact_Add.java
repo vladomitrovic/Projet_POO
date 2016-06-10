@@ -119,9 +119,6 @@ public class Contact_Add extends JPanel {
 		favoris.setPreferredSize(lblSize);
 		// favoris.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(favoris);
-
-		System.out.println("------Contact_Add------");
-
 	}
 
 	class Return_Click implements ActionListener {
