@@ -7,22 +7,42 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import Elements.NotesButton;
+import Frame.Notes.Notes_Accueil;
+
 public class BlocNotes {
 
 	private ArrayList<Note> blocNotes = new ArrayList<Note>();
+	private ArrayList<NotesButton> notesButtons = new ArrayList<NotesButton>();
 
-	public void newNote(String texte) {
-		blocNotes.add(new Note(displayInButton(texte)));
+	public void addNote(String texte) {
+		blocNotes.add(new Note(texte));
 		refreshId();
+		notesButtons.add(new NotesButton(displayInButton(texte)));
+
+	}
+
+	public ArrayList<NotesButton> getNotesButtons() {
+		return notesButtons;
+	}
+
+	public void setNotesButtons(ArrayList<NotesButton> notesButtons) {
+		this.notesButtons = notesButtons;
 	}
 
 	public String displayInButton(String texte) {
 		String returnText = "<html>";
 		for (int i = 0; i < texte.length(); i++) {
-			if (i % 15 != 0)
+			
+			if (i == 55)
+				return returnText ;
+
+			if (i % 11 == 0 && i != 0) {
+				returnText += "<br/>" + texte.charAt(i);
+			} else {
 				returnText += texte.charAt(i);
-			else
-				returnText += "<br />"+texte.charAt(i);
+			}
+
 		}
 		returnText += "</html>";
 		return returnText;

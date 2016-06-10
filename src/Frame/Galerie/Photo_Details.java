@@ -19,7 +19,7 @@ import Elements.TrashButton;
 import Elements.WallpaperButton;
 import Galerie.Photo;
 
-public class OnePhoto extends JPanel {
+public class Photo_Details extends JPanel {
 
 	private Photo photo;
 
@@ -39,7 +39,7 @@ public class OnePhoto extends JPanel {
 	private BufferedImage buffImage;
 	private Galerie_Accueil top;
 
-	public OnePhoto(Photo photo, Galerie_Accueil top) {
+	public Photo_Details(Photo photo, Galerie_Accueil top) {
 		this.photo = photo;
 		this.top = top;
 		setLayout(new BorderLayout());
@@ -135,7 +135,7 @@ public class OnePhoto extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			top.removePanel(OnePhoto.this);
+			top.removePanel(Photo_Details.this);
 		}
 	}
 
@@ -145,7 +145,7 @@ public class OnePhoto extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			top.getGalerie().deletePhoto(top, photo.getId(), photo.getPath());
-			top.removePanel(OnePhoto.this);
+			top.removePanel(Photo_Details.this);
 		}
 
 	}
@@ -155,10 +155,10 @@ public class OnePhoto extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			top.remove(OnePhoto.this);
+			top.remove(Photo_Details.this);
 			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo.getId() - 1).getIcon();
-			OnePhoto onePhoto = new OnePhoto(previousPhoto, top);
-			top.add(onePhoto, "newPhotoPanel");
+			Photo_Details photo_Details = new Photo_Details(previousPhoto, top);
+			top.add(photo_Details, "newPhotoPanel");
 			top.getCardLayout().show(top, "newPhotoPanel");
 		}
 
@@ -169,10 +169,10 @@ public class OnePhoto extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			top.remove(OnePhoto.this);
+			top.remove(Photo_Details.this);
 			Photo previousPhoto = (Photo) top.getPhotoButtons().get(photo.getId() + 1).getIcon();
-			OnePhoto onePhoto = new OnePhoto(previousPhoto, top);
-			top.add(onePhoto, "newPhotoPanel");
+			Photo_Details photo_Details = new Photo_Details(previousPhoto, top);
+			top.add(photo_Details, "newPhotoPanel");
 			top.getCardLayout().show(top, "newPhotoPanel");
 		}
 

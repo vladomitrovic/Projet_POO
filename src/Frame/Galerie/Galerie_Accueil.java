@@ -33,7 +33,7 @@ public class Galerie_Accueil extends JPanel {
 	// for MainPanelGalerie
 	public CardLayout c2 = new CardLayout();
 	private JPanel galeriePanel = new JPanel(new BorderLayout());
-	private OnePhoto onePhoto;
+	private Photo_Details photo_Details;
 
 	// for galeriePanel
 	private JPanel containerPhotos = new JPanel();
@@ -172,8 +172,8 @@ public class Galerie_Accueil extends JPanel {
 			// TODO Auto-generated method stub
 			JButton button = (JButton) e.getSource();
 			Photo photo = (Photo) button.getIcon();
-			onePhoto = new OnePhoto(photo, Galerie_Accueil.this);
-			add(onePhoto, "onePhotoPanel");
+			photo_Details = new Photo_Details(photo, Galerie_Accueil.this);
+			add(photo_Details, "onePhotoPanel");
 			c2.show(Galerie_Accueil.this, "onePhotoPanel");
 		}
 

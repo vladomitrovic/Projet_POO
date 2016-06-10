@@ -2,6 +2,7 @@ package Elements;
 
 import java.awt.Button;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
@@ -17,6 +18,7 @@ public class NotesButton extends TopBarButton {
 
 	public NotesButton(String text) {
 		setText(text);
+		setFont(new Font("Lucida Handwriting", Font.PLAIN, 20));
 		setPreferredSize(new Dimension(190, 230));
 		setVerticalTextPosition(0);
 		setVerticalAlignment(SwingConstants.TOP);
