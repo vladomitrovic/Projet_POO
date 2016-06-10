@@ -14,11 +14,14 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import Contact.CarnetContact;
 import Contact.Contact;
 import Elements.BackButton;
+import Elements.LabelContact;
+import Elements.LabelDetails;
 import Elements.TopTitleBar;
 import Elements.TrashButton;
 import Galerie.Photo;
@@ -29,22 +32,18 @@ public class Contact_Details extends JPanel {
 	private JPanel contentPane = new JPanel();
 	private JPanel detailsPanel = new JPanel();
 
-	private JLabel lblNom = new JLabel("Nom");
-	private JLabel lblPrenom = new JLabel("Prénom");
-	private JLabel lblNumero = new JLabel("Numéro");
+	private LabelDetails lblNom = new LabelDetails("Nom");
+	private LabelDetails lblPrenom = new LabelDetails("Prénom");
+	private LabelDetails lblNumero = new LabelDetails("Numéro");
 
-	private JLabel lblCName = new JLabel("");
-	private JLabel lblCPname = new JLabel("");
-	private JLabel lblCTel = new JLabel("");
+	private LabelContact lblCName = new LabelContact();
+	private LabelContact lblCPname = new LabelContact();
+	private LabelContact lblCTel = new LabelContact();
 
 	private JButton modifyButton = new JButton("Modifier");
+	
 	private JButton picture = new JButton();
 	private FlowLayout detailsLayout = new FlowLayout();
-	private Dimension lblSize = new Dimension(280, 25);
-	private Dimension ClblSize = new Dimension(280, 25);
-	private Font lblFont = new Font("Arial", Font.BOLD, 22);
-	private Font cLblFont = new Font("Arial", Font.PLAIN, 20);
-	private Border lblBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY);
 
 	private Contact contactDetails;
 	private CarnetContact carnet = new CarnetContact();
@@ -89,42 +88,26 @@ public class Contact_Details extends JPanel {
 		addLabels();
 
 		modifyButton.setContentAreaFilled(false);
-		modifyButton.setPreferredSize(ClblSize);
+		modifyButton.setPreferredSize(new Dimension(280, 25));
 		modifyButton.setForeground(Color.BLACK);
 		modifyButton.addActionListener(new Modif_Click());
 		panel.add(modifyButton);
+		
 
 		System.out.println("------Contact_Details------");
 	}
 
 	private void addLabels() {
-		lblPrenom.setPreferredSize(lblSize);
-		lblPrenom.setFont(lblFont);
-		lblPrenom.setBorder(lblBorder);
+		
 		panel.add(lblPrenom);
-
-		lblCPname.setPreferredSize(ClblSize);
-		lblCPname.setFont(cLblFont);
 		panel.add(lblCPname);
 		lblCPname.setText(contactDetails.getPrenom());
 
-		lblNom.setPreferredSize(lblSize);
-		lblNom.setFont(lblFont);
-		lblNom.setBorder(lblBorder);
 		panel.add(lblNom);
-
-		lblCName.setPreferredSize(ClblSize);
-		lblCName.setFont(cLblFont);
 		panel.add(lblCName);
 		lblCName.setText(contactDetails.getNom());
 
-		lblNumero.setPreferredSize(lblSize);
-		lblNumero.setFont(lblFont);
-		lblNumero.setBorder(lblBorder);
 		panel.add(lblNumero);
-
-		lblCTel.setPreferredSize(ClblSize);
-		lblCTel.setFont(cLblFont);
 		panel.add(lblCTel);
 		lblCTel.setText(contactDetails.getTel());
 	}
@@ -133,10 +116,35 @@ public class Contact_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			Contact_Modif modif = new Contact_Modif(id, Contact_Details.this);
-			add(modif, "modif");
-			carnetCard.show(Contact_Details.this, "modif");
+			lblCPname.setEditable(true);
+			lblCName.setEditable(true);
+			lblCTel.setEditable(true);
+			modifyButton.setText("Enregistrer");
+			modifyButton.removeActionListener(this);
+			modifyButton.addActionListener(new Enregistrer_Click());
+
 		}
+	}
+	
+	class Enregistrer_Click implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			lblCPname.setEditable(false);
+			lblCName.setEditable(false);
+			lblCTel.setEditable(false);
+			
+			modifyButton.setText("Modifier");
+			modifyButton.removeActionListener(this);
+			modifyButton.addActionListener(new Modif_Click());
+			
+			carnet.getCarnet().get(id).setPrenom(lblCPname.getText());
+			carnet.getCarnet().get(id).setNom(lblCName.getText());
+			carnet.getCarnet().get(id).setTel(lblCTel.getText());
+//			carnet.getCarnet().get(id).setFavoris(favoris.isSelected());
+			carnet.serialize();
+		}
+		
 	}
 
 	class Return_Click implements ActionListener {
@@ -161,14 +169,7 @@ public class Contact_Details extends JPanel {
 		}
 	}
 
-	public void refresh() {
-		carnet.deseralize();
-		contactDetails = carnet.getCarnet().get(id);
-		lblCPname.setText(contactDetails.getPrenom());
-		lblCName.setText(contactDetails.getNom());
-		lblCTel.setText(contactDetails.getTel());
 
-	}
 
 	public Photo creatPhotoFit(Photo photo) {
 
