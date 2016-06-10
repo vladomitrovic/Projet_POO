@@ -1,11 +1,7 @@
 package Frame.Contact;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 import Contact.CarnetContact;
@@ -22,7 +18,7 @@ public class Contact_Carnet extends JPanel {
 	public CardLayout carnetCard = new CardLayout();
 	private JPanel carnetPanel = new JPanel();
 	private JPanel searchList = new JPanel();
-	private JPanel listePanel = new JPanel();
+	public JPanel listePanel = new JPanel();
 	private JScrollPane listeScroll = new JScrollPane(listePanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private Contact_Details contactDetails;
 	private Contact_Add contactAdd;
