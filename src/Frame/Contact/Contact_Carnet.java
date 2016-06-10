@@ -182,8 +182,7 @@ public class Contact_Carnet extends JPanel {
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
 	}
+	
 
-	
-	
 	
 }

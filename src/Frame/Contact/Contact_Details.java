@@ -46,7 +46,11 @@ public class Contact_Details extends JPanel {
 	private FlowLayout detailsLayout = new FlowLayout();
 
 	private Contact contactDetails;
+	private Contact_Image contactImage; 
 	private CarnetContact carnet = new CarnetContact();
+	
+
+
 	private int id;
 	private Contact_Carnet top;
 	private TopTitleBar topPanel;
@@ -84,6 +88,7 @@ public class Contact_Details extends JPanel {
 		picture.setIcon(creatPhotoFit(carnet.getCarnet().get(id).getPhoto()));
 		picture.setPreferredSize(new Dimension(150, 180));
 		panel.add(picture);
+		picture.addActionListener(new Picture_Click());
 
 		addLabels();
 
@@ -96,6 +101,8 @@ public class Contact_Details extends JPanel {
 
 		System.out.println("------Contact_Details------");
 	}
+
+
 
 	private void addLabels() {
 		
@@ -169,6 +176,16 @@ public class Contact_Details extends JPanel {
 		}
 	}
 
+	class Picture_Click implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			contactImage = new Contact_Image(id, Contact_Details.this);
+			add(contactImage, "contactImage");
+			carnetCard.show(Contact_Details.this, "contactImage");
+		}
+		
+	}
 
 
 	public Photo creatPhotoFit(Photo photo) {
@@ -178,6 +195,16 @@ public class Contact_Details extends JPanel {
 		photo = new Photo(newImg);
 		return photo;
 
+	}
+	
+	public CarnetContact getCarnet() {
+		return carnet;
+	}
+	
+	public void setPicture(String path) {
+		this.picture.setIcon(new Photo(path));
+		picture.setIcon(creatPhotoFit(carnet.getCarnet().get(id).getPhoto()));
+		picture.setPreferredSize(new Dimension(150, 180));
 	}
 
 }

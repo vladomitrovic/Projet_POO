@@ -17,9 +17,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import Elements.PhotoButton;
+import Frame.Contact.Contact_Image;
 import Frame.Galerie.Galerie_Accueil;
 
-public class Galerie {
+public class Galerie<Contact_image> {
 
 	private ArrayList<Photo> photos = new ArrayList<Photo>();
 	private ArrayList<String> name = new ArrayList<String>();
@@ -33,6 +34,22 @@ public class Galerie {
 			photoButtons.get(i).setButtonSize(panelGalerie.getDimension());
 			panelGalerie.addActionListener(photoButtons, i);
 			panelGalerie.addButtonsToPanel(photoButtons, i);
+		}
+		idPhotos();
+
+		return photoButtons;
+
+	}
+	
+	
+	public ArrayList<PhotoButton> createPhotoContact(Contact_Image listImage, Galerie_Accueil galerie) {
+		setNamesFromDirectory();
+		for (int i = 0; i < name.size(); i++) {
+			photos.add(galerie.createPhotoFit(name.get(i)));
+			photoButtons.add(new PhotoButton(photos.get(i)));
+			photoButtons.get(i).setButtonSize(galerie.getDimension());
+			listImage.addButtonsToPanel(photoButtons, i);
+			
 		}
 		idPhotos();
 
