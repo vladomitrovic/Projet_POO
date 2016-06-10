@@ -75,18 +75,6 @@ public class Notes_Accueil extends JPanel {
 
 	}
 
-	// public void addNotesToPanelNotes() {
-	// panelNotes.removeAll();
-	// for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
-	// panelNotes.add(blocNotes.getNotesButtons().get(i));
-	// blocNotes.getNotesButtons().get(i).setName("N" + i);
-	// blocNotes.getNotesButtons().get(i).addActionListener(new Notes_Click());
-	// System.out.println("Je suis bouton" + i);
-	// }
-	// panelNotes.repaint();
-	// panelNotes.revalidate();
-	// }
-
 	public void addNotesToPanel() {
 		panelNotes.removeAll();
 		for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
