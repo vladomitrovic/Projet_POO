@@ -45,7 +45,7 @@ public class Launcher extends JFrame {
 	private ApplicationButton btnSettings = new ApplicationButton(new Photo("PicturesElements/settings.png"));
 
 	private Galerie_Accueil galerie = new Galerie_Accueil(panelApplication);
-	private Contact_Carnet carnet;
+	private Contact_Carnet carnet =  new Contact_Carnet();
 	private Notes_Accueil notes = new Notes_Accueil();
 
 	public Launcher() {
@@ -128,7 +128,7 @@ public class Launcher extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			carnet = new Contact_Carnet();
+//			carnet = new Contact_Carnet();
 			mainContainer.add(carnet, "carnet");
 			c1.show(mainContainer, "carnet");
 

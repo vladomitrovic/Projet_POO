@@ -136,8 +136,8 @@ public class Contact_Add extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			top.carnet.newContact(lblCPname.getText(), lblCName.getText(), lblCTel.getText(), favoris.isSelected());
-			top.carnet.serialize();
+			top.getCarnetContact().newContact(lblCPname.getText(), lblCName.getText(), lblCTel.getText(), favoris.isSelected());
+			top.getCarnetContact().serialize();
 			top.creatContactButtons();
 			top.remove(Contact_Add.this);
 
