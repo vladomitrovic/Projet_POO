@@ -168,7 +168,7 @@ public class Contact_Carnet extends JPanel {
 			Contact c = carnet.getCarnet().get(i);
 			if (c.isFavoris()) {
 				cpt++;
-				ContactButton temp = new ContactButton(" "+c.getPrenom() + " " + c.getNom());
+				ContactButton temp = new ContactButton(c.getPrenom() + " " + c.getNom());
 				temp.setName("C" + i);
 				temp.addActionListener(new Details_Click());
 				listePanel.add(temp);
