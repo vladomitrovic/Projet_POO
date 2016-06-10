@@ -12,9 +12,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import Contact.CarnetContact;
@@ -39,6 +41,8 @@ public class Contact_Details extends JPanel {
 	private LabelContact lblCName = new LabelContact();
 	private LabelContact lblCPname = new LabelContact();
 	private LabelContact lblCTel = new LabelContact();
+	
+	private JCheckBox favoris = new JCheckBox("Favoris ");
 
 	private JButton modifyButton = new JButton("Modifier");
 	
@@ -46,7 +50,10 @@ public class Contact_Details extends JPanel {
 	private FlowLayout detailsLayout = new FlowLayout();
 
 	private Contact contactDetails;
-	private CarnetContact carnet = new CarnetContact();
+	private Contact_Image contactImage; 
+	
+
+
 	private int id;
 	private Contact_Carnet top;
 	private TopTitleBar topPanel;
@@ -54,9 +61,8 @@ public class Contact_Details extends JPanel {
 
 	public Contact_Details(int id, Contact_Carnet top) {
 		this.id = id;
-
-		carnet.deseralize();
-		contactDetails = carnet.getCarnet().get(id);
+	;
+		contactDetails = top.getCarnetContact().getCarnet().get(id);
 
 		this.top = top;
 		this.setLayout(new BorderLayout());
@@ -81,12 +87,16 @@ public class Contact_Details extends JPanel {
 		detailsLayout.setHgap(10);
 		panel.setLayout(detailsLayout);
 
-		picture.setIcon(creatPhotoFit(carnet.getCarnet().get(id).getPhoto()));
+		//Configuration de l'image du contact
+		picture.setIcon(creatPhotoFit(top.getCarnetContact().getCarnet().get(id).getPhoto()));
 		picture.setPreferredSize(new Dimension(150, 180));
+		picture.addActionListener(new Picture_Click());
 		panel.add(picture);
 
+		//Ajout des labels et des détails du contacts
 		addLabels();
 
+		//Configuration du boutton mondifier
 		modifyButton.setContentAreaFilled(false);
 		modifyButton.setPreferredSize(new Dimension(280, 25));
 		modifyButton.setForeground(Color.BLACK);
@@ -96,6 +106,8 @@ public class Contact_Details extends JPanel {
 
 		System.out.println("------Contact_Details------");
 	}
+
+
 
 	private void addLabels() {
 		
@@ -110,6 +122,14 @@ public class Contact_Details extends JPanel {
 		panel.add(lblNumero);
 		panel.add(lblCTel);
 		lblCTel.setText(contactDetails.getTel());
+
+		
+		panel.add(favoris);
+		favoris.setFont(new Font("Arial", Font.BOLD, 22));
+		favoris.setHorizontalTextPosition(SwingConstants.LEFT);
+		favoris.setEnabled(false);
+		favoris.setPreferredSize(new Dimension (280, 25));
+		favoris.setSelected(contactDetails.isFavoris());
 	}
 
 	class Modif_Click implements ActionListener {
@@ -119,6 +139,10 @@ public class Contact_Details extends JPanel {
 			lblCPname.setEditable(true);
 			lblCName.setEditable(true);
 			lblCTel.setEditable(true);
+			favoris.setEnabled(true);
+			
+			
+
 			modifyButton.setText("Enregistrer");
 			modifyButton.removeActionListener(this);
 			modifyButton.addActionListener(new Enregistrer_Click());
@@ -133,16 +157,18 @@ public class Contact_Details extends JPanel {
 			lblCPname.setEditable(false);
 			lblCName.setEditable(false);
 			lblCTel.setEditable(false);
+			favoris.setEnabled(false);
+
 			
 			modifyButton.setText("Modifier");
 			modifyButton.removeActionListener(this);
 			modifyButton.addActionListener(new Modif_Click());
 			
-			carnet.getCarnet().get(id).setPrenom(lblCPname.getText());
-			carnet.getCarnet().get(id).setNom(lblCName.getText());
-			carnet.getCarnet().get(id).setTel(lblCTel.getText());
-//			carnet.getCarnet().get(id).setFavoris(favoris.isSelected());
-			carnet.serialize();
+			top.getCarnetContact().getCarnet().get(id).setPrenom(lblCPname.getText());
+			top.getCarnetContact().getCarnet().get(id).setNom(lblCName.getText());
+			top.getCarnetContact().getCarnet().get(id).setTel(lblCTel.getText());
+			top.getCarnetContact().getCarnet().get(id).setFavoris(favoris.isSelected());
+			top.getCarnetContact().serialize();
 		}
 		
 	}
@@ -151,7 +177,7 @@ public class Contact_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			top.carnet.deseralize();
+			top.getCarnetContact().deseralize();
 			top.creatContactButtons();
 			top.remove(Contact_Details.this);
 		}
@@ -162,13 +188,23 @@ public class Contact_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			top.carnet.deleteContact(id);
-			top.carnet.serialize();
+			top.getCarnetContact().deleteContact(id);
+			top.getCarnetContact().serialize();
 			top.creatContactButtons();
 			top.remove(Contact_Details.this);
 		}
 	}
 
+	class Picture_Click implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			contactImage = new Contact_Image(id, Contact_Details.this);
+			add(contactImage, "contactImage");
+			carnetCard.show(Contact_Details.this, "contactImage");
+		}
+		
+	}
 
 
 	public Photo creatPhotoFit(Photo photo) {
@@ -179,5 +215,23 @@ public class Contact_Details extends JPanel {
 		return photo;
 
 	}
+	
+	public CarnetContact getCarnet() {
+		return top.getCarnetContact();
+	}
+	
+	public void setPicture(String path) {
+		this.picture.setIcon(new Photo(path));
+		picture.setIcon(creatPhotoFit(top.getCarnetContact().getCarnet().get(id).getPhoto()));
+		picture.setPreferredSize(new Dimension(150, 180));
+	}
+
+
+
+	public JButton getModifyButton() {
+		return modifyButton;
+	}
+	
+	
 
 }

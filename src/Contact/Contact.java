@@ -78,8 +78,8 @@ public class Contact implements Serializable {
 		return photo;
 	}
 
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
+	public void setPhoto(String path) {
+		this.photo = new Photo(path);
 	}
 	
 	
