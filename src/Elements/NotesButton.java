@@ -14,7 +14,7 @@ import Galerie.Photo;
 
 public class NotesButton extends TopBarButton {
 
-	private Photo photo = new Photo("PicturesElements/note_background.png");
+	private Photo photo = new Photo("PicturesElements/fondEcranNote.png");
 
 	public NotesButton(String text) {
 		setText(text);
