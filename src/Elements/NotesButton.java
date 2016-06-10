@@ -14,7 +14,7 @@ import Galerie.Photo;
 
 public class NotesButton extends TopBarButton {
 
-	private Photo photo = new Photo("PicturesElements/note_background.png");
+	private Photo photo = new Photo("PicturesElements/post-it.png");
 
 	public NotesButton(String text) {
 		setText(text);
@@ -24,6 +24,7 @@ public class NotesButton extends TopBarButton {
 		setVerticalAlignment(SwingConstants.TOP);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setMargin(new Insets(15, 15, 15, 15));
+		setOpaque(false);
 	}
 
 	@Override
