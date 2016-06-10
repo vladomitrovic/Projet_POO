@@ -75,6 +75,10 @@ public class Galerie_Accueil extends JPanel {
 		c2.show(Galerie_Accueil.this, "galeriePanel");
 
 	}
+	
+	public Galerie_Accueil(){
+		
+	}
 
 	public void removePanel(JPanel panelRemove) {
 		Galerie_Accueil.this.remove(panelRemove);
@@ -84,7 +88,6 @@ public class Galerie_Accueil extends JPanel {
 
 	public void setImagePanelApplication(Photo photo) {
 		top.setImage(photo);
-		;
 	}
 
 	public Dimension getDimension() {

@@ -36,7 +36,7 @@ public class Notes_Accueil extends JPanel {
 	private BlocNotes blocNotes = new BlocNotes();
 
 	public Notes_Accueil() {
-		
+
 		// set Notes_Accueil
 		setLayout(c1);
 
@@ -54,33 +54,42 @@ public class Notes_Accueil extends JPanel {
 		blocNotes.addNote("Salut mon ami comment tu vas ? Je ne dois pas oublier d'aller chez le dentiste aujourd'hui");
 		addNotesToPanelNotes();
 	}
-	
-	public void addNotesToPanelNotes(){
-		for(int i = 0 ; i<blocNotes.getNotesButtons().size() ; i++){
+
+	public void removePanel(JPanel panel) {
+		Notes_Accueil.this.remove(panel);
+		Notes_Accueil.this.revalidate();
+		Notes_Accueil.this.repaint();
+	}
+
+	public void addNotesToPanelNotes() {
+		for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
 			panelNotes.add(blocNotes.getNotesButtons().get(i));
 			blocNotes.getNotesButtons().get(i).addActionListener(new Notes_Click());
 		}
 	}
 
-	class Notes_Click implements ActionListener{
+	class Notes_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 
-			Notes_Details noteDetails = new Notes_Details(blocNotes.getBlocNotes().get(0).getTexte()) ;
+			Notes_Details noteDetails = new Notes_Details(blocNotes.getBlocNotes().get(0).getTexte(),
+					Notes_Accueil.this);
 			add(noteDetails, "noteDetails");
 			c1.show(Notes_Accueil.this, "noteDetails");
 		}
-		
+
 	}
-	
+
 	class Add_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("salut");
+			Notes_Details noteDetails = new Notes_Details("", Notes_Accueil.this);
+			add(noteDetails, "noteDetails");
+			c1.show(Notes_Accueil.this, "noteDetails");
 		}
 
 	}

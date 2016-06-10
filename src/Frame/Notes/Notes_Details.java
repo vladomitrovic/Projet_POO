@@ -7,7 +7,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -22,18 +25,21 @@ import Galerie.Photo;
 
 public class Notes_Details extends JPanel {
 
-	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), null, "", new TrashButton(), null,
+	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(), null,
 			new Color(252, 105, 17));
 	private JTextArea textArea = new JTextArea();
-	private OkButton okButton = new OkButton();
+
+	// Photo for paintComponent
 	private Photo photo = new Photo("PicturesElements/fondEcranNote.png");
 
-	public Notes_Details(String texte) {
-		
-		//set layout 
+	private Notes_Accueil top;
+
+	public Notes_Details(String texte, Notes_Accueil top) {
+		this.top = top;
+		// set layout
 		setLayout(new BorderLayout());
-		
-		//set textArea
+
+		// set textArea
 		textArea.setOpaque(false);
 		textArea.setPreferredSize(new Dimension(480, 800));
 		textArea.setText(texte);
@@ -41,8 +47,8 @@ public class Notes_Details extends JPanel {
 		textArea.setWrapStyleWord(true);
 		textArea.setMargin(new Insets(0, 80, 20, 20));
 		textArea.setFont(new Font("Arial", Font.PLAIN, 35));
-		
-		//add to panel
+
+		// add to panel
 		add(titleBar, BorderLayout.NORTH);
 		add(textArea);
 
@@ -54,6 +60,24 @@ public class Notes_Details extends JPanel {
 		super.paintComponent(g);
 		Image img = photo.getImage();
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
+	}
+
+	class Back_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			int dialogButton = JOptionPane.YES_NO_OPTION;
+			JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
+			if (dialogButton == JOptionPane.YES_OPTION) {
+				
+				top.removePanel(Notes_Details.this);
+			}
+			if (dialogButton == JOptionPane.NO_OPTION) {
+				top.removePanel(Notes_Details.this);
+			}
+		}
 
 	}
 
