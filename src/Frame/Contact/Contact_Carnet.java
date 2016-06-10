@@ -21,7 +21,6 @@ public class Contact_Carnet extends JPanel {
 	public JPanel listePanel = new JPanel();
 	private JScrollPane listeScroll = new JScrollPane(listePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private Contact_Details contactDetails;
-	private Contact_Add contactAdd;
 	private TopTitleBar topPanel;
 	private JLabel nbContact = new JLabel();
 	private JTextField recherche=new JTextField();

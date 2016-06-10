@@ -11,10 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import Contact.Contact;
 import Elements.AddButton;
+import Elements.ContactButton;
 import Elements.NotesButton;
 import Elements.TopTitleBar;
 import Elements.WrapLayout;
+import Frame.Contact.Contact_Carnet;
 import Frame.Galerie.Photo_Details;
 import Notes.BlocNotes;
 import Notes.Note;
@@ -37,35 +40,57 @@ public class Notes_Accueil extends JPanel {
 
 	private BlocNotes blocNotes = new BlocNotes();
 
-	public BlocNotes getBlocNotes() {
-		return blocNotes;
-	}
+
 
 	public Notes_Accueil() {
 
+		blocNotes.deserialize();
+		
 		// set Notes_Accueil
 		setLayout(c1);
+		add(panelBlocNotes, "panelBlocNotes");
+		c1.show(Notes_Accueil.this, "panelBlocNotes");
 
 		// set titleBar
 		titleBar.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+		
+		// add to Notes_Accueil
+		add(panelBlocNotes);
 
 		// set panelBlocNotes
 		panelBlocNotes.add(titleBar, BorderLayout.NORTH);
 		panelBlocNotes.add(scroll);
 
-		// add to Notes_Accueil
-		add(panelBlocNotes);
+		panelNotes.add(new NotesButton("adlljfhkajdsfhoi"));
 
-		// add NotesButton to panelNotes
-		blocNotes.addNote("Salut mon 0 comment tu vas ? Je ne dois pas oublier d'aller chez le dentiste aujourd'hui");
-		blocNotes.addNote("Salut mon 1 comment tu vas ? Je ne dois pas oublier d'aller chez le dentiste aujourd'hui");
-		blocNotes.addNote("Salut mon 2 comment tu vas ? Je ne dois pas oublier d'aller chez le dentiste aujourd'hui");
-		blocNotes.addNote("Salut mon 3 comment tu vas ? Je ne dois pas oublier d'aller chez le dentiste aujourd'hui");
-
-		addNotesToPanel();
-		addActionListenerToNotesButtons();
+		
+		
+		
+		creatNotesButtons();
+		
+		
+		
+//		addNotesToPanel();
+//		addActionListenerToNotesButtons();
 	}
 
+	
+	public void creatNotesButtons(){
+		panelNotes.removeAll();
+		blocNotes.refreshId();
+		
+		for(int i=0; i< blocNotes.getBlocNotes().size();i++){
+			Note n = blocNotes.getBlocNotes().get(i);
+			NotesButton temp = new NotesButton (n.getTexte());
+			temp.setName("N"+1);
+			temp.addActionListener(new Notes_Click());
+			panelNotes.add(temp);
+			System.out.println("Add note "+i);
+		}
+		System.out.println("Fin creat");
+		
+	}
+	
 	public void removePanel(JPanel panel) {
 		System.out.println("Je suis rentré dans la méthode removePanel");
 		Notes_Accueil.this.remove(panel);
@@ -75,6 +100,7 @@ public class Notes_Accueil extends JPanel {
 
 	}
 
+	
 	public void addNotesToPanel() {
 		panelNotes.removeAll();
 		for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
@@ -126,5 +152,8 @@ public class Notes_Accueil extends JPanel {
 		}
 
 	}
-
+	
+	public BlocNotes getBlocNotes() {
+		return blocNotes;
+	}
 }

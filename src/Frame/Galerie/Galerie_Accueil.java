@@ -72,7 +72,7 @@ public class Galerie_Accueil extends JPanel {
 		// add panels to MainPanelGalerie
 		setLayout(c2);
 		add(galeriePanel, "galeriePanel");
-		c2.show(Galerie_Accueil.this, "galeriePanel");
+		c2.show(Galerie_Accueil.this, "galeriePanel");	
 
 	}
 	

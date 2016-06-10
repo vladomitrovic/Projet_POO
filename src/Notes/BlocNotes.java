@@ -15,6 +15,7 @@ public class BlocNotes {
 	private ArrayList<Note> blocNotes = new ArrayList<Note>();
 	private ArrayList<NotesButton> notesButtons = new ArrayList<NotesButton>();
 
+	
 	public void addNote(String texte) {
 		blocNotes.add(new Note(texte));
 		refreshId();
