@@ -46,14 +46,19 @@ public class Contact_Image extends JPanel {
 	
 	
 	public void addButtonsToPanel(ArrayList<PhotoButton> photoButtons, int index){
-		
+		/*
+		 * Méthode utiliser par createPhotoContact afin de resortir toutes les images
+		 */
 		imagesPanel.add(photoButtons.get(index));
 		photoButtons.get(index).addActionListener(new Choose_Click());
 		
 	}
 	
 	class Choose_Click implements ActionListener{
-
+		/*
+		 * Lors du choix de l'image, on récupère la photo du boutton, puis on l'applique au contact.
+		 * On sérialise 
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton) e.getSource();
