@@ -51,8 +51,6 @@ public class Notes_Accueil extends JPanel {
 		add(panelBlocNotes, "panelBlocNotes");
 		c1.show(Notes_Accueil.this, "panelBlocNotes");
 
-		// set titleBar
-//		titleBar.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 		
 		// add to Notes_Accueil
 		add(panelBlocNotes);

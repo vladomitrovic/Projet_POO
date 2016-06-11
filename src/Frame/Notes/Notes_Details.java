@@ -10,6 +10,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -29,6 +31,7 @@ public class Notes_Details extends JPanel {
 	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(),
 			new Delete_Click(), new Color(252, 105, 17));
 	private JTextArea textArea = new JTextArea();
+	private JLabel date=new JLabel();
 
 	// Photo for paintComponent
 	private Photo photo = new Photo("PicturesElements/fondEcranNote.png");
@@ -54,6 +57,11 @@ public class Notes_Details extends JPanel {
 		// add to panel
 		add(titleBar, BorderLayout.NORTH);
 		add(textArea);
+		
+		//last update label
+		date.setText("Dernière modification :  " + note.getDate());
+		date.setHorizontalAlignment(SwingConstants.CENTER);
+		add(date, BorderLayout.SOUTH);
 
 	}
 

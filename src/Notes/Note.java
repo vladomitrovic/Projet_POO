@@ -1,14 +1,15 @@
 package Notes;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Note implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String texte;
-	private Date date;
+	private String timeStamp="-";
 
 	public Note(String texte) {
 		this.texte = texte;
@@ -28,14 +29,13 @@ public class Note implements Serializable {
 
 	public void setTexte(String texte) {
 		this.texte = texte;
+		this.timeStamp=new SimpleDateFormat("dd.MM.yy - HH:mm").format(Calendar.getInstance().getTime());;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getDate() {
+		return timeStamp;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+
 
 }

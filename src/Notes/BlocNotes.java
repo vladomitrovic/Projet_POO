@@ -5,8 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 import Elements.NotesButton;
 import Frame.Notes.Notes_Accueil;
 
@@ -14,7 +15,6 @@ public class BlocNotes {
 
 	private ArrayList<Note> blocNotes = new ArrayList<Note>();
 	private ArrayList<NotesButton> notesButtons = new ArrayList<NotesButton>();
-
 	
 	public void addNote(String texte) {
 		blocNotes.add(new Note(texte));
