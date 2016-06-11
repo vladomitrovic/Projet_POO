@@ -16,13 +16,10 @@ public class CarnetContact {
 
 	private ArrayList<Contact> carnet = new ArrayList<Contact>();
 
-
 	public void newContact(String prenom, String nom, String tel, boolean favoris) {
 		this.carnet.add(new Contact(prenom, nom, tel, favoris));
 		refreshId();
 	}
-
-	
 
 	public void deleteContact(int id) {
 		this.carnet.remove(id);
@@ -41,7 +38,7 @@ public class CarnetContact {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(this.carnet);
 			oos.flush();
-			oos.close();		
+			oos.close();
 			fos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,57 +59,57 @@ public class CarnetContact {
 	}
 
 	public void refreshId() {
+		/*
+		 * Nous permets d'avoir les id à jours lors d'une suppression ou ajout
+		 */
 		for (int i = 0; i < carnet.size(); i++) {
 			carnet.get(i).setId(i);
 		}
 	}
 
 	public ArrayList<String> orderString() {
-		
-		ArrayList<String> contactNames=new ArrayList<String>();
+		/*
+		 * On créer une ArrayList de String afin d'avoir les contacts sous forme
+		 * de prenomnomid.
+		 * 
+		 * Ensuite nous trions afin d'avoir un ordre alphabétique.
+		 */
+		ArrayList<String> contactNames = new ArrayList<String>();
 		for (int i = 0; i < carnet.size(); i++) {
-			contactNames.add(carnet.get(i).getPrenom()+carnet.get(i).getNom() + carnet.get(i).getId());
+			contactNames.add(carnet.get(i).getPrenom() + carnet.get(i).getNom() + carnet.get(i).getId());
 		}
 		Collections.sort(contactNames.subList(0, contactNames.size()));
-		
+
 		return contactNames;
 	}
 
 	public void orderAbc() {
 		ArrayList<Contact> contactAbc = new ArrayList<Contact>();
+		/*
+		 * On compare nos contacts sous forme objet avec nos contacts sous forme
+		 * String (ordrés ABC)
+		 * 
+		 * Lorsque le contact correspond, on lui attribut la même place dans la
+		 * liste objet, ainsi on peut avoir nos contact objet dans le même ordre
+		 * que les contact String triés auparavant.
+		 */
 
 		// création d'un tableau de contact vide de la bonne taille
 		for (int i = 0; i < carnet.size(); i++) {
 			contactAbc.add(new Contact());
 		}
 
-		//modification de l'ordre
+		// modification de l'ordre
 		for (int i = 0; i < carnet.size(); i++) {
-			String comparaison = carnet.get(i).getPrenom()+carnet.get(i).getNom() + carnet.get(i).getId();
-			System.out.println("index: " + i);
-			System.out.println("Comparaison de : " + comparaison);
+			String comparaison = carnet.get(i).getPrenom() + carnet.get(i).getNom() + carnet.get(i).getId();
 			for (int j = 0; j < carnet.size(); j++) {
-				System.out.println("avec : " + orderString().get(j).toString() + "\n---------");
 				if (comparaison.equals(orderString().get(j).toString())) {
-					contactAbc.set(j, carnet.get(i));
-					System.out.println("OK" + j + "\n--------------------------");
+					contactAbc.set(j, carnet.get(i));	
 					break;
 				}
 			}
 		}
-		carnet=contactAbc;
+		carnet = contactAbc;
 	}
-
-	
-//	---------------A SUPPRIMER---------------
-	public void show() {
-		String temp = "CarnetContact : \n";
-		for (int i = 0; i < carnet.size(); i++) {
-			temp += carnet.get(i).getNom() + "\n";
-		}
-		System.out.println(temp);
-	}
-
-
 
 }
