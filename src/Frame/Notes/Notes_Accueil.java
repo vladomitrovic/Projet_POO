@@ -31,7 +31,7 @@ public class Notes_Accueil extends JPanel {
 	private JPanel panelBlocNotes = new JPanel(new BorderLayout());
 
 	// for titlePanel
-	private TopTitleBar titleBar = new TopTitleBar("Notes", 0, 0, 0, new AddButton(), new Add_Click());
+	private TopTitleBar titleBar = new TopTitleBar("Notes",252, 105, 17, new AddButton(), new Add_Click());
 
 	// for panelBlocNotes
 	private JPanel panelNotes = new JPanel(new WrapLayout(WrapLayout.LEFT, 10, 10));
@@ -52,7 +52,7 @@ public class Notes_Accueil extends JPanel {
 		c1.show(Notes_Accueil.this, "panelBlocNotes");
 
 		// set titleBar
-		titleBar.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+//		titleBar.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 		
 		// add to Notes_Accueil
 		add(panelBlocNotes);
