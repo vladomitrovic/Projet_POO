@@ -1,5 +1,6 @@
 package Frame;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import Galerie.Photo;
@@ -19,8 +21,13 @@ public class PanelApplications extends JPanel {
 	private Photo photo;
 
 	public PanelApplications() {
-		getPhotoWallpaper();
+		// preferences of panelApplications
 		setLayout(fl);
+		setBackground(Color.BLACK);
+		setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+
+		// choose the picture in the wallpaper folder
+		getPhotoWallpaper();
 	}
 
 	public void getPhotoWallpaper() {
