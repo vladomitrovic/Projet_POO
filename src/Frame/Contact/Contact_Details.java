@@ -176,6 +176,12 @@ public class Contact_Details extends JPanel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
+			if(contactDetails.getPrenom()=="" | contactDetails.getNom()=="" | contactDetails.getTel()==""){
+				top.getCarnetContact().deleteContact(id);
+			}
+			
+			
 			top.creatContactButtons();
 			top.remove(Contact_Details.this);
 		}

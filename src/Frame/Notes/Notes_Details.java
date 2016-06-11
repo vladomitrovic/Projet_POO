@@ -78,9 +78,12 @@ public class Notes_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+
 			// If no modif on textArea, no confirmation
-			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte())) {
+			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte()) && textArea.getText()!="") {
 				top.remove(Notes_Details.this);
+				
 			} else {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
@@ -90,7 +93,10 @@ public class Notes_Details extends JPanel {
 					top.creatNotesButtons();
 					top.remove(Notes_Details.this);
 				}
-				if (dialogButton == JOptionPane.NO_OPTION) {
+				if (dialogButton == JOptionPane.NO_OPTION ) {
+					if(textArea.getText()==""){
+						top.getBlocNotes().deleteNote(note.getId());
+					}
 					top.remove(Notes_Details.this);
 				}
 			}

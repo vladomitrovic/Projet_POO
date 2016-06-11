@@ -138,16 +138,17 @@ public class Contact_Carnet extends JPanel {
 		}
 	}
 
-	class DeleteTextField extends MouseAdapter{
+	class DeleteTextField extends MouseAdapter {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			recherche.setText("");
 		}
 
-		
+
+
 	}
-	
+
 	public void creatContactButtons() {
 		/*
 		 * Cette méthode nous permet de générer un boutton par contact existant

@@ -6,7 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
 
-
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Galerie.Photo;
@@ -14,7 +15,7 @@ import Galerie.Photo;
 public class NotesButton extends TopBarButton {
 
 	private Photo photo = new Photo("PicturesElements/post-it.png");
-
+	private JTextArea textArea= new JTextArea();
 	
 	public NotesButton(String text) {
 		setText(text);
@@ -25,6 +26,12 @@ public class NotesButton extends TopBarButton {
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setMargin(new Insets(15, 15, 15, 15));
 		setOpaque(false);
+		textArea.setText(text);
+		textArea.setOpaque(false);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		this.add(textArea);
 		
 	}
 
@@ -34,6 +41,10 @@ public class NotesButton extends TopBarButton {
 		super.paintComponent(g);
 		Image img = photo.getImage();
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+	}
+
+	public JTextArea getTextArea() {
+		return textArea;
 	}
 	
 
