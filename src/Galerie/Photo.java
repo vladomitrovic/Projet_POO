@@ -4,13 +4,10 @@ import java.awt.Image;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 
-public class Photo extends ImageIcon implements Serializable {
+public class Photo extends ImageIcon {
 
-	private static final long serialVersionUID = 1L;
 	private String path;
-	private int id = -1 ;
-	public double heightPhoto ;
-	public double widthPhoto ;
+	private int id = -1;
 
 	public Photo(String path) {
 		super(path);
@@ -36,7 +33,5 @@ public class Photo extends ImageIcon implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 
 }

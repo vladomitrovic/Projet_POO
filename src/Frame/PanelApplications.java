@@ -31,6 +31,13 @@ public class PanelApplications extends JPanel {
 	}
 
 	public void getPhotoWallpaper() {
+
+		/**
+		 * méthode qui va aller chercher la photo de fond d'écran dans le
+		 * dossier wallpaper puis va aller la mettre dans un String qu'on
+		 * utilisera pour générer la photo avec le chemin correspondant
+		 */
+
 		File folder = new File("./WallpaperApplication/");
 		File[] image = folder.listFiles();
 		String[] name = new String[image.length];
@@ -40,6 +47,12 @@ public class PanelApplications extends JPanel {
 	}
 
 	public void setImage(Photo photo) {
+
+		/**
+		 * méthode qui va modifier la photo dans le dossier wallpaper en cas de
+		 * modification du fond d'écran
+		 **/
+
 		this.photo = photo;
 		File from = new File(photo.getPath());
 		File to = new File("WallpaperApplication/wallpaper.jpeg");
@@ -54,6 +67,12 @@ public class PanelApplications extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
+
+		/**
+		 * méthode qui va aller peindre le fond d'écran sur le panel en
+		 * redimensionnant la photo à la taille du panel
+		 **/
+		
 		super.paintComponent(g);
 		Image img = photo.getImage();
 		int frameWidth = this.getWidth();

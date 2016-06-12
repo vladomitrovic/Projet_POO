@@ -92,6 +92,10 @@ public class Photo_Details extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
+		/**
+		 * méthode qui va peindre la photo sur tout le panel en la
+		 * redimensionant à la taille du panel
+		 **/
 		super.paintComponent(g);
 
 		Photo newPhoto = new Photo(photo.getPath());
@@ -124,6 +128,8 @@ public class Photo_Details extends JPanel {
 	}
 
 	public void setButtons(JButton button) {
+		// méthode modifiant les préférences des boutons afin de ne pas l'écrire
+		// à chaque fois
 		button.setBorderPainted(false);
 		button.setContentAreaFilled(false);
 		button.setFocusPainted(false);

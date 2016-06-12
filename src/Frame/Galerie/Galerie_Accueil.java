@@ -72,21 +72,27 @@ public class Galerie_Accueil extends JPanel {
 		// add panels to MainPanelGalerie
 		setLayout(c2);
 		add(galeriePanel, "galeriePanel");
-		c2.show(Galerie_Accueil.this, "galeriePanel");	
+		c2.show(Galerie_Accueil.this, "galeriePanel");
 
 	}
-	
-	public Galerie_Accueil(){
-		
+
+	public Galerie_Accueil() {
+
 	}
 
 	public void removePanel(JPanel panelRemove) {
+		/**
+		 * méthode qui va aller supprimer le panel mis en paramètre
+		 */
 		Galerie_Accueil.this.remove(panelRemove);
 		Galerie_Accueil.this.revalidate();
 		Galerie_Accueil.this.repaint();
 	}
 
 	public void setImagePanelApplication(Photo photo) {
+		/**
+		 * méthode qui va modifier le fond d'écran du panelApplications
+		 */
 		top.setImage(photo);
 	}
 
@@ -110,22 +116,25 @@ public class Galerie_Accueil extends JPanel {
 		return c2;
 	}
 
-	public JPanel getTitlePanel() {
-		return titlePanel;
-	}
-
 	public void addActionListener(ArrayList<PhotoButton> photoButtons, int index) {
+		// ajout des actionlistener au boutons photos
 		photoButtons.get(index).addActionListener(new Photo_Click());
 
 	}
 
 	public void addButtonsToPanel(ArrayList<PhotoButton> photoButtons, int index) {
+		// ajout des photo boutons au panel contenant toutes les photos
 		containerPhotos.add(photoButtons.get(index));
 		containerPhotos.revalidate();
 		containerPhotos.repaint();
 	}
 
 	public Photo createPhotoFit(String path) {
+		/**
+		 * Création d'une photo qui va se redimensionner à la taille des
+		 * boutons, afin que l'image ne soit pas coupée lors de la création des
+		 * toutes nos photos dans la galerie
+		 **/
 		Photo photo = new Photo(path);
 		Image img = photo.getImage();
 		Image newimg = img.getScaledInstance(width, height, Image.SCALE_FAST);
@@ -136,6 +145,10 @@ public class Galerie_Accueil extends JPanel {
 	}
 
 	class Layout_Galerie implements ActionListener {
+		/**
+		 * Modification du layout de la galerie, une première fois en 3 photos
+		 * par Colonne puis en deuxième temps en 4 photos par colonne
+		 **/
 		boolean flag = true;
 
 		@Override

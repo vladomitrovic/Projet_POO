@@ -27,6 +27,12 @@ public class Galerie<Contact_image> {
 	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
 
 	public ArrayList<PhotoButton> createPhotoButtons(Galerie_Accueil panelGalerie) {
+		/**
+		 * méthode qui va aller chercher le "path" des photos grâce à la méthode
+		 * setNamesFromDirectory(); puis qui va créér une arraylist de photo et
+		 * de photoboutons en les ajoutant directement au bon Panel et en y
+		 * ajoutant les actionListener
+		 **/
 		setNamesFromDirectory();
 		for (int i = 0; i < name.size(); i++) {
 			photos.add(panelGalerie.createPhotoFit(name.get(i)));
@@ -40,16 +46,19 @@ public class Galerie<Contact_image> {
 		return photoButtons;
 
 	}
-	
-	
+
 	public ArrayList<PhotoButton> createPhotoContact(Contact_Image listImage, Galerie_Accueil galerie) {
+		/**
+		 * méthode similaire à la précédente sauf utilisée pour le choix des
+		 * images pour un contact
+		 **/
 		setNamesFromDirectory();
 		for (int i = 0; i < name.size(); i++) {
 			photos.add(galerie.createPhotoFit(name.get(i)));
 			photoButtons.add(new PhotoButton(photos.get(i)));
 			photoButtons.get(i).setButtonSize(galerie.getDimension());
 			listImage.addButtonsToPanel(photoButtons, i);
-			
+
 		}
 		idPhotos();
 
@@ -58,6 +67,10 @@ public class Galerie<Contact_image> {
 	}
 
 	public ArrayList<PhotoButton> updateButtons(Galerie_Accueil panelGalerie) {
+		/**
+		 * méthode qui va mettre à jour les boutons lors de la suppression d'une
+		 * photo afin de remettre à jour tous les index etc
+		 **/
 		photos.clear();
 		name.clear();
 		photoButtons.clear();
@@ -79,7 +92,8 @@ public class Galerie<Contact_image> {
 	}
 
 	public void deletePhoto(Galerie_Accueil panelGalerie, int index, String chemin) {
-		// remove from all ArrayList
+		/** méthode qui va aller supprimer la photo du dossier **/
+
 		photos.remove(index);
 		name.remove(index);
 		photoButtons.remove(index);
@@ -110,6 +124,11 @@ public class Galerie<Contact_image> {
 	}
 
 	public void setNamesFromDirectory() {
+		/**
+		 * méthode qui va aller chercher le nom de toutes les photos contenus
+		 * dans le dossier Pictuers puis mettra le chemin dans une arraylist de
+		 * String qu'on réutilisera lors de la création des photos
+		 **/
 		File folder = new File("Pictures/");
 		File[] listOfFiles = folder.listFiles();
 
