@@ -93,6 +93,8 @@ public class BlocNotes {
 	}
 
 	public void refreshId() {
+		
+		
 		for (int i = 0; i < blocNotes.size(); i++) {
 			blocNotes.get(i).setId(i);
 		}

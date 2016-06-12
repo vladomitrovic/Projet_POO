@@ -30,7 +30,7 @@ public class Notes_Details extends JPanel {
 
 	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(),
 			new Delete_Click(), new Color(252, 105, 17));
-	private JTextArea textArea = new JTextArea();
+	private JTextArea textArea = new JTextArea("");
 	private JLabel date=new JLabel();
 
 	// Photo for paintComponent
@@ -48,7 +48,7 @@ public class Notes_Details extends JPanel {
 		// set textArea
 		textArea.setOpaque(false);
 		textArea.setPreferredSize(new Dimension(480, 800));
-		textArea.setText(texte);
+		textArea.setText(note.getTexte());
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setMargin(new Insets(0, 80, 20, 20));
@@ -79,27 +79,32 @@ public class Notes_Details extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
+		
+			
 
 			// If no modif on textArea, no confirmation
-			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte()) && textArea.getText()!="") {
+			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte()) && textArea.getText()!=null) {
 				top.remove(Notes_Details.this);
+				System.out.println("No modif and not ... ");
+				return;
 				
 			} else {
-				int dialogButton = JOptionPane.YES_NO_OPTION;
-				JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
+				int dialogButton = JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", JOptionPane.YES_NO_OPTION);
 				if (dialogButton == JOptionPane.YES_OPTION) {
 					top.getBlocNotes().getBlocNotes().get(note.getId()).setTexte(textArea.getText());
 					top.getBlocNotes().serialize();
-					top.creatNotesButtons();
+					System.out.println("YES " + dialogButton);
 					top.remove(Notes_Details.this);
 				}
 				if (dialogButton == JOptionPane.NO_OPTION ) {
-					if(textArea.getText()==""){
+					if(textArea.getText().equals("")){
 						top.getBlocNotes().deleteNote(note.getId());
+						top.getBlocNotes().serialize();
 					}
 					top.remove(Notes_Details.this);
 				}
 			}
+			top.creatNotesButtons();
 		}
 	}
 
@@ -109,9 +114,9 @@ public class Notes_Details extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			top.getBlocNotes().deleteNote(note.getId());
+			top.getBlocNotes().serialize();
 			top.creatNotesButtons();
 			top.remove(Notes_Details.this);
-			System.out.println("j'ai supprimé l'image");
 		}
 
 	}
