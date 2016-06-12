@@ -39,7 +39,6 @@ public class TopTitleBar extends JPanel {
 		add(leftButton, BorderLayout.WEST);
 		add(label, BorderLayout.CENTER);
 		add(rightButton, BorderLayout.EAST);
-		System.out.println(rightButton.getPreferredSize());
 	}
 
 	// Without rightButton

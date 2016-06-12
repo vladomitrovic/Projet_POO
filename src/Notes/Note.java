@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Note implements Serializable {
+	
 
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -29,13 +30,20 @@ public class Note implements Serializable {
 
 	public void setTexte(String texte) {
 		this.texte = texte;
-		this.timeStamp=new SimpleDateFormat("dd.MM.yy - HH:mm").format(Calendar.getInstance().getTime());;
+		this.timeStamp=new SimpleDateFormat("dd.MM.yy - HH:mm").format(Calendar.getInstance().getTime());
 	}
 
 	public String getDate() {
 		return timeStamp;
 	}
 
+//	private void order (){
+//		BlocNotes bloc=new BlocNotes();
+//		bloc.deserialize();
+//		bloc.orderOnUpdate(this.id);
+//		bloc.refreshId();
+//		
+//	}
 
 
 }

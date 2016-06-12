@@ -71,7 +71,6 @@ public class Notes_Accueil extends JPanel {
 		for (int i = 0; i < blocNotes.getBlocNotes().size(); i++) {
 			Note n = blocNotes.getBlocNotes().get(i);
 			NotesButton temp = new NotesButton(n.getTexte());
-			System.out.println("Creat note : "+i);
 			temp.getTextArea().setName("N" + i);
 			temp.getTextArea().addMouseListener(new Notes_Click());
 			panelNotes.add(temp);
