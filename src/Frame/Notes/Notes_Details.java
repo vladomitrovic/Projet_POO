@@ -60,7 +60,7 @@ public class Notes_Details extends JPanel {
 
 		// set textArea
 		textArea.setOpaque(false);
-		textArea.setSize(426, 80000);
+		textArea.setSize(426, 800);
 		textArea.setText(note.getTexte());
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
