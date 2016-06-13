@@ -91,7 +91,6 @@ public class Notes_Details extends JPanel {
 				if (dialogButton == JOptionPane.YES_OPTION) {
 					top.getBlocNotes().getBlocNotes().get(note.getId()).setTexte(textArea.getText());
 					top.getBlocNotes().orderOnUpdate(note.getId());
-
 					top.getBlocNotes().serialize();
 					top.remove(Notes_Details.this);
 				}
