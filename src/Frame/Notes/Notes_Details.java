@@ -37,7 +37,7 @@ public class Notes_Details extends JPanel {
 	private Photo photo = new Photo("PicturesElements/fondEcranNote1.png");
 	private TestPanel testPanel = new TestPanel(photo);
 	
-	// preferences of the JScrollPane
+	// preferences of the JScrollPane without JScrollBar
 	private JScrollPane scroll = new JScrollPane(testPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL){
