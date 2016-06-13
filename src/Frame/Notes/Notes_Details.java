@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -35,12 +36,18 @@ public class Notes_Details extends JPanel {
 	private JTextArea textArea = new JTextArea("");
 	private Photo photo = new Photo("PicturesElements/fondEcranNote1.png");
 	private TestPanel testPanel = new TestPanel(photo);
-	private JScrollPane scroll = new JScrollPane(testPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+	
+	// preferences of the JScrollPane
+	private JScrollPane scroll = new JScrollPane(testPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	private JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL){
+		public boolean isVisible() {
+			return true ;
+		}
+	};
+	
+
 	private JLabel date = new JLabel();
-
-	// Photo for paintComponent
-
 	private Notes_Accueil top;
 	private Note note;
 
@@ -65,6 +72,8 @@ public class Notes_Details extends JPanel {
 
 		// add to panel
 		add(titleBar, BorderLayout.NORTH);
+		scroll.setVerticalScrollBar(scrollBar);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		add(scroll);
 
 		// last update label
