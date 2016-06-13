@@ -5,62 +5,44 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import Elements.NotesButton;
-import Frame.Notes.Notes_Accueil;
+
 
 public class BlocNotes {
 
 	private ArrayList<Note> blocNotes = new ArrayList<Note>();
-	private ArrayList<NotesButton> notesButtons = new ArrayList<NotesButton>();
-	
-	public void addNote(String texte) {
-		blocNotes.add(new Note(texte));
-		refreshId();
-		notesButtons.add(new NotesButton(displayInButton(texte)));
-	}
-	
-	public void addNote(Note n){
+
+
+
+	public void addNote(Note n) {
 		blocNotes.add(n);
+		orderOnUpdate((blocNotes.size()-1));
 		refreshId();
 	}
 
-	public ArrayList<NotesButton> getNotesButtons() {
-		return notesButtons;
-	}
-
-	public void setNotesButtons(ArrayList<NotesButton> notesButtons) {
-		this.notesButtons = notesButtons;
-	}
-
-	public String displayInButton(String texte) {
-		String returnText = "<html>";
-		for (int i = 0; i < texte.length(); i++) {
-			
-			if (i == 55)
-				return returnText ;
-
-			if (i % 11 == 0 && i != 0) {
-				returnText += "<br/>" + texte.charAt(i);
-			} else {
-				returnText += texte.charAt(i);
-			}
-
-		}
-		returnText += "</html>";
-		return returnText;
-
-	}
+//	public String displayInButton(String texte) {
+//		String returnText = "<html>";
+//		for (int i = 0; i < texte.length(); i++) {
+//
+//			if (i == 55)
+//				return returnText;
+//
+//			if (i % 11 == 0 && i != 0) {
+//				returnText += "<br/>" + texte.charAt(i);
+//			} else {
+//				returnText += texte.charAt(i);
+//			}
+//
+//		}
+//		returnText += "</html>";
+//		return returnText;
+//
+//	}
 
 	public void deleteNote(int id) {
 		blocNotes.remove(id);
-//		notesButtons.remove(id);
 		refreshId();
 	}
-	
-
 
 	public ArrayList<Note> getBlocNotes() {
 		return blocNotes;
@@ -93,9 +75,26 @@ public class BlocNotes {
 	}
 
 	public void refreshId() {
+
 		for (int i = 0; i < blocNotes.size(); i++) {
 			blocNotes.get(i).setId(i);
 		}
 	}
 
+	
+	public void orderOnUpdate(int updated) {
+
+		Note temp = new Note(null);
+		temp = blocNotes.get(0);
+		blocNotes.set(0, blocNotes.get(updated));
+
+		for (int i = updated; i > 1; i--) {
+			System.out.println("i = " + i);
+			blocNotes.set(i, blocNotes.get((i - 1)));
+		}
+
+		blocNotes.set(1, temp);
+
+
+	}
 }

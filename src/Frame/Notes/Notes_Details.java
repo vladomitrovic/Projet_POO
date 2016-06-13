@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
@@ -30,8 +31,8 @@ public class Notes_Details extends JPanel {
 
 	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(),
 			new Delete_Click(), new Color(252, 105, 17));
-	private JTextArea textArea = new JTextArea();
-	private JLabel date=new JLabel();
+	private JTextArea textArea = new JTextArea("");
+	private JLabel date = new JLabel();
 
 	// Photo for paintComponent
 	private Photo photo = new Photo("PicturesElements/fondEcranNote.png");
@@ -47,18 +48,18 @@ public class Notes_Details extends JPanel {
 
 		// set textArea
 		textArea.setOpaque(false);
-		textArea.setPreferredSize(new Dimension(480, 800));
-		textArea.setText(texte);
+		textArea.setPreferredSize(new Dimension(426, 696));
+		textArea.setText(note.getTexte());
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
-		textArea.setMargin(new Insets(0, 80, 20, 20));
-		textArea.setFont(new Font("Arial", Font.PLAIN, 35));
+		textArea.setMargin(new Insets(0, 85, 20, 20));
+		textArea.setFont(new Font("Arial", Font.PLAIN, 34));
 
 		// add to panel
 		add(titleBar, BorderLayout.NORTH);
 		add(textArea);
-		
-		//last update label
+
+		// last update label
 		date.setText("Dernière modification :  " + note.getDate());
 		date.setHorizontalAlignment(SwingConstants.CENTER);
 		add(date, BorderLayout.SOUTH);
@@ -71,35 +72,39 @@ public class Notes_Details extends JPanel {
 		super.paintComponent(g);
 		Image img = photo.getImage();
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-
 	}
 
 	class Back_Click implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
 
 			// If no modif on textArea, no confirmation
-			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte()) && textArea.getText()!="") {
+			if (textArea.getText().equals(top.getBlocNotes().getBlocNotes().get(note.getId()).getTexte())
+					&& textArea.getText() != null) {
 				top.remove(Notes_Details.this);
-				
+				return;
+
 			} else {
-				int dialogButton = JOptionPane.YES_NO_OPTION;
-				JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?", "Confirmation", dialogButton);
+				int dialogButton = JOptionPane.showConfirmDialog(null, "Enregistrer les modifications ?",
+						"Confirmation", JOptionPane.YES_NO_OPTION);
 				if (dialogButton == JOptionPane.YES_OPTION) {
 					top.getBlocNotes().getBlocNotes().get(note.getId()).setTexte(textArea.getText());
+					top.getBlocNotes().orderOnUpdate(note.getId());
+
 					top.getBlocNotes().serialize();
-					top.creatNotesButtons();
 					top.remove(Notes_Details.this);
 				}
-				if (dialogButton == JOptionPane.NO_OPTION ) {
-					if(textArea.getText()==""){
+				if (dialogButton == JOptionPane.NO_OPTION) {
+					if (textArea.getText().equals("")) {
 						top.getBlocNotes().deleteNote(note.getId());
+						top.getBlocNotes().serialize();
 					}
 					top.remove(Notes_Details.this);
 				}
 			}
+
+			top.creatNotesButtons();
 		}
 	}
 
@@ -109,9 +114,9 @@ public class Notes_Details extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			top.getBlocNotes().deleteNote(note.getId());
+			top.getBlocNotes().serialize();
 			top.creatNotesButtons();
 			top.remove(Notes_Details.this);
-			System.out.println("j'ai supprimé l'image");
 		}
 
 	}

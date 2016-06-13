@@ -61,12 +61,11 @@ public class Notes_Accueil extends JPanel {
 
 		creatNotesButtons();
 
-		// creatNotesButtons();
-		// addNotesToPanel();
-		// addActionListenerToNotesButtons();
+
 	}
 
 	public void creatNotesButtons() {
+
 		panelNotes.removeAll();
 		blocNotes.refreshId();
 
@@ -76,35 +75,9 @@ public class Notes_Accueil extends JPanel {
 			temp.getTextArea().setName("N" + i);
 			temp.getTextArea().addMouseListener(new Notes_Click());
 			panelNotes.add(temp);
+			
+			System.out.println(i+ " "+ n.getId());
 		}
-	}
-
-	public void removePanel(JPanel panel) {
-		System.out.println("Je suis rentré dans la méthode removePanel");
-		Notes_Accueil.this.remove(panel);
-		Notes_Accueil.this.revalidate();
-		Notes_Accueil.this.repaint();
-		addNotesToPanel();
-
-	}
-
-	public void addNotesToPanel() {
-		panelNotes.removeAll();
-		for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
-			System.out.println("Je suis bouton " + i);
-			panelNotes.add(blocNotes.getNotesButtons().get(i));
-			blocNotes.getNotesButtons().get(i).setName("N" + i);
-		}
-		panelNotes.repaint();
-		panelNotes.revalidate();
-	}
-
-	public void addActionListenerToNotesButtons() {
-		for (int i = 0; i < blocNotes.getNotesButtons().size(); i++) {
-//			blocNotes.getNotesButtons().get(i).addActionListener(new Notes_Click());
-		}
-		panelNotes.repaint();
-		panelNotes.revalidate();
 	}
 
 	class Notes_Click extends MouseAdapter {
@@ -120,6 +93,7 @@ public class Notes_Accueil extends JPanel {
 					return;
 				}
 			}
+			
 		}
 	}
 
@@ -128,12 +102,9 @@ public class Notes_Accueil extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			// Notes_Details noteDetails = new Notes_Details("",
-			// Notes_Accueil.this);
-			// add(noteDetails, "noteDetails");
-			// c1.show(Notes_Accueil.this, "noteDetails");
 
-			Note n = new Note("");
+
+			Note n = new Note(null);
 			blocNotes.addNote(n);
 			Notes_Details noteDetails = new Notes_Details(n.getTexte(), Notes_Accueil.this, n);
 			add(noteDetails, "noteDetails");
