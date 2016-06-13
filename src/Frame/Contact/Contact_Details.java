@@ -52,6 +52,7 @@ public class Contact_Details extends JPanel {
 	private JCheckBox favoris = new JCheckBox("Favoris ");
 	private JButton modifyButton = new JButton("Modifier");
 
+
 	public Contact_Details(int id, Contact_Carnet top) {
 		this.id = id;
 		this.top = top;
@@ -181,8 +182,10 @@ public class Contact_Details extends JPanel {
 				top.getCarnetContact().deleteContact(id);
 			}
 			
+			if(top.getFromFavoris()==false){
+				top.creatContactButtons();
+			}else{ top.creatFavorisButtons();}
 			
-			top.creatContactButtons();
 			top.remove(Contact_Details.this);
 		}
 

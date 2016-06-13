@@ -26,6 +26,7 @@ public class Contact_Carnet extends JPanel {
 	private JLabel nbContact = new JLabel();
 	private JTextField recherche = new JTextField("Recherche ...");
 	private CarnetContact carnetContact = new CarnetContact();
+	private Boolean fromFavoris=false;
 
 	public Contact_Carnet() {
 
@@ -173,6 +174,7 @@ public class Contact_Carnet extends JPanel {
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
+		fromFavoris=false;
 	}
 
 	public void creatFavorisButtons() {
@@ -200,7 +202,10 @@ public class Contact_Carnet extends JPanel {
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
+		fromFavoris=true;
 	}
+
+
 
 	public void research(String search) {
 
@@ -239,6 +244,10 @@ public class Contact_Carnet extends JPanel {
 
 	public CarnetContact getCarnetContact() {
 		return carnetContact;
+	}
+	
+	public Boolean getFromFavoris() {
+		return fromFavoris;
 	}
 
 }

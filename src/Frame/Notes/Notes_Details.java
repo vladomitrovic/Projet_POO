@@ -102,7 +102,7 @@ public class Notes_Details extends JPanel {
 					top.remove(Notes_Details.this);
 				}
 			}
-
+		
 			top.creatNotesButtons();
 		}
 	}
