@@ -16,28 +16,28 @@ public class BlocNotes {
 
 	public void addNote(Note n) {
 		blocNotes.add(n);
-		// orderOnUpdate((blocNotes.size()-1));
+		orderOnUpdate((blocNotes.size()-1));
 		refreshId();
 	}
 
-	public String displayInButton(String texte) {
-		String returnText = "<html>";
-		for (int i = 0; i < texte.length(); i++) {
-
-			if (i == 55)
-				return returnText;
-
-			if (i % 11 == 0 && i != 0) {
-				returnText += "<br/>" + texte.charAt(i);
-			} else {
-				returnText += texte.charAt(i);
-			}
-
-		}
-		returnText += "</html>";
-		return returnText;
-
-	}
+//	public String displayInButton(String texte) {
+//		String returnText = "<html>";
+//		for (int i = 0; i < texte.length(); i++) {
+//
+//			if (i == 55)
+//				return returnText;
+//
+//			if (i % 11 == 0 && i != 0) {
+//				returnText += "<br/>" + texte.charAt(i);
+//			} else {
+//				returnText += texte.charAt(i);
+//			}
+//
+//		}
+//		returnText += "</html>";
+//		return returnText;
+//
+//	}
 
 	public void deleteNote(int id) {
 		blocNotes.remove(id);
@@ -81,19 +81,20 @@ public class BlocNotes {
 		}
 	}
 
-//	public void orderOnUpdate(int updated) {
-//
-//		Note temp = new Note(null);
-//		temp = blocNotes.get(0);
-//		blocNotes.set(0, blocNotes.get(updated));
-//
-//		for (int i = updated; i > 1; i--) {
-//			System.out.println("i = " + i);
-//			blocNotes.set(i, blocNotes.get((i - 1)));
-//		}
-//
-//		blocNotes.set(1, temp);
-//
-//		System.out.println("Ordered");
-//	}
+	
+	public void orderOnUpdate(int updated) {
+
+		Note temp = new Note(null);
+		temp = blocNotes.get(0);
+		blocNotes.set(0, blocNotes.get(updated));
+
+		for (int i = updated; i > 1; i--) {
+			System.out.println("i = " + i);
+			blocNotes.set(i, blocNotes.get((i - 1)));
+		}
+
+		blocNotes.set(1, temp);
+
+
+	}
 }

@@ -37,13 +37,7 @@ public class Note implements Serializable {
 		return timeStamp;
 	}
 
-//	private void order (){
-//		BlocNotes bloc=new BlocNotes();
-//		bloc.deserialize();
-//		bloc.orderOnUpdate(this.id);
-//		bloc.refreshId();
-//		
-//	}
+
 
 
 }

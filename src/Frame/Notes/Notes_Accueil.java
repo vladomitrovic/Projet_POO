@@ -65,6 +65,7 @@ public class Notes_Accueil extends JPanel {
 	}
 
 	public void creatNotesButtons() {
+
 		panelNotes.removeAll();
 		blocNotes.refreshId();
 
@@ -74,6 +75,8 @@ public class Notes_Accueil extends JPanel {
 			temp.getTextArea().setName("N" + i);
 			temp.getTextArea().addMouseListener(new Notes_Click());
 			panelNotes.add(temp);
+			
+			System.out.println(i+ " "+ n.getId());
 		}
 	}
 
