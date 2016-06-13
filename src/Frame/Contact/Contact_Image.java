@@ -23,7 +23,7 @@ public class Contact_Image extends JPanel {
 	
 	private JPanel imagesPanel=new JPanel();
 	private JScrollPane scrollPane=new JScrollPane(imagesPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	private TopTitleBar topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "", Color.GRAY);
+	private TopTitleBar topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "", new Color(128, 128, 255));
 	private Galerie galerie=new Galerie();
 	private Contact_Details top;
 	private int id;

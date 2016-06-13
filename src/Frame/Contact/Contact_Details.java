@@ -63,7 +63,7 @@ public class Contact_Details extends JPanel {
 
 		// Configuration du topPanel
 		topPanel = new TopTitleBar(new BackButton(), new Return_Click(), "Contacts", new TrashButton(),
-				new Trash_Click(), Color.GRAY);
+				new Trash_Click(), new Color(128, 128, 255));
 
 		// Configuration du panel avec les détails
 		detailsPanel.setLayout(new BorderLayout());

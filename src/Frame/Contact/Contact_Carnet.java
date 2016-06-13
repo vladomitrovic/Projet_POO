@@ -31,7 +31,7 @@ public class Contact_Carnet extends JPanel {
 
 		// Création TopTitleBar
 		topPanel = new TopTitleBar(new FavorisButton(), new Favoris_Click(), "Contacts", new AddButton(),
-				new Add_Click(), Color.GRAY);
+				new Add_Click(), new Color(128, 128, 255));
 
 		// Ajout du topPanel et de la liste des contacts au panel contact
 		carnetPanel.setLayout(new BorderLayout());
