@@ -84,6 +84,10 @@ public class BlocNotes {
 	
 	public void orderOnUpdate(int updated) {
 
+		if(updated==0){
+			return;
+		}
+		
 		Note temp = new Note(null);
 		temp = blocNotes.get(0);
 		blocNotes.set(0, blocNotes.get(updated));
