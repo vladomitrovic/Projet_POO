@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 
 import Galerie.Photo;
 
-public class TestPanel extends JPanel {
+public class PanelNotes extends JPanel {
 
 	private Photo photo;
 
-	public TestPanel(Photo photo) {
+	public PanelNotes(Photo photo) {
 		this.photo = photo;
 		setPreferredSize(new Dimension(425,6422));
 	}

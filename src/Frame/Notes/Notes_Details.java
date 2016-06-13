@@ -35,17 +35,16 @@ public class Notes_Details extends JPanel {
 			new Delete_Click(), new Color(252, 105, 17));
 	private JTextArea textArea = new JTextArea("");
 	private Photo photo = new Photo("PicturesElements/fondEcranNote1.png");
-	private TestPanel testPanel = new TestPanel(photo);
-	
+	private PanelNotes panelNotes = new PanelNotes(photo);
+
 	// preferences of the JScrollPane without JScrollBar
-	private JScrollPane scroll = new JScrollPane(testPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+	private JScrollPane scroll = new JScrollPane(panelNotes, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	private JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL){
+	private JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
 		public boolean isVisible() {
-			return true ;
+			return true;
 		}
 	};
-	
 
 	private JLabel date = new JLabel();
 	private Notes_Accueil top;
@@ -56,8 +55,8 @@ public class Notes_Details extends JPanel {
 		this.note = note;
 		// set layout
 		setLayout(new BorderLayout());
-		
-		System.out.println(testPanel.getWidth());
+
+		System.out.println(panelNotes.getWidth());
 
 		// set textArea
 		textArea.setOpaque(false);
@@ -68,10 +67,10 @@ public class Notes_Details extends JPanel {
 		textArea.setMargin(new Insets(15, 85, 20, 20));
 		textArea.setFont(new Font("Arial", Font.PLAIN, 33));
 
-		testPanel.add(textArea);
-		textArea.
+		//add the textarea to the panelNotes
+		panelNotes.add(textArea);
 
-		// add to panel
+		// add to Notes_Details
 		add(titleBar, BorderLayout.NORTH);
 		scroll.setVerticalScrollBar(scrollBar);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -83,14 +82,6 @@ public class Notes_Details extends JPanel {
 		add(date, BorderLayout.SOUTH);
 
 	}
-
-	// @Override
-	// protected void paintComponent(Graphics g) {
-	// // TODO Auto-generated method stub
-	// super.paintComponent(g);
-	// Image img = photo.getImage();
-	// g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-	// }
 
 	class Back_Click implements ActionListener {
 
