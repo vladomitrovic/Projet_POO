@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -32,10 +33,13 @@ public class Notes_Details extends JPanel {
 	private TopTitleBar titleBar = new TopTitleBar(new BackButton(), new Back_Click(), "", new TrashButton(),
 			new Delete_Click(), new Color(252, 105, 17));
 	private JTextArea textArea = new JTextArea("");
+	private Photo photo = new Photo("PicturesElements/fondEcranNote1.png");
+	private TestPanel testPanel = new TestPanel(photo);
+	private JScrollPane scroll = new JScrollPane(testPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private JLabel date = new JLabel();
 
 	// Photo for paintComponent
-	private Photo photo = new Photo("PicturesElements/fondEcranNote.png");
 
 	private Notes_Accueil top;
 	private Note note;
@@ -45,19 +49,23 @@ public class Notes_Details extends JPanel {
 		this.note = note;
 		// set layout
 		setLayout(new BorderLayout());
+		
+		System.out.println(testPanel.getWidth());
 
 		// set textArea
 		textArea.setOpaque(false);
-		textArea.setPreferredSize(new Dimension(426, 696));
+		textArea.setSize(426, 80000);
 		textArea.setText(note.getTexte());
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
-		textArea.setMargin(new Insets(0, 85, 20, 20));
-		textArea.setFont(new Font("Arial", Font.PLAIN, 34));
+		textArea.setMargin(new Insets(15, 85, 20, 20));
+		textArea.setFont(new Font("Arial", Font.PLAIN, 33));
+
+		testPanel.add(textArea);
 
 		// add to panel
 		add(titleBar, BorderLayout.NORTH);
-		add(textArea);
+		add(scroll);
 
 		// last update label
 		date.setText("Dernière modification :  " + note.getDate());
@@ -66,13 +74,13 @@ public class Notes_Details extends JPanel {
 
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		Image img = photo.getImage();
-		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-	}
+	// @Override
+	// protected void paintComponent(Graphics g) {
+	// // TODO Auto-generated method stub
+	// super.paintComponent(g);
+	// Image img = photo.getImage();
+	// g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+	// }
 
 	class Back_Click implements ActionListener {
 
@@ -90,7 +98,7 @@ public class Notes_Details extends JPanel {
 						"Confirmation", JOptionPane.YES_NO_OPTION);
 				if (dialogButton == JOptionPane.YES_OPTION) {
 					top.getBlocNotes().getBlocNotes().get(note.getId()).setTexte(textArea.getText());
-//					top.getBlocNotes().orderOnUpdate(note.getId());
+					// top.getBlocNotes().orderOnUpdate(note.getId());
 					top.getBlocNotes().serialize();
 					top.remove(Notes_Details.this);
 				}
@@ -102,7 +110,7 @@ public class Notes_Details extends JPanel {
 					top.remove(Notes_Details.this);
 				}
 			}
-		
+
 			top.creatNotesButtons();
 		}
 	}
