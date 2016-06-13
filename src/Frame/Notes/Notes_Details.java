@@ -54,6 +54,7 @@ public class Notes_Details extends JPanel {
 		textArea.setWrapStyleWord(true);
 		textArea.setMargin(new Insets(0, 85, 20, 20));
 		textArea.setFont(new Font("Arial", Font.PLAIN, 34));
+		textArea.
 
 		// add to panel
 		add(titleBar, BorderLayout.NORTH);
