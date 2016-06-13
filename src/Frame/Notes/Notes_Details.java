@@ -46,17 +46,19 @@ public class Notes_Details extends JPanel {
 		}
 	};
 
+	//JLabel for the last update
 	private JLabel date = new JLabel();
+	
 	private Notes_Accueil top;
 	private Note note;
 
 	public Notes_Details(String texte, Notes_Accueil top, Note note) {
 		this.top = top;
 		this.note = note;
-		// set layout
-		setLayout(new BorderLayout());
 
-		System.out.println(panelNotes.getWidth());
+		// set Notes_Details preferences
+		setLayout(new BorderLayout());
+		setBackground(new Color(255, 255, 128));
 
 		// set textArea
 		textArea.setOpaque(false);
@@ -67,10 +69,10 @@ public class Notes_Details extends JPanel {
 		textArea.setMargin(new Insets(15, 85, 20, 20));
 		textArea.setFont(new Font("Arial", Font.PLAIN, 33));
 
-		//add the textarea to the panelNotes
+		// add the textarea to the panelNotes
 		panelNotes.add(textArea);
 
-		// add to Notes_Details
+		// add to Notes_Details without scrollBar
 		add(titleBar, BorderLayout.NORTH);
 		scroll.setVerticalScrollBar(scrollBar);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -79,6 +81,8 @@ public class Notes_Details extends JPanel {
 		// last update label
 		date.setText("Dernière modification :  " + note.getDate());
 		date.setHorizontalAlignment(SwingConstants.CENTER);
+		date.setBackground(Color.BLACK);
+		date.setPreferredSize(new Dimension(426, 20));
 		add(date, BorderLayout.SOUTH);
 
 	}

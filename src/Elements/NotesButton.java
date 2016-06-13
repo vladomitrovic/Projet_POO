@@ -15,24 +15,29 @@ import Galerie.Photo;
 public class NotesButton extends TopBarButton {
 
 	private Photo photo = new Photo("PicturesElements/post-it.png");
-	private JTextArea textArea= new JTextArea();
-	
+	private JTextArea textArea = new JTextArea();
+
 	public NotesButton(String text) {
+		// set Button preferences
 		setText(text);
-		setFont(new Font("Lucida Handwriting", Font.PLAIN, 20));
 		setPreferredSize(new Dimension(190, 230));
 		setVerticalTextPosition(0);
 		setVerticalAlignment(SwingConstants.TOP);
 		setHorizontalAlignment(SwingConstants.LEFT);
 		setMargin(new Insets(15, 15, 15, 15));
 		setOpaque(false);
+
+		// set textArea preferences
+		textArea.setFont(new Font("Lucida Handwriting", Font.PLAIN, 15));
 		textArea.setText(text);
 		textArea.setOpaque(false);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setEditable(false);
-		this.add(textArea);
-		
+
+		// add textArea to the Button
+		add(textArea);
+
 	}
 
 	@Override
@@ -46,7 +51,5 @@ public class NotesButton extends TopBarButton {
 	public JTextArea getTextArea() {
 		return textArea;
 	}
-	
-
 
 }
