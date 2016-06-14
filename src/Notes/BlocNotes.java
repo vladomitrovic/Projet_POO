@@ -7,37 +7,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-
 public class BlocNotes {
 
 	private ArrayList<Note> blocNotes = new ArrayList<Note>();
 
-
-
 	public void addNote(Note n) {
 		blocNotes.add(n);
-		orderOnUpdate((blocNotes.size()-1));
+		orderOnUpdate((blocNotes.size() - 1));
 		refreshId();
 	}
-
-//	public String displayInButton(String texte) {
-//		String returnText = "<html>";
-//		for (int i = 0; i < texte.length(); i++) {
-//
-//			if (i == 55)
-//				return returnText;
-//
-//			if (i % 11 == 0 && i != 0) {
-//				returnText += "<br/>" + texte.charAt(i);
-//			} else {
-//				returnText += texte.charAt(i);
-//			}
-//
-//		}
-//		returnText += "</html>";
-//		return returnText;
-//
-//	}
 
 	public void deleteNote(int id) {
 		blocNotes.remove(id);
@@ -81,24 +59,24 @@ public class BlocNotes {
 		}
 	}
 
-	
 	public void orderOnUpdate(int updated) {
 
-		if(updated==0){
+		if (updated == 0) {
 			return;
 		}
-		
+
 		Note temp = new Note(null);
 		temp = blocNotes.get(0);
 		blocNotes.set(0, blocNotes.get(updated));
 
 		for (int i = updated; i > 1; i--) {
-			System.out.println("i = " + i);
+
 			blocNotes.set(i, blocNotes.get((i - 1)));
 		}
 
 		blocNotes.set(1, temp);
 
+		refreshId();
 
 	}
 }

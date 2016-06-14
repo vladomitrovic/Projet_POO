@@ -47,6 +47,10 @@ public class Contact implements Serializable {
 	}
 	
 	public String getPrenomNom(){
+		if(prenom.equals("")){
+			return nom;
+		}
+		
 		return prenom+" "+nom;
 	}
 	

@@ -82,6 +82,7 @@ public class Contact_Carnet extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			carnetContact.newContact("", "", "", false);
 			carnetContact.orderAbc();
+			carnetContact.serialize();
 			contactDetails = new Contact_Details(0, Contact_Carnet.this);
 			contactDetails.getModifyButton().doClick();
 			add(contactDetails, "contactDetails");
@@ -164,7 +165,7 @@ public class Contact_Carnet extends JPanel {
 		carnetContact.refreshId();
 		for (int i = 0; i < carnetContact.getCarnet().size(); i++) {
 			Contact c = carnetContact.getCarnet().get(i);
-			ContactButton temp = new ContactButton(c.getPrenom() + " " + c.getNom());
+			ContactButton temp = new ContactButton(c.getPrenomNom());
 			temp.setName("C" + i);
 			temp.addActionListener(new Details_Click());
 

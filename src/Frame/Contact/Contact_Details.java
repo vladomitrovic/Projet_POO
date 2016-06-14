@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -56,6 +57,7 @@ public class Contact_Details extends JPanel {
 	public Contact_Details(int id, Contact_Carnet top) {
 		this.id = id;
 		this.top = top;
+		top.getCarnetContact().deseralize();
 		contactDetails = top.getCarnetContact().getCarnet().get(id);
 
 		// Configuration du panel principal
@@ -153,6 +155,12 @@ public class Contact_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			if(lblCPname.getText().equals("") && lblCName.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Veuillez remplir le nom ou le prénom");
+				return;
+			}
+			
 			lblCPname.setEditable(false);
 			lblCName.setEditable(false);
 			lblCTel.setEditable(false);
@@ -177,10 +185,11 @@ public class Contact_Details extends JPanel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			if(contactDetails.getPrenom()=="" | contactDetails.getNom()=="" | contactDetails.getTel()==""){
+			if(contactDetails.getPrenom().equals("") && contactDetails.getNom().equals("") && contactDetails.getTel().equals("") && contactDetails.getId()==(top.getCarnetContact().getCarnet().size()-1)){
 				top.getCarnetContact().deleteContact(id);
+				top.getCarnetContact().serialize();
 			}
+			
 			
 			if(top.getFromFavoris()==false){
 				top.creatContactButtons();
@@ -188,6 +197,7 @@ public class Contact_Details extends JPanel {
 			
 			top.remove(Contact_Details.this);
 		}
+		
 
 	}
 
