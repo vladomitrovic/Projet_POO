@@ -26,8 +26,6 @@ public class Galerie<Contact_image> {
 	private ArrayList<String> name = new ArrayList<String>();
 	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
 
-	
-	
 	public ArrayList<PhotoButton> createPhotoButtons(Galerie_Accueil panelGalerie) {
 		/**
 		 * méthode qui va aller chercher le "path" des photos grâce à la méthode
@@ -136,8 +134,10 @@ public class Galerie<Contact_image> {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile())
-				if (listOfFiles[i].getName().endsWith(".jpeg") || listOfFiles[i].getName().endsWith(".jpg")
-						|| listOfFiles[i].getName().endsWith(".png") || listOfFiles[i].getName().endsWith(".PNG"))
+				if (listOfFiles[i].getName().endsWith(".jpeg") 
+						|| listOfFiles[i].getName().endsWith(".jpg")
+						|| listOfFiles[i].getName().endsWith(".png") || listOfFiles[i].getName().endsWith(".PNG")
+						|| listOfFiles[i].getName().endsWith(".gif"))
 					name.add("Pictures/" + listOfFiles[i].getName());
 		}
 	}
