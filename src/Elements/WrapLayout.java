@@ -5,6 +5,17 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 /**
+ * Classe reprise d'internet
+ * Source : http://www.camick.com/java/source/WrapLayout.java
+ * 
+ * Le WrapLayout est une classe similaire au FlowLayout à laquelle nous pouvons 
+ * ajouter un JScrollPane sans qu'il y ait de problèmes (contrairement au 
+ * FlowLayout avec JScrollPane). Celle-ci gère le retour à la ligne aux extrémités du 
+ * JPanel
+ *
+ */
+
+/**
  * FlowLayout subclass that fully supports wrapping of components.
  */
 public class WrapLayout extends FlowLayout {
