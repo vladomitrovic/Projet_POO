@@ -76,7 +76,6 @@ public class Notes_Accueil extends JPanel {
 			temp.getTextArea().addMouseListener(new Notes_Click());
 			panelNotes.add(temp);
 			
-			System.out.println(i+ " "+ n.getId());
 		}
 	}
 

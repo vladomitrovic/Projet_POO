@@ -185,10 +185,11 @@ public class Contact_Details extends JPanel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			if(contactDetails.getPrenom()=="" | contactDetails.getNom()=="" | contactDetails.getTel()==""){
+			if(contactDetails.getPrenom().equals("") && contactDetails.getNom().equals("") && contactDetails.getTel().equals("") && contactDetails.getId()==(top.getCarnetContact().getCarnet().size()-1)){
 				top.getCarnetContact().deleteContact(id);
+				top.getCarnetContact().serialize();
 			}
+			
 			
 			if(top.getFromFavoris()==false){
 				top.creatContactButtons();
@@ -196,6 +197,7 @@ public class Contact_Details extends JPanel {
 			
 			top.remove(Contact_Details.this);
 		}
+		
 
 	}
 

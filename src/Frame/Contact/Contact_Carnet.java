@@ -82,6 +82,7 @@ public class Contact_Carnet extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			carnetContact.newContact("", "", "", false);
 			carnetContact.orderAbc();
+			carnetContact.serialize();
 			contactDetails = new Contact_Details(0, Contact_Carnet.this);
 			contactDetails.getModifyButton().doClick();
 			add(contactDetails, "contactDetails");

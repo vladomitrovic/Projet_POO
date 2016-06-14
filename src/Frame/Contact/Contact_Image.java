@@ -45,7 +45,6 @@ public class Contact_Image extends JPanel {
 		// if already default, default button disabled
 		if(top.getCarnet().getCarnet().get(id).getPhoto().getPath().equals("PicturesElements/default_Contact.png")){
 			topPanel.getRightButton().setEnabled(false);
-			System.out.println("default");
 		}
 	
 		

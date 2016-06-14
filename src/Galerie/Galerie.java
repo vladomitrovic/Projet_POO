@@ -26,6 +26,8 @@ public class Galerie<Contact_image> {
 	private ArrayList<String> name = new ArrayList<String>();
 	private ArrayList<PhotoButton> photoButtons = new ArrayList<PhotoButton>();
 
+	
+	
 	public ArrayList<PhotoButton> createPhotoButtons(Galerie_Accueil panelGalerie) {
 		/**
 		 * méthode qui va aller chercher le "path" des photos grâce à la méthode
