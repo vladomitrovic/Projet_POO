@@ -192,7 +192,7 @@ public class Launcher extends JFrame {
 			BufferedImage bufferedImage = robot.createScreenCapture(shotRectangle);
 
 			try {
-				File file = new File("Pictures/screenshot" + "0 " + time + ".png");
+				File file = new File("Pictures/zscreenshot" + "0 " + time + ".png");
 				ImageIO.write(bufferedImage, "png", file);
 
 			} catch (IOException ioe) {
