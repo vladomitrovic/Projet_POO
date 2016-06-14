@@ -42,7 +42,6 @@ public class Launcher extends JFrame {
 	private ApplicationButton btnContacts = new ApplicationButton(new Photo("PicturesElements/phone-book.png"));
 	private ApplicationButton btnGalerie = new ApplicationButton(new Photo("PicturesElements/gallery.png"));
 	private ApplicationButton btnNotes = new ApplicationButton(new Photo("PicturesElements/note.png"));
-	private ApplicationButton btnSettings = new ApplicationButton(new Photo("PicturesElements/settings.png"));
 
 	private Galerie_Accueil galerie = new Galerie_Accueil(panelApplication);
 	private Contact_Carnet carnet = new Contact_Carnet();
@@ -67,7 +66,6 @@ public class Launcher extends JFrame {
 		panelApplication.add(btnContacts);
 		panelApplication.add(btnGalerie);
 		panelApplication.add(btnNotes);
-		panelApplication.add(btnSettings);
 
 		// create the border
 		createBorder();
