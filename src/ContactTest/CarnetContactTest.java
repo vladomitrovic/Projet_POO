@@ -32,15 +32,11 @@ public class CarnetContactTest {
 			carnetTest.add(null);
 		}
 
-		System.out.println(carnetTest.size());
-		System.out.println(carnetContact.getCarnet().size());
-
 		carnetContact.newContact("TEST", "junit", "01", false);
 
 		int sizeA = carnetTest.size();
-		System.out.println(sizeA);
+
 		int sizeB = carnetContact.getCarnet().size();
-		System.out.println(sizeB);
 
 		assertEquals(sizeA, sizeB - 1, 0.00);
 
