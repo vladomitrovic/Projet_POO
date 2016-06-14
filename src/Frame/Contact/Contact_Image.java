@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import Elements.BackButton;
 import Elements.PhotoButton;
 import Elements.TopTitleBar;
+import Elements.TrashButton;
 import Elements.WrapLayout;
 import Frame.Galerie.Galerie_Accueil;
 import Galerie.Galerie;
@@ -23,8 +24,10 @@ public class Contact_Image extends JPanel {
 	
 	private JPanel imagesPanel=new JPanel();
 	private JScrollPane scrollPane=new JScrollPane(imagesPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	private TopTitleBar topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "", new Color(128, 128, 255));
+	private TopTitleBar topPanel=new TopTitleBar(new BackButton(), new Return_Click(), "", new TrashButton(),
+			new Trash_Click(), new Color(128, 128, 255));
 	private Galerie galerie=new Galerie();
+	private Photo defaultPhoto=new Photo ("PicturesElements/default_Contact.png");
 	private Contact_Details top;
 	private int id;
 	
@@ -35,9 +38,16 @@ public class Contact_Image extends JPanel {
 		
 		add(topPanel, BorderLayout.NORTH);
 		add(scrollPane);
+		topPanel.getRightButton().setToolTipText("Image par défaut");
 		
 		imagesPanel.setLayout(new WrapLayout(FlowLayout.LEFT, 5, 5));
 		
+		// if already default, default button disabled
+		if(top.getCarnet().getCarnet().get(id).getPhoto().getPath().equals("PicturesElements/default_Contact.png")){
+			topPanel.getRightButton().setEnabled(false);
+			System.out.println("default");
+		}
+	
 		
 		galerie.createPhotoContact(Contact_Image.this, new Galerie_Accueil());
 		
@@ -79,6 +89,19 @@ public class Contact_Image extends JPanel {
 			top.remove(Contact_Image.this);
 		}
 
+	}
+	
+	class Trash_Click implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			top.getCarnet().getCarnet().get(id).setPhoto("PicturesElements/default_Contact.png");
+			top.getCarnet().serialize();
+			top.remove(Contact_Image.this);
+			top.setPicture("PicturesElements/default_Contact.png");
+			
+		}
+		
 	}
 	
 
