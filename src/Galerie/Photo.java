@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class Photo extends ImageIcon implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String path;
 	private int id = -1;
 

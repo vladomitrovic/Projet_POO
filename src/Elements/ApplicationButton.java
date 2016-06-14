@@ -1,7 +1,5 @@
 package Elements;
 
-import javax.swing.JButton;
-
 import Galerie.Photo;
 
 public class ApplicationButton extends TopBarButton {

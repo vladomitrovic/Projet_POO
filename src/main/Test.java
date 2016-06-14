@@ -1,6 +1,5 @@
 package main;
 
-import Contact.CarnetContact;
 import Frame.Launcher;
 
 public class Test {
@@ -10,7 +9,6 @@ public class Test {
 
 		Launcher lun = new Launcher();
 		lun.setVisible(true);
-		
 
 	}
 

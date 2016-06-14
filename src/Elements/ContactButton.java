@@ -29,5 +29,4 @@ public class ContactButton extends JButton {
 
 	}
 
-
 }

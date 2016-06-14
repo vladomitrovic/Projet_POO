@@ -2,26 +2,19 @@ package Frame.Notes;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import Contact.Contact;
 import Elements.AddButton;
-import Elements.ContactButton;
 import Elements.NotesButton;
 import Elements.TopTitleBar;
 import Elements.WrapLayout;
-import Frame.Contact.Contact_Carnet;
-import Frame.Galerie.Photo_Details;
 import Notes.BlocNotes;
 import Notes.Note;
 
@@ -61,7 +54,6 @@ public class Notes_Accueil extends JPanel {
 
 		creatNotesButtons();
 
-
 	}
 
 	public void creatNotesButtons() {
@@ -75,7 +67,7 @@ public class Notes_Accueil extends JPanel {
 			temp.getTextArea().setName("N" + i);
 			temp.getTextArea().addMouseListener(new Notes_Click());
 			panelNotes.add(temp);
-			
+
 		}
 	}
 
@@ -92,7 +84,7 @@ public class Notes_Accueil extends JPanel {
 					return;
 				}
 			}
-			
+
 		}
 	}
 
@@ -101,7 +93,6 @@ public class Notes_Accueil extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-
 
 			Note n = new Note(null);
 			blocNotes.addNote(n);

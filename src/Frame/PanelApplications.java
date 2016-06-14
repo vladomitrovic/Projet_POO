@@ -72,7 +72,7 @@ public class PanelApplications extends JPanel {
 		 * méthode qui va aller peindre le fond d'écran sur le panel en
 		 * redimensionnant la photo à la taille du panel
 		 **/
-		
+
 		super.paintComponent(g);
 		Image img = photo.getImage();
 		int frameWidth = this.getWidth();

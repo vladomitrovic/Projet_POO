@@ -14,7 +14,7 @@ public class PanelNotes extends JPanel {
 
 	public PanelNotes(Photo photo) {
 		this.photo = photo;
-		setPreferredSize(new Dimension(425,6422));
+		setPreferredSize(new Dimension(425, 6422));
 	}
 
 	@Override

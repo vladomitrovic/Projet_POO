@@ -9,17 +9,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-
 import Contact.CarnetContact;
 import Contact.Contact;
 import Elements.BackButton;
@@ -52,7 +46,6 @@ public class Contact_Details extends JPanel {
 	private LabelContact lblCTel = new LabelContact();
 	private JCheckBox favoris = new JCheckBox("Favoris ");
 	private JButton modifyButton = new JButton("Modifier");
-
 
 	public Contact_Details(int id, Contact_Carnet top) {
 		this.id = id;
@@ -155,12 +148,12 @@ public class Contact_Details extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			if(lblCPname.getText().equals("") && lblCName.getText().equals("")){
+
+			if (lblCPname.getText().equals("") && lblCName.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Veuillez remplir le nom ou le prénom");
 				return;
 			}
-			
+
 			lblCPname.setEditable(false);
 			lblCName.setEditable(false);
 			lblCTel.setEditable(false);
@@ -185,27 +178,29 @@ public class Contact_Details extends JPanel {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(contactDetails.getPrenom().equals("") && contactDetails.getNom().equals("") && contactDetails.getTel().equals("") && contactDetails.getId()==(top.getCarnetContact().getCarnet().size()-1)){
+			if (contactDetails.getPrenom().equals("") && contactDetails.getNom().equals("")
+					&& contactDetails.getTel().equals("")
+					&& contactDetails.getId() == (top.getCarnetContact().getCarnet().size() - 1)) {
 				top.getCarnetContact().deleteContact(id);
 				top.getCarnetContact().serialize();
 			}
-			
-			
-			if(top.getFromFavoris()==false){
+
+			if (top.getFromFavoris() == false) {
 				top.creatContactButtons();
-			}else{ top.creatFavorisButtons();}
-			
+			} else {
+				top.creatFavorisButtons();
+			}
+
 			top.remove(Contact_Details.this);
 		}
-		
 
 	}
 
 	class Trash_Click implements ActionListener {
 
 		/*
-		 * Lors d'un suppression, on enlève le contact de l'arrayliste, puis serialisation.
-		 * On met à jour les buttons, puis on revient à la liste
+		 * Lors d'un suppression, on enlève le contact de l'arrayliste, puis
+		 * serialisation. On met à jour les buttons, puis on revient à la liste
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -218,7 +213,8 @@ public class Contact_Details extends JPanel {
 
 	class Picture_Click implements ActionListener {
 		/*
-		 * Lorsque l'on clic sur la photo, on accède au photo de la galerie afin de modifier l'image
+		 * Lorsque l'on clic sur la photo, on accède au photo de la galerie afin
+		 * de modifier l'image
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -245,7 +241,7 @@ public class Contact_Details extends JPanel {
 		/*
 		 * On change l'image lors du choix de la photo de contact
 		 */
-		
+
 		this.picture.setIcon(new Photo(path));
 		picture.setIcon(creatPhotoFit(top.getCarnetContact().getCarnet().get(id).getPhoto()));
 		picture.setPreferredSize(new Dimension(150, 180));
@@ -254,6 +250,7 @@ public class Contact_Details extends JPanel {
 	public JButton getModifyButton() {
 		return modifyButton;
 	}
+
 	public CarnetContact getCarnet() {
 		return top.getCarnetContact();
 	}

@@ -2,7 +2,6 @@ package Frame.Contact;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 import Contact.CarnetContact;
 import Contact.Contact;
@@ -26,7 +25,7 @@ public class Contact_Carnet extends JPanel {
 	private JLabel nbContact = new JLabel();
 	private JTextField recherche = new JTextField("Recherche ...");
 	private CarnetContact carnetContact = new CarnetContact();
-	private Boolean fromFavoris=false;
+	private Boolean fromFavoris = false;
 
 	public Contact_Carnet() {
 
@@ -147,8 +146,6 @@ public class Contact_Carnet extends JPanel {
 			recherche.setText("");
 		}
 
-
-
 	}
 
 	public void creatContactButtons() {
@@ -175,7 +172,7 @@ public class Contact_Carnet extends JPanel {
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
-		fromFavoris=false;
+		fromFavoris = false;
 	}
 
 	public void creatFavorisButtons() {
@@ -203,10 +200,8 @@ public class Contact_Carnet extends JPanel {
 		nbContact.setPreferredSize(new Dimension(407, 50));
 		nbContact.setHorizontalAlignment(SwingConstants.CENTER);
 		listePanel.add(nbContact);
-		fromFavoris=true;
+		fromFavoris = true;
 	}
-
-
 
 	public void research(String search) {
 
@@ -246,7 +241,7 @@ public class Contact_Carnet extends JPanel {
 	public CarnetContact getCarnetContact() {
 		return carnetContact;
 	}
-	
+
 	public Boolean getFromFavoris() {
 		return fromFavoris;
 	}

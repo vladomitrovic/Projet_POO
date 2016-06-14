@@ -1,20 +1,12 @@
 package Galerie;
 
-import java.awt.Dimension;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import Elements.PhotoButton;
 import Frame.Contact.Contact_Image;
@@ -134,8 +126,7 @@ public class Galerie<Contact_image> {
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile())
-				if (listOfFiles[i].getName().endsWith(".jpeg") 
-						|| listOfFiles[i].getName().endsWith(".jpg")
+				if (listOfFiles[i].getName().endsWith(".jpeg") || listOfFiles[i].getName().endsWith(".jpg")
 						|| listOfFiles[i].getName().endsWith(".png") || listOfFiles[i].getName().endsWith(".PNG")
 						|| listOfFiles[i].getName().endsWith(".gif"))
 					name.add("Pictures/" + listOfFiles[i].getName());

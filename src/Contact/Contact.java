@@ -1,19 +1,17 @@
 package Contact;
+
 import java.io.Serializable;
-import java.util.Collections;
 
 import Galerie.Photo;
 
-
 public class Contact implements Serializable {
 	private static final long serialVersionUID = 1928505403570541323L;
-	
-	private Photo photo= new Photo("PicturesElements/default_Contact.png");
+
+	private Photo photo = new Photo("PicturesElements/default_Contact.png");
 	private String nom, prenom, tel;
 	private int id;
 	private boolean favoris;
-	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -30,32 +28,31 @@ public class Contact implements Serializable {
 		this.favoris = favoris;
 	}
 
-	public Contact(String prenom, String nom, String tel, boolean favoris){
-		this.prenom=prenom;
-		this.nom=nom;
-		this.tel=tel;
-		this.favoris=favoris;
+	public Contact(String prenom, String nom, String tel, boolean favoris) {
+		this.prenom = prenom;
+		this.nom = nom;
+		this.tel = tel;
+		this.favoris = favoris;
 	}
-	
+
 	public Contact() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	public String getNom() {
 		return nom;
 	}
-	
-	public String getPrenomNom(){
-		if(prenom.equals("")){
+
+	public String getPrenomNom() {
+		if (prenom.equals("")) {
 			return nom;
 		}
-		
-		return prenom+" "+nom;
+
+		return prenom + " " + nom;
 	}
-	
-	public String getNomPrenom(){
-		return nom+" "+prenom;
+
+	public String getNomPrenom() {
+		return nom + " " + prenom;
 	}
 
 	public void setNom(String nom) {
@@ -85,13 +82,5 @@ public class Contact implements Serializable {
 	public void setPhoto(String path) {
 		this.photo = new Photo(path);
 	}
-	
-	
 
-
-	
-	
-	
-	
-	
 }

@@ -5,11 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import javax.swing.JButton;
 
 public class CarnetContact {
 	private static final long serialVersionUID = 1L;
@@ -104,7 +101,7 @@ public class CarnetContact {
 			String comparaison = carnet.get(i).getPrenom() + carnet.get(i).getNom() + carnet.get(i).getId();
 			for (int j = 0; j < carnet.size(); j++) {
 				if (comparaison.equals(orderString().get(j).toString())) {
-					contactAbc.set(j, carnet.get(i));	
+					contactAbc.set(j, carnet.get(i));
 					break;
 				}
 			}
