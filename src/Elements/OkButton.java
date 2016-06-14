@@ -1,9 +1,6 @@
 package Elements;
 
-import javax.swing.JButton;
-
 import Galerie.Photo;
-
 
 public class OkButton extends TopBarButton {
 

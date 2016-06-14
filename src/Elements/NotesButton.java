@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.awt.Insets;
 
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Galerie.Photo;

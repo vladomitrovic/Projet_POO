@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class TopTitleBar extends JPanel {
 
@@ -70,7 +69,7 @@ public class TopTitleBar extends JPanel {
 	// Without leftButton
 	public TopTitleBar(String title, int r, int g, int b, JButton rightButton, ActionListener rightAction) {
 		setLayout(new BorderLayout());
-		Color color = new Color(r,g,b);
+		Color color = new Color(r, g, b);
 		setBackground(color);
 		setPreferredSize(new Dimension(480, 60));
 
@@ -104,7 +103,7 @@ public class TopTitleBar extends JPanel {
 		revalidate();
 		repaint();
 	}
-	
+
 	public JButton getRightButton() {
 		return rightButton;
 	}
