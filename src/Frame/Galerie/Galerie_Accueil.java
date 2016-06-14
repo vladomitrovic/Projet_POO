@@ -223,5 +223,10 @@ public class Galerie_Accueil extends JPanel {
 		}
 
 	}
+	
+	public void refreshPhotoButton(){
+		galerie.updateButtons(Galerie_Accueil.this);
+
+	}
 
 }

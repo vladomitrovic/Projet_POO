@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.JLabel;
@@ -36,6 +37,9 @@ public class TopBarPanel extends JPanel {
 		add(time);
 	}
 
+
+
+
 	class HorlogeLabel extends JLabel implements ActionListener {
 		public HorlogeLabel() {
 			super("" + Calendar.getInstance());
@@ -50,3 +54,6 @@ public class TopBarPanel extends JPanel {
 	}
 
 }
+
+
+

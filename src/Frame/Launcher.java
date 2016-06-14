@@ -1,18 +1,36 @@
 package Frame;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
 import Elements.ApplicationButton;
 import Elements.HomeButton;
+import Elements.ScreenShotButton;
 import Elements.TopBarPanel;
 import Frame.Contact.Contact_Carnet;
 import Frame.Galerie.Galerie_Accueil;
@@ -30,6 +48,7 @@ public class Launcher extends JFrame {
 	private JPanel south = new JPanel();
 	private FlowLayout flSouth = new FlowLayout();
 	private HomeButton homeButton = new HomeButton();
+	private ScreenShotButton screenShot = new ScreenShotButton();
 
 	// Panel parent pour cardLayout
 	public CardLayout c1 = new CardLayout();
@@ -71,8 +90,12 @@ public class Launcher extends JFrame {
 		createBorder();
 
 		// modification du bouton home et ajout au southLayout
+		south.setLayout(new GridLayout(1, 3));
 		homeButton.addActionListener(new Home_Click());
+		screenShot.addActionListener(new ScreenShot());
+		south.add(screenShot);
 		south.add(homeButton);
+		south.add(screenShot, BorderLayout.EAST);
 
 		// ajout de mes panels pour cardLayout
 		mainContainer.setLayout(c1);
@@ -148,4 +171,38 @@ public class Launcher extends JFrame {
 
 	}
 
+	class ScreenShot implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			Point pt = new Point(mainContainer.getLocation());
+			SwingUtilities.convertPointToScreen(pt, topBar);
+
+			String time = new SimpleDateFormat("ddMMyyHHmmss").format(Calendar.getInstance().getTime());
+
+			Rectangle shotRectangle = new Rectangle(pt.x, pt.y, mainContainer.getWidth(), mainContainer.getHeight());
+
+			Robot robot = null;
+			try {
+				robot = new Robot();
+			} catch (AWTException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			BufferedImage bufferedImage = robot.createScreenCapture(shotRectangle);
+
+			try {
+				File file = new File("Pictures/screenshot" + time + ".png");
+				ImageIO.write(bufferedImage, "png", file);
+
+			} catch (IOException ioe) {
+
+			}
+			galerie.refreshPhotoButton();
+
+			JOptionPane.showMessageDialog(null, "Capture d'écran enregistrée");
+		}
+	}
 }

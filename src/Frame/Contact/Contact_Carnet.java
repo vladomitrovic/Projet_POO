@@ -54,7 +54,7 @@ public class Contact_Carnet extends JPanel {
 
 		// Configuration LayOut de la liste de contact
 		WrapLayout wrap = new WrapLayout();
-		wrap.setVgap(5);
+		wrap.setVgap(0);
 		listePanel.setLayout(wrap);
 
 		// Configuration du panel avec scroll
