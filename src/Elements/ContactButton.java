@@ -29,19 +29,5 @@ public class ContactButton extends JButton {
 
 	}
 
-	// class ColorButtton extends MouseAdapter {
-	//
-	// @Override
-	// public void mouseEntered(MouseEvent e) {
-	//
-	// }
-	//
-	// @Override
-	// public void mouseExited(MouseEvent e) {
-	// setBackground(Color.LIGHT_GRAY);
-	//
-	// }
-	//
-	// }
 
 }
