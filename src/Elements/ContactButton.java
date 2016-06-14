@@ -27,29 +27,6 @@ public class ContactButton extends JButton {
 		setFont(new Font("Arial", Font.PLAIN, 20));
 		setPreferredSize(new Dimension(400, 40));
 
-		addChangeListener(new ColorChange());
-
-	}
-
-	class ColorChange implements ChangeListener {
-
-		@Override
-		public void stateChanged(ChangeEvent arg0) {
-			// TODO Auto-generated method stub
-			if (getModel().isPressed()) {
-				setBackground(Color.BLACK);
-				revalidate();
-				repaint();
-				System.out.println("black");
-			} else if (getModel().isRollover()) {
-				setBackground(Color.WHITE);
-				System.out.println("white");
-			} else {
-				setBackground(Color.BLUE);
-				System.out.println("blue");
-			}
-		}
-
 	}
 
 	// class ColorButtton extends MouseAdapter {
